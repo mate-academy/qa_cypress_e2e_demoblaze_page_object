@@ -15,14 +15,16 @@ describe('make order on page', () => {
   });
 
   it('should make purchase', () => {
+    const laptop = 'Sony vaio i7';
+
     homePage.clickOnCategory('Laptops');
-    homePage.clickOnProduct('Sony vaio i7');
+    homePage.clickOnProduct(laptop);
 
     prodPage.addToCart();
     prodPage.assertAddToCartAlert();
 
     cartPage.visit();
-    cartPage.assertProduct('Sony vaio i7');
+    cartPage.assertProduct(laptop);
     cartPage.placeOrder();
 
     placeOrder.fillOrderForm();
