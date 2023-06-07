@@ -41,6 +41,12 @@ class CheckoutFormPageObject extends PageObject {
       expect(alert).to.eq(alertMessage);
     });
   }
+
+  OrderInfo(name, creditCard) {
+    cy.get('.lead.text-muted ')
+      .should('contain', name)
+      .and('contain', creditCard);
+  }
 }
 
 export default CheckoutFormPageObject;

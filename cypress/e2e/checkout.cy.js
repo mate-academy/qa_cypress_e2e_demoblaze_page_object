@@ -46,9 +46,7 @@ describe('Checkout', () => {
     checkoutForm.purchaseBtn
       .click();
     checkoutForm.assertAllert('Thank you for your purchase');
-    cy.get('.lead.text-muted ')
-      .should('contain', testOrderData.name)
-      .and('contain', testOrderData.creditCard);
+    checkoutForm.OrderInfo(testOrderData.name, testOrderData.creditCard);
     homePage.clickOnButton('OK');
   });
 });
