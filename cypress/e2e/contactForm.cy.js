@@ -20,12 +20,16 @@ describe('Contact', () => {
 
   it('should provide the ability to send feedback', () => {
     homePage.clickOnLink('Contact');
+    
     contactForm.emailField
       .type(testData.email, { force: true });
+
     contactForm.nameField
       .type(testData.name, { force: true });
+
     contactForm.messageField
       .type(testData.message);
+
     contactForm.sendMessageBtn
       .click();
 
