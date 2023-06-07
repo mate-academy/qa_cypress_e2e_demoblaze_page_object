@@ -50,6 +50,6 @@ describe('Checkout', () => {
 
     placeOrderForm.assertCardNumber(testData.orderData.creditcard);
     placeOrderForm.assertName(testData.orderData.name);
-    placeOrderForm.OKButtom.click();
+    placeOrderForm.OKButton.click();
   });
 });
