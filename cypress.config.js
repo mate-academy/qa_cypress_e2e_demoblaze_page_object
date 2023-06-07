@@ -1,4 +1,6 @@
+
 const { defineConfig } = require('cypress');
+const faker = require('faker');
 
 module.exports = defineConfig({
   e2e: {
@@ -13,7 +15,7 @@ module.exports = defineConfig({
             password: 'Password12345!'
           };
         }
-      })
+      });
     }
   }
 });
