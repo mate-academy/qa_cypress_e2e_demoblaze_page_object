@@ -1,7 +1,7 @@
 import PageObject from '../PageObject';
 
 class HomeAndCataloguePageObject extends PageObject {
-  url = '/index.html';
+  url = '/';
 
   clickOnLink(linkName) {
     cy.contains('.nav-link', linkName)
@@ -16,6 +16,17 @@ class HomeAndCataloguePageObject extends PageObject {
   clickOnProduct(product) {
     cy.contains('.hrefch', product)
       .click();
+  }
+
+  clickOnAddButton(button) {
+    cy.contains('.btn', button)
+      .click();
+  }
+
+  assertAllertAddProduct() {
+    cy.on('window:alert', (str) => {
+      expect(str).to.equal(`Product added`)
+    })
   }
 }
 
