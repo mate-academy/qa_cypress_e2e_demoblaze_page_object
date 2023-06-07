@@ -17,6 +17,21 @@ class HomeAndCataloguePageObject extends PageObject {
     cy.contains('.hrefch', product)
       .click();
   }
+
+  clickOnButton(button) {
+    cy.contains('.btn', button)
+      .click();
+  }
+
+  clickOnButtonModal(buttonModal) {
+    cy.contains('.confirm', buttonModal)
+      .click();
+  }
+
+  fillTheField(attribute, fieldName) {
+    cy.get(`#${attribute}`)
+      .type(fieldName);
+  }
 }
 
 export default HomeAndCataloguePageObject;
