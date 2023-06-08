@@ -1,22 +1,12 @@
 import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
-import faker from 'faker';
+import cartFormPageObject from '../support/pages/cartForm.pageObject';
 
 /// <reference types="cypress" />
 
 const homePage = new HomeAndCataloguePageObject();
-
-
-const testData = {
-  category: 'Laptops',
-  product: 'Sony vaio i7',
-  name: faker.name.firstName(),
-  country: faker.address.country(),
-  city: faker.address.city(),
-  cardNumber: faker.finance.creditCardNumber(),
-  month: faker.date.month(),
-  year: Math.floor(Math.random() * (2031 - 2023) + 2023),
-  successMessage: 'Thank you for your purchase'
-};
+const cartForm = new cartFormPageObject();
+let category = 'Laptops';
+let product = 'Sony vaio i7';
 
 describe('Order', () => {
   before(() => {
@@ -24,8 +14,8 @@ describe('Order', () => {
   });
 
   it('User is able to order the product', () => {
-    homePage.clickOnCategory(testData.category);
-    homePage.clickOnProduct(testData.product);
+    homePage.clickOnCategory(category);
+    homePage.clickOnProduct(product);
     cy.contains('Add to cart')
       .click();
     cy.window().then((win) => {
@@ -33,31 +23,19 @@ describe('Order', () => {
       });
       cy.get('@alertStub').should('be.called');
     homePage.clickOnLink('Cart');
-    cy.get('.col-lg-8')
-      .should('contain', testData.product);
-    cy.contains('Place Order')
-      .click();
-    cy.get('#name')
-      .type(testData.name);
-    cy.get('#country')
-      .type(testData.country); 
-    cy.get('#city')
-      .type(testData.city);
-    cy.get('#card')
-      .type(testData.cardNumber);
-    cy.get('#month')
-      .type(testData.month);
-    cy.get('#year')
-      .type(testData.year);
-    cy.contains('Purchase')
-      .click();
-    cy.get('.sweet-alert')
-      .should('contain', testData.successMessage)
-    cy.get('.lead') 
-      .should('contain', testData.name);
-    cy.get('.lead') 
-      .should('contain', testData.cardNumber);     
-    cy.contains('OK')
-      .click();
+    
+    cartForm.cartList.should('contain', product);
+    cartForm.placeOrderBtn;
+    cartForm.nameField;
+    cartForm.countryField; 
+    cartForm.cityField;
+    cartForm.cardField;
+    cartForm.monthField;
+    cartForm.yearField;
+    cartForm.purchaseBtn;
+    cartForm.checkMainAlert;
+    cartForm.checkNameAlert;
+    cartForm.checkCardAlert;  
+    cartForm.okBtn;
   });
 });
