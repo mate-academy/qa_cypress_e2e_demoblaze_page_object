@@ -1,11 +1,64 @@
+import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
+import faker from 'faker';
+import ProductCardPageObject from '../support/pages/productCard.pageObject';
+import CartPageObject from '../support/pages/cart.pageObject';
+
 /// <reference types="cypress" />
 
-describe('', () => {
-  before(() => {
+const homePage = new HomeAndCataloguePageObject();
+const productPage = new ProductCardPageObject();
+const cartPage = new CartPageObject();
 
+const testData = {
+  category: 'Laptops',
+  product: 'Sony vaio i7'
+};
+
+const user = {
+  name: faker.name.findName(),
+  country: faker.address.country(),
+  city: faker.address.city(),
+  creditNumber: '1234 1234 1234 1234',
+  month: faker.date.month(),
+  year: faker.date.past().getFullYear()
+};
+
+describe('Product', () => {
+  before(() => {
+    homePage.visit();
   });
 
-  it('', () => {
+  it('should provide an ability to add product to the Cart and purchase', () => {
+    homePage.clickOnCategory(testData.category);
 
+    homePage.clickOnProduct(testData.product);
+
+    productPage.clickOnBtn('Add to cart');
+
+    productPage.assertAllert('Product added');
+
+    homePage.clickOnLink('Cart');
+
+    cartPage.confirmTheProduct(testData.product);
+
+    cartPage.clickOnBtn('Place Order');
+
+    cartPage.typeName(user.name);
+
+    cartPage.typeCountry(user.country);
+
+    cartPage.typeCity(user.city);
+
+    cartPage.typeCardnumder(user.creditNumber);
+
+    cartPage.typeMonth(user.month);
+
+    cartPage.typeYear(user.year);
+
+    cartPage.clickOnBtn('Purchase');
+
+    cartPage.confirmEnteredData(user.creditNumber, user.name);
+
+    cartPage.clickOnBtn('OK');
   });
 });
