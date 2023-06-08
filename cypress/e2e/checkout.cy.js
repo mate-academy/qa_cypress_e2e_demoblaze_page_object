@@ -40,9 +40,9 @@ describe('Product order', () => {
       .click();
     productPage.assertAllert(testData.successAddingMessage);
 
-    cartPage.visit();
+    cartPage.clickOnCart();
     cartPage.checkProductInCart(testData.productName);
-    cartPage.clickOnPlaceOrder();
+    cartPage.clickOnPlaceOrderBtn();
     placeOrderPage.nameInput
       .type(name);
     placeOrderPage.countryInput
@@ -55,7 +55,7 @@ describe('Product order', () => {
       .type(month);
     placeOrderPage.yearInput
       .type(year);
-    placeOrderPage.clickOnPurchase();
+    placeOrderPage.clickOnPurchaseBtn();
     placeOrderPage.assertPurchase(testData.successPurchaseMessage);
     placeOrderPage.confirmPurchase();
   });

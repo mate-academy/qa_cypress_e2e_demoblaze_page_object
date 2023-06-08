@@ -1,17 +1,17 @@
 import ProductPage from './productPage';
 
 class CartPage extends ProductPage {
-  cartPageUrl = '/cart.html#';
-
-  visit(cartPageUrl) {
-    cy.visit(cartPageUrl || this.cartPageUrl);
+  clickOnCart() {
+    cy.get('#cartur')
+      .click();
   }
 
   checkProductInCart(productName) {
-    cy.contains('td', productName);
+    cy.get('td')
+      .should('contain', productName);
   }
 
-  clickOnPlaceOrder() {
+  clickOnPlaceOrderBtn() {
     cy.contains('.btn', 'Place Order')
       .click();
   }

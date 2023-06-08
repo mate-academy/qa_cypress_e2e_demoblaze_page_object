@@ -25,18 +25,19 @@ class PlaceOrderPage extends ProductPage {
     return cy.get('#year');
   }
 
-  clickOnPurchase() {
+  clickOnPurchaseBtn() {
     cy.contains('.btn', 'Purchase')
       .click();
   }
 
-  clickOnClose() {
+  clickOnCloseBtn() {
     cy.contains('.btn', 'Close')
       .click();
   }
 
   assertPurchase(message) {
-    cy.contains('h2', message);
+    cy.get('h2')
+      .should('contain', message);
   }
 
   confirmPurchase() {
