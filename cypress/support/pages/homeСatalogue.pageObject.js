@@ -17,6 +17,17 @@ class HomeAndCataloguePageObject extends PageObject {
     cy.contains('.hrefch', product)
       .click();
   }
+
+  addProductToTheCart(button) {
+    cy.contains('.btn-success', button)
+      .click();
+  }
+  assertAddedProduct() {
+    cy.on('window:alert', (str) => {
+      expect(str).to.eq('Product added');
+    });
+    }
+  
 }
 
 export default HomeAndCataloguePageObject;
