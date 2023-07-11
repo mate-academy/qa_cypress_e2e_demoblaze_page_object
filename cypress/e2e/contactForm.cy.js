@@ -1,7 +1,8 @@
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
-import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
+import HomeAndCataloguePageObject
+  from '../support/pages/homeСatalogue.pageObject';
 import faker from 'faker';
-/// <reference types="cypress" />
+/// <reference types='cypress' />
 
 const contactForm = new ContactFormPageObject();
 const homePage = new HomeAndCataloguePageObject();
@@ -20,14 +21,10 @@ describe('Contact', () => {
 
   it('should provide the ability to send feedback', () => {
     homePage.clickOnLink('Contact');
-    contactForm.emailField
-      .type(testData.email, { force: true });
-    contactForm.nameField
-      .type(testData.name, { force: true });
-    contactForm.messageField
-      .type(testData.message);
-    contactForm.sendMessageBtn
-      .click();
+    contactForm.typeEmail(testData.email);
+    contactForm.typeName(testData.name);
+    contactForm.typeMessage(testData.message);
+    contactForm.clickOnSendMessageBtn();
 
     contactForm.assertAllert(testData.successMessage);
   });
