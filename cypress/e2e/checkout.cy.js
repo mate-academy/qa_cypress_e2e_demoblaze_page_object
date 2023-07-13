@@ -8,7 +8,7 @@ import faker from 'faker';
 
 const homePage = new HomeAndCataloguePageObject();
 const contactForm = new ContactFormPageObject();
-const productPage = new ProductPageObject(); // Створіть екземпляр ProductPageObject
+const productPage = new ProductPageObject(); 
 const cartPage = new CartPageObject();
 
 const testData = {
@@ -22,7 +22,7 @@ const testData = {
 };
 
 
-describe('Checkout', () => {
+describe('Checkout of laptop purchasing flow', () => {
   before(() => {
     homePage.visit();
   });
@@ -32,24 +32,14 @@ describe('Checkout', () => {
     homePage.clickOnLink('Laptops');
 
     // 3. Click on "Sony vaio i7"
-    productPage.selectProduct('Sony vaio i7');
+    homePage.selectProduct('Sony vaio i7');
 
     // 4. Click on [Add to cart]
     productPage.clickAddToCart();
     
-    //assert message in the alert 
-    /*cy.get('.sweet-alert').scrollIntoView();
-    cy.wait(2000);
-
-    cy.get('.sweet-alert', { timeout: 5000 }).should('be.visible');
-
-    cy.contains('.sweet-alert', 'Product added').should('be.visible');
-    cy.contains('Ok').click(); // Клік на кнопку "Ok" для закриття вікна  */
-
     // 5. Click on "Cart"
     homePage.clickOnList('Cart');
 
-    // assert the product is in the cart
     cartPage.assertProductInCart('Sony vaio i7');
 
     // 6. Click on [Place order]
@@ -68,7 +58,6 @@ describe('Checkout', () => {
 
     cy.wait(1000);
 
-    //assert entered data is shown on modal
     contactForm.assertOrderData(testData);
     
     //9 .Click on [Ok]

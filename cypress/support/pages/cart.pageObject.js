@@ -1,6 +1,6 @@
 import PageObject from '../PageObject';
 
-class HomeAndCataloguePageObject extends PageObject {
+class CartPageObject extends PageObject {
   url = '/index.html';
 
   clickOnLink(linkName) {
@@ -29,4 +29,4 @@ class HomeAndCataloguePageObject extends PageObject {
   }
 }
 
-export default HomeAndCataloguePageObject;
+export default CartPageObject;

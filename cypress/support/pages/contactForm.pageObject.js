@@ -4,7 +4,7 @@ class ContactFormPageObject extends PageObject {
   url = '/index.html';
 
   get emailField() {
-    return cy.get('#email');
+    return cy.get('#recipient-email');
   }
 
   get nameField() {
@@ -54,7 +54,7 @@ class ContactFormPageObject extends PageObject {
   clickOnSendMessageBtn() {
     this.sendMessageBtn.click();
   }
-  // Нові методи для сторінки оформлення замовлення
+  
   fillName(name) {
     this.nameField.type(name);
   }
@@ -86,25 +86,19 @@ clickPurchase() {
 
 
 assertOrderData(data) {
-  cy.get('.sweet-alert') // Знайти елемент з класом '.sweet-alert'
-    .should('be.visible') // Перевірити, що елемент видимий на сторінці
-    .within(() => { // Виконати наступні перевірки всередині елемента
+  cy.get('.sweet-alert') 
+    .should('be.visible') 
+    .within(() => { 
       cy.contains(`Name: ${data.name}`)
         .should('be.visible');
-     /* cy.contains(`Amount: ${data.amount} USD`)
-        .should('be.visible');*/
       cy.contains(`Amount: ${data.amount} USD`)
         .should('be.visible');
       cy.contains(`Card Number: ${data.creditCard}`)
         .should('be.visible');
-      /*cy.contains(`Id: ${data.id}`)
-        .should('be.visible');*/
       cy.contains(`Id:`)
         .should('be.visible');
       cy.contains(`Date:`)
         .should('be.visible');
-  /*    cy.contains(`Date: ${data.date}`)
-        .should('be.visible');*/
     });
 }
 

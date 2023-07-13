@@ -3,13 +3,8 @@
 import PageObject from '../PageObject';
 
 class ProductPageObject extends PageObject {
-  selectProduct(productName) {
-    cy.contains('.hrefch', productName)
-      .click();
-  }
-
   clickAddToCart() {
-    cy.contains('a', 'Add to cart')
+    cy.get('[onclick="addToCart(9)"]')
       .click();
   }
 }
