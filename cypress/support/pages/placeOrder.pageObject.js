@@ -28,7 +28,7 @@ class PlaceOrderFormPageObject extends PageObject {
   }
 
   get successMessage() {
-    return cy.contains('.sweet-alert', 'Thank you for your purchase!');
+    return cy.get('.sweet-alert');
   }
 
   typeName(name) {
@@ -55,8 +55,8 @@ class PlaceOrderFormPageObject extends PageObject {
     this.yearField.type(year);
   }
 
-  checkModalMessage() {
-    this.successMessage.should('exist');
+  checkModalMessage(message) {
+    this.successMessage.should('contain.text', message);
   }
 }
 

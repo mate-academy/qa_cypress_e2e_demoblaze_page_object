@@ -9,7 +9,7 @@ class PageObject {
     });
   }
 
-  checkProductInTheCart(product) {
+  verifyProductInCart(product) {
     cy.contains(product).should('exist');
   }
 }
