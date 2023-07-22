@@ -8,6 +8,10 @@ class PageObject {
       expect(alert).to.eq(alertMessage);
     });
   }
+
+  verifyProductInCart(product) {
+    cy.contains(product).should('exist');
+  }
 }
 
 export default PageObject;
