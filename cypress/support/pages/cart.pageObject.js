@@ -1,5 +1,4 @@
 import PageObject from '../PageObject';
-
 class cartPageObject extends PageObject {
   clickAddToTheCart() {
     cy.contains(`Add to cart`).click();
