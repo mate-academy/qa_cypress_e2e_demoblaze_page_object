@@ -27,7 +27,6 @@ describe('should allow the user to order the product', () => {
     HomePage.clickOnCategory(testData.category);
     HomePage.clickOnProduct(testData.product);
     ProductPage.clickOnAddBtn();
-    ProductPage.clickOnAddBtn();
     ProductPage.verifyAlert();
     HomePage.clickOnLink('Cart');
     CartPage.verifyProduct(testData.product);
