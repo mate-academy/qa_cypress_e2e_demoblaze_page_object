@@ -9,7 +9,9 @@ const homePage = new HomeAndCataloguePageObject();
 
 const testData = {
   email: faker.internet.email(),
-  name: faker.name.firstName(),
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  name: `${faker.name.firstName()} ${faker.name.lastName()}`,
   message: faker.random.words(),
   successMessage: 'Thanks for the message!!'
 };
