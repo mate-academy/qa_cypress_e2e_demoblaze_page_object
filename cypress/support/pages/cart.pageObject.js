@@ -30,10 +30,6 @@ class CartPageObject extends PageObject {
     cy.get('#year').type(year);
   }
 
-  get yearField() {
-    return cy.get('#year');
-  }
-
   clickOnPurchaseBtn() {
     cy.contains('.btn', 'Purchase')
       .click();
