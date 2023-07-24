@@ -37,7 +37,7 @@ class CartPageObject extends PageObject {
     cy.contains('button', 'Purchase').click();
   }
 
-  assertEnteredData(message, card, name) {
+  assertEnteredData(card, name) {
     cy.get('.sweet-alert')
       .should('contain', card)
       .and('contain', name);

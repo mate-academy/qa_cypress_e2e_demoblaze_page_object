@@ -41,7 +41,7 @@ describe('Purchase flow', () => {
     cartPage.typeYear(testData.year);
     cartPage.clickOnPurchaseBtn();
 
-    cartPage.assertEnteredData(testData.text, testData.card, testData.name);
+    cartPage.assertEnteredData(testData.card, testData.name);
     cartPage.clickOnOkBtn();
   });
 });
