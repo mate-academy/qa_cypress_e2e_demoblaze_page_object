@@ -2,13 +2,11 @@ import PageObject from '../PageObject';
 
 class cartPageObject extends PageObject {
   clickAddToTheCart() {
-    cy.contains(`a`, `Add to cart`)
-      .click();
+    cy.contains(`Add to cart`).click();
   }
 
   assertProductInCart(product) {
-    cy.get('.success')
-      .should('contain.text', product);
+    cy.get('.success').should('contain.text', product);
   }
 
   clickPlaceOrder() {
