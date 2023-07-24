@@ -8,12 +8,12 @@ const homePage = new HomeAndCataloguePageObject();
 const productPage = new ProductPageObject();
 const cartPage = new CartPageObject();
 
-describe('', () => {
+describe('Demoblaze flow', () => {
   before(() => {
     homePage.visit();
   });
 
-  it('', () => {
+  it('should allow to make purchase', () => {
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
     productPage.clickOnAddToCartBtn('Add to cart');
