@@ -2,7 +2,7 @@ import PageObject from '../PageObject';
 
 class purchasePageObject extends PageObject {
   typeName(name) {
-    cy.get(`#name`).type(name);
+    cy.get('#name').type(name);
   }
 
   typeCountry(country) {
@@ -26,21 +26,21 @@ class purchasePageObject extends PageObject {
   }
 
   clickPurchase() {
-    cy.contains(`button`, `Purchase`).click();
+    cy.contains('button', 'Purchase').click();
   }
 
   asserCard(card) {
-    cy.get(`.lead.text-muted`)
+    cy.get('.lead.text-muted')
       .should('contain.text', card);
   }
 
   asserName(name) {
-    cy.get(`.lead.text-muted`)
+    cy.get('.lead.text-muted')
       .should('contain.text', name);
   }
 
   clickOK() {
-    cy.contains(`button`, `OK`).click();
+    cy.contains('button', 'OK').click();
   }
 }
 

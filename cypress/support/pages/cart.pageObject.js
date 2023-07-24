@@ -1,7 +1,7 @@
 import PageObject from '../PageObject';
 class cartPageObject extends PageObject {
   clickAddToTheCart() {
-    cy.contains(`Add to cart`).click();
+    cy.contains('Add to cart').click();
   }
 
   assertProductInCart(product) {
@@ -9,7 +9,7 @@ class cartPageObject extends PageObject {
   }
 
   clickPlaceOrder() {
-    cy.contains(`button`, `Place Order`).click();
+    cy.contains('button', 'Place Order').click();
   }
 }
 

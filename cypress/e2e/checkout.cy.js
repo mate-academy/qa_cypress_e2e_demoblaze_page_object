@@ -28,13 +28,13 @@ describe('Checkout of the laptop purchase', () => {
 
   it('should be able to purchase the item', () => {
     homePage.clickOnCategory('Laptops');
-    homePage.clickOnProduct(`Sony vaio i7`);
+    homePage.clickOnProduct('Sony vaio i7');
     cartPage.clickAddToTheCart();
     cy.wait(2000);
-    cartPage.assertAlert(`Product added`);
-    homePage.clickOnLink(`Cart`);
+    cartPage.assertAlert('Product added');
+    homePage.clickOnLink('Cart');
     cy.wait(2000);
-    cartPage.assertProductInCart(`Sony vaio i7`);
+    cartPage.assertProductInCart('Sony vaio i7');
     cartPage.clickPlaceOrder();
     purchase.typeName(testData.name);
     purchase.typeCountry(testData.country);
