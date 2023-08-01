@@ -2,9 +2,10 @@
 
 import { faker } from '@faker-js/faker';
 
-import HomeAndCataloguePageObject
-  from '../support/pages/homeСatalogue.pageObject';
-import PlaceOrderFormPageObject from '../support/pages/placeOrder.pageObject';
+import HomeAndCataloguePageObject from
+  '../support/pages/homeСatalogue.pageObject';
+import PlaceOrderFormPageObject from
+  '../support/pages/placeOrder.pageObject';
 
 const homeAndCataloguePage = new HomeAndCataloguePageObject();
 const placeOrderForm = new PlaceOrderFormPageObject();
@@ -32,6 +33,7 @@ describe('Checkout', () => {
     homeAndCataloguePage.clickOnButton('Cart');
     homeAndCataloguePage.verifyProductInCart('Sony vaio i7');
     homeAndCataloguePage.clickOnButton('Place Order');
+
     placeOrderForm.typeName(testData.name);
     placeOrderForm.typeCountry(testData.country);
     placeOrderForm.typeCity(testData.city);
