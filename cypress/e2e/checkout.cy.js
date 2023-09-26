@@ -26,7 +26,7 @@ describe('DemoBlaze Automation', () => {
     HomePage.visit();
     HomePage.clickLaptopsCategory();
 
-    LaptopsPage.clickSonyVaioI7();
+    LaptopsPage.clickOnProduct(productName);
 
     ProductPage.addToCart();
 

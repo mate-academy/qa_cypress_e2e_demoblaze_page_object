@@ -1,6 +1,6 @@
 class LaptopsPage {
-    clickSonyVaioI7() {
-      cy.contains('Sony vaio i7').click();
+    clickOnProduct(productName) {
+      cy.contains(productName).click();
     }
   }
 
