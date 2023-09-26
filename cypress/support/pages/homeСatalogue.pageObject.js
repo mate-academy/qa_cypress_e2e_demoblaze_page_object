@@ -8,6 +8,21 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
+  clickOnButton1(buttonName) {
+    cy.contains('.col-sm-12', buttonName)
+      .click();
+  }
+
+  clickOnButton2(buttonName) {
+    cy.contains('.btn-success', buttonName)
+      .click();
+  }
+
+  clickOnButton3(buttonName) {
+    cy.contains('.btn-primary', buttonName)
+      .click();
+  }
+
   clickOnCategory(categoryName) {
     cy.contains('#itemc', categoryName)
       .click();
