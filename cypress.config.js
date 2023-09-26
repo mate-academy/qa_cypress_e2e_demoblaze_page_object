@@ -10,7 +10,7 @@ module.exports = defineConfig({
           return {
             username: faker.name.firstName() + `${randomNumber}`,
             email: 'test' + `${randomNumber}` + '@mail.com',
-            password: 'Password12345!'
+            password: 'Password12345!',
           };
         }
       })
