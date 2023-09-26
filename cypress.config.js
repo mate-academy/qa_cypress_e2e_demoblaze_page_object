@@ -1,7 +1,10 @@
 const { defineConfig } = require('cypress');
+const faker = require('faker');
 
 module.exports = defineConfig({
   e2e: {
+    viewportHeight: 1080,
+    viewportWidth: 1920,
     baseUrl: 'https://www.demoblaze.com/',
     setupNodeEvents(on, config) {
       on('task', {
@@ -13,7 +16,7 @@ module.exports = defineConfig({
             password: 'Password12345!'
           };
         }
-      })
+      });
     }
   }
 });
