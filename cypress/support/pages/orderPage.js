@@ -12,7 +12,8 @@ class OrderPage {
       cy.contains('Purchase').click();
     }
 
-    assertOrderDetails(name, creditCard) {
+    assertOrderDetails(orderSuccesMasage, name, creditCard) {
+      cy.get('.sweet-alert').should('contain.text', orderSuccesMasage)
       cy.get('#name').should('have.value', name);
       cy.get('#card').should('have.value', creditCard);
     }
