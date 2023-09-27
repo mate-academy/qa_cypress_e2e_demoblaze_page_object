@@ -9,7 +9,7 @@ const orderConfirmation = new OrderConfirmationPageObject();
 const homePage = new HomeAndCataloguePageObject();
 
 const testData = {
-  name: faker.address.country(),
+  name: faker.name.firstName(),
   country: faker.address.country(),
   city: faker.address.city(),
   card: faker.finance.creditCardNumber(),
@@ -47,5 +47,6 @@ describe('Checkout', () => {
     orderConfirmation.assertOrderAmount(testData.amount);
     orderConfirmation.assertCardNumber(testData.card);
     orderConfirmation.assertName(testData.name);
+    homePage.clickOnButton('OK');
   });
 });
