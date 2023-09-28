@@ -17,7 +17,9 @@ const testingData = {
   cityname: faker.address.city(),
   card: '9999 9999 9999 9999',
   month: faker.date.month(),
-  year: '2023'
+  year: '2023',
+  amount: '790',
+  message: 'Thank you for your purchase!'
 };
 
 describe('make order on the website', () => {
@@ -25,23 +27,11 @@ describe('make order on the website', () => {
     website.visit();
   });
 
-  it('should select laptop and add to the cart', () => {
-    laptopPage.selectLaptopsCategory();
-    laptopPage.selectSonyLaptop();
-    laptopPage.clickOnTheAddBtn();
-  });
-
-  it('checking added product to the cart', () => {
+  it('should add laptop and make purchasse', () => {
     laptopPage.selectLaptopsCategory();
     laptopPage.selectSonyLaptop();
     laptopPage.clickOnTheAddBtn();
     checkIn.CheckingLaptopInTheCart();
-  });
-
-  it('filled in payment form', () => {
-    laptopPage.selectLaptopsCategory();
-    laptopPage.selectSonyLaptop();
-    laptopPage.clickOnTheAddBtn();
     laptopPage.clickOnTheOrderBtn();
     purchaseForm.typeName(testingData.name);
     purchaseForm.typeCountryName(testingData.countryname);
@@ -50,6 +40,10 @@ describe('make order on the website', () => {
     purchaseForm.typeMonthCard(testingData.month);
     purchaseForm.typeYearCard(testingData.year);
     purchaseForm.clickOnPurchaseBtn();
-    purchaseForm.assertData(testingData.name, testingData.card);
+    purchaseForm.assertOrderMessage(testingData.message);
+    purchaseForm.assertForAmountField(testingData.amount);
+    purchaseForm.assertForCardNumberField(testingData.card);
+    purchaseForm.assertForNameField(testingData.name);
+    purchaseForm.clickOnOkBtn();
   });
 });

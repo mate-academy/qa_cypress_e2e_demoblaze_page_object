@@ -30,17 +30,32 @@ class CheckoutFormPageObject {
     return cy.contains('.btn', 'Purchase');
   }
 
-  get AlertCard() {
-    return cy.get('.lead.text-muted');
+  get okBtn() {
+    return cy.contains('.btn', 'OK');
   }
 
-  get AlertName() {
-    return cy.get('.lead.text-muted');
+  clickOnOkBtn() {
+    this.okBtn.click();
   }
 
-  assertData(card, name) {
-    this.AlertCard.should('contain', card);
-    this.AlertName.should('contain', name);
+  assertOrderMessage(message) {
+    cy.contains(message).should('exist');
+  }
+
+  assertForAmountField(expectedAmount) {
+    cy.contains(`Amount: ${expectedAmount} USD`).should('exist');
+  }
+
+  assertForCardNumberField(cardNumber) {
+    cy.contains(`Card Number: ${cardNumber}`).should('exist');
+  }
+
+  assertForNameField(name) {
+    cy.contains(`Name: ${name}`).should('exist');
+  }
+
+  assertForDateField(currentDate) {
+    cy.contains(`Date: ${currentDate}`).should('exist');
   }
 
   typeName(name) {
