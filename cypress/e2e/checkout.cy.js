@@ -1,12 +1,12 @@
 import faker from 'faker';
 
-import PurchaseFormPageObject from '../support/pages/purchaseForm.cy';
-import ClickOnTheLaptops from '../support/pages/laptopPage.cy';
+import CheckoutForm from '../support/pages/purchaseForm.cy';
+import LaptopPage from '../support/pages/laptopPage.cy';
 import MainPage from '../support/pages/visitWebSite.cy';
 import Cart from '../support/pages/cartPage.cy';
 
-const purchaseForm = new PurchaseFormPageObject();
-const laptopPage = new ClickOnTheLaptops();
+const purchaseForm = new CheckoutForm();
+const laptopPage = new LaptopPage();
 const website = new MainPage();
 const checkIn = new Cart();
 /// <reference types='cypress' />
@@ -31,7 +31,9 @@ describe('make order on the website', () => {
     laptopPage.selectLaptopsCategory();
     laptopPage.selectSonyLaptop();
     laptopPage.clickOnTheAddBtn();
+    purchaseForm.assertAddedProduct();
     checkIn.CheckingLaptopInTheCart();
+    laptopPage.clickOnTheCartLink();
     laptopPage.clickOnTheOrderBtn();
     purchaseForm.typeName(testingData.name);
     purchaseForm.typeCountryName(testingData.countryname);

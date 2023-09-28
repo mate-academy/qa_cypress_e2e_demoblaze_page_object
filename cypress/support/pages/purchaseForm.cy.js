@@ -1,5 +1,5 @@
 
-class CheckoutFormPageObject {
+class CheckoutForm {
   url = 'https://www.demoblaze.com/cart.html';
 
   get nameField() {
@@ -32,6 +32,12 @@ class CheckoutFormPageObject {
 
   get okBtn() {
     return cy.contains('.btn', 'OK');
+  }
+
+  assertAddedProduct() {
+    cy.on('window:alert', (str) => {
+      expect(str).to.contains('Product added');
+    });
   }
 
   clickOnOkBtn() {
@@ -85,10 +91,6 @@ class CheckoutFormPageObject {
   clickOnPurchaseBtn() {
     this.purchaseBtn.click();
   }
-
-  // acceptAllert() {
-  //   this.accesAllert
-  // }
 };
 
-export default CheckoutFormPageObject;
+export default CheckoutForm;

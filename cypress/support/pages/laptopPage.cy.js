@@ -1,4 +1,4 @@
-class ClickOnTheLaptops {
+class LaptopPage {
   selectLaptopsCategory() {
     cy.contains('Laptops').click();
   }
@@ -18,14 +18,17 @@ class ClickOnTheLaptops {
     cy.on('window:confirm', () => true);
   }
 
-  clickOnTheOrderBtn() {
+  clickOnTheCartLink() {
     cy.get('[class="navbar-nav ml-auto"]')
       .contains('Cart')
       .click();
+  }
+
+  clickOnTheOrderBtn() {
     cy.get('[class="btn btn-success"]')
       .contains('Place Order')
       .click();
   }
 };
 
-export default ClickOnTheLaptops;
+export default LaptopPage;
