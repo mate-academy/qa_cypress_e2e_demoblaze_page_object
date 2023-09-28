@@ -1,10 +1,10 @@
 class ProductPage {
-    addToCart() {
-      cy.contains('Add to cart').click();
-      cy.on('window:alert', (str) => {
-        expect(str).to.equal('Product added');
-      });
-    }
+  addToCart() {
+    cy.contains('Add to cart').click();
+    cy.on('window:alert', (alert) => {
+      expect(alert).to.equal('Product added');
+    });
   }
+}
 
-  export default new ProductPage();
+export default new ProductPage();
