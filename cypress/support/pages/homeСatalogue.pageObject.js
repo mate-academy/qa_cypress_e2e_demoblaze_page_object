@@ -17,6 +17,12 @@ class HomeAndCataloguePageObject extends PageObject {
     cy.contains('.hrefch', product)
       .click();
   }
+
+  assertAlert(alertText) {
+    cy.on('window:alert', (text) => {
+      expect(text).to.equal(alertText);
+    });
+  }
 }
 
 export default HomeAndCataloguePageObject;
