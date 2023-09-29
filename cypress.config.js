@@ -16,18 +16,6 @@ module.exports = defineConfig({
             email: 'test' + `${randomNumber}` + '@mail.com',
             password: 'Password12345!'
           };
-          // },
-          // generateData () {
-          //   return {
-          //    name: faker.name.firstName(),
-          //    country: faker.address.country(),
-          //    city: faker.address.city(),
-          //    creditCard: faker.random.alphaNumeric(16),
-          //    month: faker.date.month(),
-          //    year: faker.random.number({min: 2023, max: 2030}),
-          //    successMessage: 'Thanks for your purchase!'
-          //   }
-      
           }
       
         })

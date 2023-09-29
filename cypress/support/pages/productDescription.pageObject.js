@@ -1,6 +1,6 @@
 import PageObject from '../PageObject';
 
-class productDescriptionPageObject extends PageObject {
+class productDescription extends PageObject {
   url = '/prod.html?idp_=9';
 
   clickOnButton(buttonName) {
@@ -9,12 +9,17 @@ class productDescriptionPageObject extends PageObject {
   
   checkAlertMessage(alertMessage) {
     cy.on('window:alert', (alert) => {
-      expect(alert).to.equal(alertMessage);
+      expect(alert).to.equal(alertMessage).should('exist');
   })
 }
 clickOnLink(linkName) {
   cy.contains('.nav-link', linkName)
     .click();
 }
+assertAllert(alertMessage) {
+  cy.on('window:alert', (alert) => {
+    expect(alert).to.eq(alertMessage);
+  });
 }
-export default productDescriptionPageObject;
+}
+export default productDescription;
