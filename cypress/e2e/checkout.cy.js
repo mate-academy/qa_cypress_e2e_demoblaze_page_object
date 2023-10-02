@@ -1,61 +1,45 @@
-/// <reference types='cypress' />
+import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
+import faker from 'faker';
 
-function randomCreditCard() {
-  const min = 1000000000000000;
-  const max = 9999999999999999;
+const homePage = new HomeAndCataloguePageObject();
 
-  const randomCreditCardNumber =
-   Math.floor(Math.random() * (max - min + 1)) + min;
-
-  return randomCreditCardNumber.toString();
-};
-
-function randomFutureYear() {
-  const currentYear = new Date().getFullYear();
-  const futureYear =
-   faker.random.number({ min: currentYear, max: currentYear + 10 });
-  return futureYear;
-};
-
-const faker = require ('faker');
-
-const user = {
+const testData = {
   name: faker.name.firstName(),
-  country: faker.address.country(),
-  city: faker.address.city(),
-  creditCard: randomCreditCard(),
-  month: faker.date.month(),
-  year: randomFutureYear()
+  country: faker.random.words(),
+  city: faker.random.words(),
+  month: faker.random.word(),
 };
 
-describe('Demoblaze page', () => {
-  beforeEach(() => {
-    cy.visit('https://www.demoblaze.com/');
+describe('Demoblaze', () => {
+  before(() => {
+    homePage.visit();
   });
 
-  it('should provide the ability to make an order', () => {
-    cy.contains('Laptops').click();
-    cy.contains('Sony vaio i7').click();
-    cy.contains('Add to cart').click();
+  it('should add a product to the cart and place the order', () => {
+    homePage.clickOnCategory('Laptops');
+    homePage.clickOnProduct('Sony vaio i7');
+
+    cy.get('[class="btn btn-success btn-lg"]').contains('Add to cart').click();
     cy.on('window:alert', (str) => {
-      expect(str).to.equal('Product added');
+      expect(str).to.contains('Product added');
     });
+    cy.on('window:confirm', () => true);
+    homePage.clickOnLink('Cart');
+    cy.get('[class="table-responsive"]').should('contain', 'Sony vaio i7');
+    cy.get('[class="btn btn-success"]').click();
 
-    cy.contains('Cart').click();
-    cy.contains('Sony vaio i7');
+    const card = '1234 5678 8909 5678';
 
-    cy.contains('Place Order').click();
-    cy.get('#name').type(user.name);
-    cy.get('#country').type(user.country);
-    cy.get('#city').type(user.city);
-    cy.get('#card').type(user.creditCard);
-    cy.get('#month').type(user.month);
-    cy.get('#year').type(user.year);
+    cy.get('[id="name"]').type(testData.name);
+    cy.get('[id="country"]').type(testData.country);
+    cy.get('[id="city"]').type(testData.city);
+    cy.get('[id="card"]').type(card);
+    cy.get('[id="month"]').type(testData.month);
+    cy.get('[id="year"]').type('1996');
+    cy.get('[onclick="purchaseOrder()"]').click();
 
-    cy.contains('Purchase').click();
-    cy.get('.sweet-alert').should('contain', user.name);
-    cy.get('.sweet-alert').should('contain', user.creditCard);
-
-    cy.get('.confirm').click();
+    cy.get('[class="sweet-alert  showSweetAlert visible"]').should('contain', card);
+    cy.get('[class="sweet-alert  showSweetAlert visible"]').should('contain', testData.name);
+    cy.get('[class="confirm btn btn-lg btn-primary"]').click();
   });
 });
