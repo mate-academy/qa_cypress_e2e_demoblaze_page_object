@@ -1,16 +1,19 @@
 import HomeAndCataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
+import CartPageObject
+  from '../support/pages/cart.pageObject';
 import faker from 'faker';
 /// <reference types='cypress' />
 
 const homePage = new HomeAndCataloguePageObject();
+const cartPage = new CartPageObject();
 
 const user = {
   name: faker.name.firstName(),
   country: faker.random.words(),
   city: faker.random.words(),
   month: faker.random.word(),
-  card: '1356 1890 2390 5987'
+  creditCard: '1234 5678 9012 3456'
 };
 
 describe('Demoblaze', () => {
@@ -31,32 +34,32 @@ describe('Demoblaze', () => {
 
     homePage.clickOnLink('Cart');
 
-    cy.get('[class="table-responsive"]').should('contain', 'Sony vaio i7');
+    cartPage.assertProductInCart('Sony vaio i7');
 
-    cy.get('[class="btn btn-success"]').click();
+    cartPage.clickOnButton('Place Order');
 
     cy.get('[id="orderModalLabel"]').should('contain', 'Place order');
 
-    cy.get('[id="name"]').type(user.name);
+    cy.get('.modal-body').should('contain', 'Name', 'Country');
 
-    cy.get('#country').type(user.country);
+    cartPage.typeName(user.name);
 
-    cy.get('#city').type(user.city);
+    cartPage.typeCountry(user.country);
 
-    cy.get('#card').type(user.card);
+    cartPage.typeCity(user.city);
 
-    cy.get('#month').type(user.month);
+    cartPage.typeCreditCard(user.creditCard);
 
-    cy.get('#year').type('1999');
+    cartPage.typeMonth(user.month);
 
-    cy.get('[onclick="purchaseOrder()"]').click();
+    cartPage.typeYear('1999');
 
-    cy.get('[class="sweet-alert  showSweetAlert visible"]')
-      .should('contain', user.name);
+    cartPage.clickOnButton('Purchase');
 
-    cy.get('[class="sweet-alert  showSweetAlert visible"]')
-      .should('contain', user.card);
+    cartPage.assertName(user.name);
 
-    cy.get('[class="confirm btn btn-lg btn-primary"]').click();    
+    cartPage.assertCreditCard(user.creditCard);
+
+    cartPage.clickOnButton('OK');
   });
 });
