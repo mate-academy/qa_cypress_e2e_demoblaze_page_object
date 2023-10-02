@@ -7,7 +7,7 @@ const testData = {
   name: faker.name.firstName(),
   country: faker.random.words(),
   city: faker.random.words(),
-  month: faker.random.word(),
+  month: faker.random.word()
 };
 
 describe('Demoblaze', () => {
@@ -28,7 +28,7 @@ describe('Demoblaze', () => {
     cy.get('[class="table-responsive"]').should('contain', 'Sony vaio i7');
     cy.get('[class="btn btn-success"]').click();
 
-    const card = '1234 5678 8909 5678';
+    const card = '1234 5678 9012 3456';
 
     cy.get('[id="name"]').type(testData.name);
     cy.get('[id="country"]').type(testData.country);
