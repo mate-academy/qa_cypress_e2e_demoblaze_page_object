@@ -21,15 +21,10 @@ describe('Contact', () => {
 
   it('should provide the ability to send feedback', () => {
     homePage.clickOnLink('Contact');
-    contactForm.emailField
-      .type(testData.email, { force: true });
-    contactForm.nameField
-      .type(testData.name, { force: true });
-    contactForm.messageField
-      .type(testData.message);
-    contactForm.sendMessageBtn
-      .click();
-
+    contactForm.typeEmail(testData.email);
+    contactForm.typeName(testData.name);
+    contactForm.typeMessage(testData.message);
+    contactForm.clickOnSendMessageBtn();
     contactForm.assertAllert(testData.successMessage);
   });
 });

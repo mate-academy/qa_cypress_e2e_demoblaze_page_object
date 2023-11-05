@@ -46,9 +46,9 @@ describe('Product Selection and Purchase Flow', () => {
         .click();
 
       placeOrderForm.nameField
-        .type(testData.orderForm.name, { force: true });
+        .type(testData.orderForm.name);
       placeOrderForm.countryField
-        .type(testData.orderForm.country, { force: true });
+        .type(testData.orderForm.country);
       placeOrderForm.cityField
         .type(testData.orderForm.city);
       placeOrderForm.cardField
