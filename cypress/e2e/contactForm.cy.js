@@ -10,7 +10,11 @@ describe('Contact', () => {
   it('should provide the ability to send feedback', () => {
     homePage.visit();
     homePage.clickOnLink('Contact');
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 85ab1bd82907f661758c92596ce8fb46343a86bd
     const testData = {
       email: faker.internet.email(),
       name: faker.name.firstName(),
