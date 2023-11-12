@@ -1,20 +1,32 @@
 /// <reference types='cypress' />
 import faker from 'faker';
+import ContactFormPageObject from '../support/pages/contactForm.pageObject';
+import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
+
+const randomNumber = Math.floor(Math.random() * 100000);
+const homePage = new HomeAndCataloguePageObject();
+const contactForm = new ContactFormPageObject();
 
 describe('Demoblaze', () => {
   before(() => {
   });
 
   it('should provide the ability to register', () => {
-    cy.visit('https://www.demoblaze.com');
-
+    homePage.visit();
+    homePage.clickOnLink('Contact');
+  
     const randomNumber = Math.floor(Math.random() * 100000);
-    const userName = faker.name.firstName() + randomNumber.toString();
+    const email= faker.internet.email();
+    const message= faker.random.words();
+    const name = faker.name.firstName() + randomNumber.toString();
     const password = faker.internet.password();
-
+    cy.get('#recipient-email').click().type(email);
+    cy.get('#recipient-name').click().type(name);
+    cy.get('#message-text').click().type(message);
+    cy.get('#exampleModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
     cy.get('#signin2').click();
 
-    cy.get('#sign-username').click().type(userName);
+    cy.get('#sign-username').click().type(name);
     cy.get('#sign-password').click().type(password);
 
     cy.get('#signInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
@@ -29,7 +41,7 @@ describe('Demoblaze', () => {
 
     cy.get('.col-lg-1 > .btn').click();
 
-    cy.get('#name').click().type(userName);
+    cy.get('#name').click().type(name);
     cy.get('#country').click().type('Ukraine');
     cy.get('#city').click().type('Lviv');
     cy.get('#card').click().type('12345678910');
@@ -39,5 +51,23 @@ describe('Demoblaze', () => {
     cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
 
     cy.get('.confirm').should('exist').click();
+  });
+
+  describe('Contact', () => {
+    it('should provide the ability to send feedback', () => {
+      homePage.visit();
+      homePage.clickOnLink('Contact');
+
+      const testData = {
+        email: faker.internet.email(),
+        name: faker.name.firstName() + randomNumber.toString(),
+        message: faker.random.words(),
+        successMessage: 'Thanks for the message!!'
+      };
+      contactForm.typeEmail(testData.email);
+      contactForm.typeName(testData.name);
+      contactForm.typeMessage(testData.message);
+      contactForm.clickOnSendMessageBtn();
+    });
   });
 });
