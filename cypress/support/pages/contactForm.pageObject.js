@@ -1,38 +1,30 @@
 import PageObject from '../PageObject';
 
 class ContactFormPageObject extends PageObject {
-  url = '/index.html';
-
-  get emailField() {
-    return cy.get('#recipient-email');
+  get orderAlert() {
+    return cy.get('.sweet-alert');
   }
 
-  get nameField() {
-    return cy.get('#recipient-name');
+  fillOrderForm(name, country, city, card, month, year) {
+    cy.get('#name').type(name);
+    cy.get('#country').type(country);
+    cy.get('#city').type(city);
+    cy.get('#card').type(card);
+    cy.get('#month').type(month);
+    cy.get('#year').type(year);
   }
 
-  get messageField() {
-    return cy.get('#message-text');
+  clickPurchaseButton() {
+    cy.contains('Purchase').click();
   }
 
-  get sendMessageBtn() {
-    return cy.contains('.btn', 'Send message');
+  assertEnteredData(message, name) {
+    this.orderAlert.should('contain', message);
+    this.orderAlert.should('contain', name);
   }
 
-  typeEmail(email) {
-    this.emailField.type(email, { force: true });
-  }
-
-  typeName(name) {
-    this.nameField.type(name, { force: true });
-  }
-
-  typeMessage(message) {
-    this.messageField.type(message);
-  }
-
-  clickOnSendMessageBtn() {
-    this.sendMessageBtn.click();
+  clickOkButton() {
+    cy.contains('OK').click();
   }
 }
 
