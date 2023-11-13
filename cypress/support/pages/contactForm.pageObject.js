@@ -1,7 +1,17 @@
 /// <reference types='cypress' />
+import faker from 'faker';
 import PageObject from '../PageObject';
 
 class ContactFormPageObject extends PageObject {
+  testData = {
+    name: faker.name.findName(),
+    country: faker.random.word(),
+    city: faker.random.word(),
+    card: faker.finance.creditCardNumber(),
+    month: faker.date.month(),
+    year: Math.floor(2000 + Math.random() * 20)
+  };
+
   get nameField() {
     return cy.get('#name');
   }
@@ -14,7 +24,7 @@ class ContactFormPageObject extends PageObject {
     return cy.get('#city');
   }
 
-  get creditCartField() {
+  get creditCardField() {
     return cy.get('#card');
   }
 
@@ -24,6 +34,10 @@ class ContactFormPageObject extends PageObject {
 
   get yearField() {
     return cy.get('#year');
+  }
+
+  get Btn() {
+    return cy.get('.btn');
   }
 
   typeCountry(country) {
@@ -38,8 +52,8 @@ class ContactFormPageObject extends PageObject {
     this.cityField.type(city);
   }
 
-  typeCreditCart(card) {
-    this.creditCartField.type(card);
+  typeCreditCard(card) {
+    this.creditCardField.type(card);
   }
 
   typeMonth(month) {
@@ -47,7 +61,7 @@ class ContactFormPageObject extends PageObject {
   }
 
   typeYear(year) {
-    this.yearField.type(year);
+    this.yearField.type(year, { force: true });
   }
 
   clickBtn() {
@@ -59,11 +73,15 @@ class ContactFormPageObject extends PageObject {
       .click();
   }
 
-  assertData(name, card) {
+  assertData(name, card, country, city, month, year) {
     cy.get('.sweet-alert')
-      .should('contain', name)
       .should('contain', 'Thank you for your purchase!')
-      .should('contain', card);
+      .should('contain', name)
+      .should('contain', card)
+      .should('contain', country)
+      .should('contain', city)
+      .should('contain', month)
+      .should('contain', year);
   }
 }
 

@@ -8,6 +8,7 @@ import ContactFormPageObject from '../support/pages/contactForm.pageObject';
 const homeAndСatalogue = new HomeAndCataloguePageObject();
 const cartPage = new CartPageObject();
 const contactForm = new ContactFormPageObject();
+
 describe('Demoblaze app', () => {
   before(() => {
     homeAndСatalogue.visit();
@@ -22,15 +23,22 @@ describe('Demoblaze app', () => {
 
     cartPage.assertAboutProduct('Sony vaio i7');
     cartPage.clickOnTheButton('Place Order');
-
-    contactForm.typeName('Ivan');
-    contactForm.typeCountry('Ukraine');
-    contactForm.typeCity('Lviv');
-    contactForm.typeCreditCart(4441123445678910);
-    contactForm.typeMonth('May');
-    contactForm.typeYear(2023);
+    contactForm.typeName(contactForm.testData.name);
+    cy.wait(2000);
+    contactForm.typeCountry(contactForm.testData.country);
+    contactForm.typeCity(contactForm.testData.city);
+    contactForm.typeCreditCard(contactForm.testData.card);
+    contactForm.typeMonth(contactForm.testData.month);
+    contactForm.typeYear(contactForm.testData.year);
     contactForm.clickOnTheButton('Purchase');
-    contactForm.assertData('Ivan', 4441123445678910);
+    contactForm.assertData(
+      contactForm.testData.name,
+      contactForm.testData.card,
+      contactForm.testData.country,
+      contactForm.testData.city,
+      contactForm.testData.month,
+      contactForm.testData.year
+    );
     contactForm.clickOnTheButton('OK');
   });
 });
