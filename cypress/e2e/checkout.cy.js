@@ -18,7 +18,7 @@ const testData = {
 
 const modalMessage = 'Thank you for your purchase!';
 
-describe('Checkout', () => {
+describe('Testing user ability to make a purchase', () => {
   before(() => {
     homePage.visit();
   });
