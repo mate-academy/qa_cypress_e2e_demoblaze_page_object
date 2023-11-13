@@ -3,36 +3,49 @@ import PageObject from '../PageObject';
 class ContactFormPageObject extends PageObject {
   url = '/index.html';
 
-  get emailField() {
-    return cy.get('#recipient-email');
+  get placeOrderBtn() {
+    return cy.get(".btn", "Place Order");
   }
-
+  clickPlaceOrderBtn() {
+    this.placeOrderBtn.click();
+  }
   get nameField() {
-    return cy.get('#recipient-name');
+    return cy.get("#name").should('exist')
+  }
+  get country_field() {
+    return cy.get("#country");
+  }
+  get city_field() {
+    return cy.get("#city");
+  }
+  
+  get card_field() {
+    return cy.get("#card");
+  }
+  get month_field() {
+    return cy.get("#month");
+  }
+  get year_field() {
+    return cy.get("#year");
+  }
+  get purchase_btn() {
+    return cy.get(".btn", "Purchase");
+  }
+  click_purchase_btn() {
+    this.purchase_btn.click();
   }
 
-  get messageField() {
-    return cy.get('#message-text');
+  get successful_message_modal() {
+    return cy.get(".sweet-alert");
   }
-
-  get sendMessageBtn() {
-    return cy.contains('.btn', 'Send message');
+  assert_succesful_message() {
+    this.successful_message_modal.should("be.visible");
   }
-
-  typeEmail(email) {
-    this.emailField.type(email, { force: true });
+  get okBtn() {
+    return cy.get(".confirm", "OK");
   }
-
-  typeName(name) {
-    this.nameField.type(name, { force: true });
-  }
-
-  typeMessage(message) {
-    this.messageField.type(message);
-  }
-
-  clickOnSendMessageBtn() {
-    this.sendMessageBtn.click();
+  click_okBtn() {
+    this.okBtn.click();
   }
 }
 

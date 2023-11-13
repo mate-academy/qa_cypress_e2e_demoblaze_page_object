@@ -10,7 +10,12 @@ module.exports = defineConfig({
           return {
             username: faker.name.firstName() + `${randomNumber}`,
             email: 'test' + `${randomNumber}` + '@mail.com',
-            password: 'Password12345!'
+            password: 'Password12345!',
+            country: 'Ukraine',
+            city: 'Odesa',
+            cart: randomNumber('################'),
+            month: faker.date.month(),
+            year: Math.floor(1970 + Math.random() * 10),
           };
         }
       })
