@@ -19,9 +19,14 @@ class ContactFormPageObject extends PageObject {
     return cy.contains('.btn', 'Send message');
   }
 
-  typeEmail(email) {
-    this.emailField.type(email, { force: true });
-  }
+  fillOrderForm(name, country, city, card, month, year) {
+   cy.get('#name').type(name);
+   cy.get('#country').type(country);
+   cy.get('#city').type(city);
+   cy.get('#card').type(card);
+   cy.get('#month').type(month);
+   cy.get('#year').type(year);
+ }
 
   typeName(name) {
     this.nameField.type(name, { force: true });
