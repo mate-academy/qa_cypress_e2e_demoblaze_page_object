@@ -7,7 +7,7 @@ const orderData = {
   city: faker.address.city(),
   creditCard: faker.finance.creditCardNumber(),
   creditCardMonth: faker.date.month(),
-  creditCardYear: faker.random.number({ min: 2015, max: 2023 })
+  creditCardYear: faker.random.number({ min: 2020, max: 2026 })
 };
 
 class CheckoutPageObject extends PageObject {
