@@ -8,6 +8,12 @@ class PageObject {
       expect(alert).to.eq(alertMessage);
     });
   }
+
+  assertAllert(purchaseMessage) {
+    cy.on('window:alert', (alert) => {
+      expect(alert).to.eq(purchaseMessage);
+    });
+  }
 }
 
 export default PageObject;
