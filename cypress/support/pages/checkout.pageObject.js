@@ -30,10 +30,7 @@ class CheckoutPageObject extends PageObject {
 
   get yearField() {
     return cy.get('#year')
-  }
-
-  get sendMessageBtn() {
-    return cy.contains('.btn', 'Send message');
+  
   }
 
 
@@ -63,9 +60,7 @@ class CheckoutPageObject extends PageObject {
     this.yearField.type(year);
   }
 
-  clickOnSendMessageBtn() {
-    this.sendMessageBtn.click();
-  }
+
 }
 
 export default CheckoutPageObject;
