@@ -1,4 +1,4 @@
-import faker from 'faker';
+const faker = require('faker');
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({

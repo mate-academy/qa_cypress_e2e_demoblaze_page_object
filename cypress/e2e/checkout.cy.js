@@ -1,13 +1,13 @@
 import faker from 'faker';
-import HomeAndCataloguePageObject
-  from '../support/pages/homeСatalogue.pageObject';
+import CartPageObject
+  from '../support/pages/Cart.pageObject';
 /// <reference types='cypress' />
 
-const homePage = new HomeAndCataloguePageObject();
+const cartPage = new CartPageObject();
 
 describe('Demoblaze', () => {
   before(() => {
-    homePage.visit();
+    cartPage.visit();
   });
 
   const testData = {
@@ -19,22 +19,22 @@ describe('Demoblaze', () => {
   };
 
   it('should add item to cart and place order', () => {
-    homePage.clickOnCategory('Laptops');
-    homePage.clickOnProduct('Sony vaio i7');
+    cartPage.clickOnCategory('Laptops');
+    cartPage.clickOnProduct('Sony vaio i7');
     cy.contains('.btn', 'Add to cart').click();
 
-    homePage.assertAllert('Product added');
+    cartPage.assertAllert('Product added');
 
-    homePage.clickOnLink('Cart');
+    cartPage.clickOnLink('Cart');
     cy.contains('.success', 'Sony vaio i7');
     cy.contains('.btn', 'Place Order').click();
 
-    cy.get('#name').type(testData.name);
-    cy.get('#country').type(testData.country);
-    cy.get('#city').type(testData.city);
-    cy.get('#card').type(testData.card);
-    cy.get('#month').type(testData.month);
-    cy.get('#year').type('2023');
+    cartPage.typeInField('#name', testData.name);
+    cartPage.typeInField('#country', testData.country);
+    cartPage.typeInField('#city', testData.city);
+    cartPage.typeInField('#card', testData.card);
+    cartPage.typeInField('#month', testData.month);
+    cartPage.typeInField('#year', '2023');
     cy.contains('.btn', 'Purchase').click();
 
     cy.contains('.lead', testData.card);
