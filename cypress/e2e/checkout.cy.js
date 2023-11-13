@@ -13,10 +13,8 @@ describe('Demoblaze Flow', () => {
   it('should add a product to the cart and place the order', () => {
    homePage.clickOnCategory('Laptops');
    homePage.clickOnProduct('Sony vaio i7');
-   cy.contains('.btn', 'Add to cart').click();
-   cy.on('window:alert', (str) => {
-      expect(str).to.equal('Product added');
-   });
+   homePage.addToCart(); 
+   homePage.clickOnCart();
    homePage.clickOnLink('Cart');
    cy.contains('.success', 'Sony vaio i7').should('be.visible');
    cy.contains('.btn', 'Place Order').click();
