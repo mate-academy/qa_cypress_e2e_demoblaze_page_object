@@ -12,10 +12,8 @@ module.exports = defineConfig({
           const randomNumber = Math.ceil(Math.random(1000) * 1000);
           return {
             username: faker.name.firstName(),
-            // country: faker.location.country(),
-            country: 'Ukraine',
-            // city: faker.location.city(),
-            city: 'Lviv',
+            country: faker.address.country(),
+            city: faker.address.city(),
             card: faker.phone.phoneNumber('####-####-####-####'),
             month: faker.date.month(),
             year: Math.floor(2024 + Math.random() * 5)

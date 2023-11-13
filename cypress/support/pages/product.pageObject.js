@@ -9,7 +9,7 @@ class ProductPageObject extends PageObject {
   }
 
   getSuccessfulMessage(message) {
-    cy.wait(4000);
+    // cy.wait(4000);
     cy.on('window:alert', (str) => {
       expect(str).to.equal(message);
     })

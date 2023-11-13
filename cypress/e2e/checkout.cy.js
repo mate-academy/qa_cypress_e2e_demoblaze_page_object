@@ -1,16 +1,13 @@
-import ContactFormPageObject from '../support/pages/contactForm.pageObject';
 import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
 import ProductPageObject from '../support/pages/product.pageObject';
 import CartPageObject from '../support/pages/cart.pageObject';
-import faker from 'faker';
 /// <reference types='cypress' />
 
-const contactForm = new ContactFormPageObject();
 const homePage = new HomeAndCataloguePageObject();
 const productPage = new ProductPageObject();
 const cartPage = new CartPageObject();
 
-describe('', () => {
+describe('Purchase', () => {
   let user;
 
   before(() => {
