@@ -18,7 +18,7 @@ const testData = {
   year: faker.random.number({ min: 2024, max: 2029 })
 };
 
-describe('Checout', () => {
+describe('Should provide the ability for checout', () => {
   before(() => {
     homePage.visit();
   });
