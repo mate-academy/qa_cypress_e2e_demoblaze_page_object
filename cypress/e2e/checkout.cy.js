@@ -1,57 +1,57 @@
 /// <reference types='cypress' />
-// eslint-disable-next-line max-len
-import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
+
+import CheckFormPageObject from '../support/pages/checkForm.pageObject';
+import HomeAndCataloguePageObject
+  from '../support/pages/homeСatalogue.pageObject';
 import faker from 'faker';
 
+const checkPage = new CheckFormPageObject();
 const homePage = new HomeAndCataloguePageObject();
-const card = '4441 4345 2223 4444';
+
 const testData = {
   name: faker.name.firstName(),
-  country: faker.random.words(),
-  city: faker.random.words(),
-  month: faker.random.word()
+  country: 'Ukraine',
+  city: 'Kherson',
+  card: '4442444544453323',
+  month: '11',
+  year: '2023'
 };
 
-describe('Demoblaze', () => {
+describe('Checkout', () => {
   before(() => {
     homePage.visit();
   });
 
-  it('should add a product to the cart and place the order', () => {
+  it('should provide the ability to checkout', () => {
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
 
-    cy.get('[class="btn btn-success btn-lg"]').contains('Add to cart').click();
-    cy.on('window:alert', (str) => {
-      expect(str).to.contains('Product added');
+    cy.contains('.btn', 'Add to cart')
+      .click();
+    cy.on('window:alert', (alert) => {
+      expect(alert).to.eq('Product added');
     });
 
-    cy.on('window:confirm', () => true);
     homePage.clickOnLink('Cart');
-
-    cy.get('[class="table-responsive"]')
+    cy.get('#tbodyid')
       .should('contain', 'Sony vaio i7');
-    cy.get('[class="btn btn-success"]')
+    cy.contains('.btn', 'Place Order')
       .click();
 
-    cy.get('[id="name"]')
-      .type(testData.name);
-    cy.get('[id="country"]')
-      .type(testData.country);
-    cy.get('[id="city"]')
-      .type(testData.city);
-    cy.get('[id="card"]')
-      .type(card);
-    cy.get('[id="month"]')
-      .type(testData.month);
-    cy.get('[id="year"]')
-      .type('1999');
-    cy.get('[onclick="purchaseOrder()"]')
-      .click();
+    checkPage.typeName(testData.name);
+    checkPage.typeCountry(testData.country);
+    checkPage.typeCity(testData.city);
+    checkPage.typeCard(testData.card);
+    checkPage.typeMonth(testData.month);
+    checkPage.typeYear(testData.year);
 
-    cy.get('[class="sweet-alert  showSweetAlert visible"]')
-      .should('contain', card);
-    cy.get('[class="confirm btn btn-lg btn-primary"]')
+    cy.contains('.btn', 'Purchase')
+      .click();
+    cy.contains('.sweet-alert', 'Thank you for your purchase!')
+      .should('exist');
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(1000);
+    cy.contains('.btn', 'OK')
       .click();
   });
 });
