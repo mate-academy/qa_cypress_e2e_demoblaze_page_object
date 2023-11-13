@@ -11,10 +11,10 @@ const card = '0000000000000000';
 
 const testData = {
   name: faker.name.firstName(),
-  country: faker.random.words(),
-  city: faker.random.word(),
+  country: faker.address.country(),
+  city: faker.address.city(),
   card,
-  month: faker.random.word(),
+  month: '12',
   year: '2023'
 };
 
