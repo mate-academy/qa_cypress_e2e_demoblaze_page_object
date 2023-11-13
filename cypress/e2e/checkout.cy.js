@@ -1,8 +1,9 @@
 /// <reference types='cypress' />
-import CheckoutPageObject from '../support/pages/checkout.pageObject.js';
+import ItemPageObject from '../support/pages/item.pageObject.js';
+import CartPageObject from '../support/pages/cart.pageObject.js';
 
-const checkout = new CheckoutPageObject();
-const assertMessage = 'Product added';
+const item = new ItemPageObject();
+const cart = new CartPageObject();
 
 describe('Ordering product', () => {
   before(() => {
@@ -10,22 +11,24 @@ describe('Ordering product', () => {
   });
 
   it('should have an ability to order product', () => {
-    checkout.clickOnLaptopsBtn();
-    checkout.clickOnSonyVioI7Btn();
-    checkout.clickOnaddToCartBtn();
-    checkout.assertAllert(assertMessage);
-    checkout.clickOnCartBtn();
-    checkout.verifyProductTitle();
-    checkout.clickOnPlaceOrderBtn();
-    checkout.typeName();
-    checkout.typeCountry();
-    checkout.typeCity();
-    checkout.typeCreditCard();
-    checkout.typeCreditCardMonth();
-    checkout.typeCreditCardYear();
-    checkout.clickOnPurchaseBtn();
-    checkout.verifyName();
-    checkout.verifyCardNumber();
-    checkout.clickOnOKBtn();
+    item.clickOnLaptopsBtn();
+    item.clickOnSonyVioI7Btn();
+    item.clickOnaddToCartBtn();
+    cy.on('window:alert', (str) => {
+      expect(str).to.contains('Product added');
+    });
+    item.clickOnCartBtn();
+    cart.verifyProductTitle();
+    cart.clickOnPlaceOrderBtn();
+    cart.typeName();
+    cart.typeCountry();
+    cart.typeCity();
+    cart.typeCreditCard();
+    cart.typeCreditCardMonth();
+    cart.typeCreditCardYear();
+    cart.clickOnPurchaseBtn();
+    cart.verifyName();
+    cart.verifyCardNumber();
+    cart.clickOnOKBtn();
   });
 });
