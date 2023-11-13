@@ -18,5 +18,4 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 }
-
 export default HomeAndCataloguePageObject;
