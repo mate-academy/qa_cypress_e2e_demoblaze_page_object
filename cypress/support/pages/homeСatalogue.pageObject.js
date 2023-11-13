@@ -1,10 +1,6 @@
 import PageObject from '../PageObject';
 
 class HomeAndCataloguePageObject extends PageObject {
-  visit() {
-    cy.visit('https://www.demoblaze.com/');
-  }
-
   clickOnCategory(categoryName) {
     cy.contains('#itemc', categoryName)
       .click();

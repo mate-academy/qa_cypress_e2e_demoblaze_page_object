@@ -4,14 +4,16 @@
 import CartPage from '../support/pages/cart.pageObject';
 import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
+import PageObject from '../support/PageObject';
 
 const homeAndCatalogue = new HomeAndCataloguePageObject();
 const cartPage = new CartPage();
 const contactForm = new ContactFormPageObject();
+const page = new PageObject();
 
 describe('Purchase Flow', () => {
   before(() => {
-    homeAndCatalogue.visit();
+    page.visit('https://www.demoblaze.com/');
   });
 
   it('should complete the purchase flow', () => {
