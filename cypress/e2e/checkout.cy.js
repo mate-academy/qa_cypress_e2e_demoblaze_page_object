@@ -1,11 +1,11 @@
 /// <reference types='cypress' />
-import ChecoutPageObject from '../support/pages/checout.pageObject';
+import CheckoutPageObject from '../support/pages/checkout.pageObject';
 import HomeAndCataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
 import ProductPageObject from '../support/pages/product.pageObject';
 import faker from 'faker';
 
-const checkoutPage = new ChecoutPageObject();
+const checkoutPage = new CheckoutPageObject();
 const homePage = new HomeAndCataloguePageObject();
 const productPage = new ProductPageObject();
 
@@ -27,7 +27,7 @@ describe('Checout', () => {
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
     productPage.clickAddToCart();
-    productPage.allertMessage('Product added');
+    productPage.alertMessage('Product added');
     homePage.clickOnLink('Cart');
 
     checkoutPage.containProduct('Sony vaio i7');

@@ -5,7 +5,7 @@ class ProductPageObject extends PageObject {
     cy.contains('.btn', 'Add to cart').click();
   }
 
-  allertMessage(message) {
+  alertMessage(message) {
     cy.on('window:alert', (str) => {
       expect(str).to.contains(message);
     });

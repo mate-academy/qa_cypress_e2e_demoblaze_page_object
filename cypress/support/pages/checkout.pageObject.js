@@ -1,6 +1,6 @@
 import PageObject from '../PageObject';
 
-class ChecoutPageObject extends PageObject {
+class CheckoutPageObject extends PageObject {
   containProduct(productName) {
     cy.get('.table').should('contain', productName);
   }
@@ -49,4 +49,4 @@ class ChecoutPageObject extends PageObject {
   }
 }
 
-export default ChecoutPageObject;
+export default CheckoutPageObject;
