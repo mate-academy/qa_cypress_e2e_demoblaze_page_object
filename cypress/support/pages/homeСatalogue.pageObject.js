@@ -8,6 +8,13 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
+  // get categoryLaptop() {
+  //   return cy.contains('#itemc','Laptop');
+  // }
+
+  // clickOnLaptop() {
+  //   this.categoryLaptop.click();
+  // }
   clickOnCategory(categoryName) {
     cy.contains('#itemc', categoryName)
       .click();
@@ -16,6 +23,21 @@ class HomeAndCataloguePageObject extends PageObject {
   clickOnProduct(product) {
     cy.contains('.hrefch', product)
       .click();
+  }
+
+  clickAddToCartBtn() {
+    cy.contains('.btn', 'Add to cart')
+      .click();
+  }
+
+  clickACart() {
+    cy.get('#cartur').click();
+  }
+
+  assertAddedproduct() {
+    cy.on('window:alert', (str) => {
+      expect(str).to.equal('Product added.');
+    });
   }
 }
 
