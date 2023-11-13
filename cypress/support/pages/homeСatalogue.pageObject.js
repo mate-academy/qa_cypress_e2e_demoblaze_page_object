@@ -1,21 +1,54 @@
-import PageObject from '../PageObject';
+import PageObject from "../PageObject";
 
 class HomeAndCataloguePageObject extends PageObject {
-  url = '/index.html';
+  url = "/index.html";
 
-  clickOnLink(linkName) {
-    cy.contains('.nav-link', linkName)
-      .click();
+  get laptopsBtn() {
+    return cy.get("#itemc");
+  }
+  clickLaptopsBtn() {
+    this.laptopsBtn.click();
   }
 
-  clickOnCategory(categoryName) {
-    cy.contains('#itemc', categoryName)
-      .click();
+  get laptopNameBtn() {
+    return cy.contains(".hrefch", "Sony vaio i7");
+  }
+  clickLaptopNameBtn() {
+    this.laptopNameBtn.click();
   }
 
-  clickOnProduct(product) {
-    cy.contains('.hrefch', product)
-      .click();
+  get addToCartBtn() {
+    return cy.contains(".btn ", "Add to cart");
+  }
+  clickAddToCartBtn() {
+    this.addToCartBtn.click();
+  }
+
+  get successfulWindow() {
+    cy.on('window:alert', (alert) => {
+      expect(alert).to.equal(alertMessage.confirmAction);
+    });
+  }
+
+  get windowOkBtn() {
+    return cy.get('button', 'Ok')
+  }
+  clickWindowOkBtn() {
+    this.windowOkBtn.click();
+  }
+
+  get cartBtn() {
+    return cy.get("#cartur");
+  }
+  clickCartBtn() {
+    this.cartBtn.click();
+  }
+
+  get cartPageUrl() {
+    return cy.url();
+  }
+  assertCartPageUrl() {
+    this.cartPageUrl.should('include', 'cart.html');
   }
 }
 
