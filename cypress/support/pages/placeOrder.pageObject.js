@@ -1,6 +1,6 @@
 import PageObject from '../PageObject';
 
-class placeOrder extends PageObject {
+class PlaceOrder extends PageObject {
   url = '/cart.html';
 
   assertItemName() {
@@ -65,4 +65,4 @@ class placeOrder extends PageObject {
   }
 }
 
-export default placeOrder;
+export default PlaceOrder;

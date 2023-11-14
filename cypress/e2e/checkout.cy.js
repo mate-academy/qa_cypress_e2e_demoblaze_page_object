@@ -1,10 +1,10 @@
 import HomeAndCataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
   import faker from 'faker';
-import placeOrder from '../support/pages/placeOrder.pageObject';
+import PlaceOrder from '../support/pages/placeOrder.pageObject';
 /// <reference types='cypress' />
 const homePage = new HomeAndCataloguePageObject();
-const order = new placeOrder();
+const order = new PlaceOrder();
 const category = 'Laptop';
 const product = 'Sony vaio i7';
 const addedProduct = 'Product added';
@@ -12,8 +12,8 @@ const monthYear = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 const randomIndex = Math.floor(Math.random() * 11);
 const testData = {
   name: faker.name.firstName(),
-  country: faker.lorem.word(),
-  city: faker.lorem.word(),
+  country: faker.address.country(),
+  city: faker.address.city(),
   creditCard: '0123456789',
   month: monthYear[randomIndex],
   year: '1987'
