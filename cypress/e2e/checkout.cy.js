@@ -8,12 +8,12 @@ const homePage = new HomeAndCataloguePageObject();
 const cartPage = new cartPageObject();
 
 const data = {
-  name: 'Alex',
-  country: 'Ukraine',
-  city: 'Kharkiv',
-  card: '12345678',
-  month: '03',
-  year: '2000'
+  name: faker.name.findName(),
+  country: faker.address.country(),
+  city: faker.address.city(),
+  card: faker.finance.creditCardNumber(),
+  month: faker.date.month(),
+  year: faker.random.number({ min: 2000, max: 2022 })
 };
 
 describe('Demoblaze app', () => {
