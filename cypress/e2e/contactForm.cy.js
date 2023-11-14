@@ -1,4 +1,5 @@
-import ContactFormPageObject from '../support/pages/contactForm.pageObject';
+import ContactFormPageObject
+  from '../support/pages/contactForm.pageObject';
 import HomeAndCataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
 import faker from 'faker';
@@ -6,7 +7,6 @@ import faker from 'faker';
 
 const contactForm = new ContactFormPageObject();
 const homePage = new HomeAndCataloguePageObject();
-
 const testData = {
   email: faker.internet.email(),
   name: faker.name.firstName(),
