@@ -1,4 +1,5 @@
 class PageObject {
+  // adding this text so the page would be visible in comparison
   visit(url) {
     cy.visit(url || this.url);
   }
