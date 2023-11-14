@@ -1,19 +1,16 @@
 /// <reference types='cypress' />
 
-import ContactFormPageObject
-  from '../support/pages/contactForm.pageObject';
 import HomeAndCataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
-import checkoutPageObject
+import CheckoutPageObject
   from '../support/pages/checkout.pageObject';
-
-
+import CartPageObject
+  from '../support/pages/cart.pageObject';
 import faker from 'faker';
 
-const contactForm = new ContactFormPageObject();
 const homePage = new HomeAndCataloguePageObject();
-const checkout = new checkoutPageObject();
-
+const checkoutPage = new CheckoutPageObject();
+const cartPage = new CartPageObject();
 const testData = {
   name: faker.name.firstName(),
   country: faker.address.country(),
@@ -29,14 +26,14 @@ describe('Demoblaze checkout', () => {
   });
 
   it('should provide an ability to add product to cart and place order', () => {
-    checkout.clickOnCategory('notebook');
-    homePage.clickOnProduct('Sony vaio i7');
-    checkout.clickButton('addToCart(9)');
-    checkout.assertAddingProductToCart('Product added.');
-    homePage.clickOnLink('Cart');
-    checkout.clickPlaceOrderButton();
+    homePage.clickOnNotebookCategory();
+    homePage.clickOnSonyVaioI7();
+    homePage.clickAddToCartButton();
+    homePage.assertAddingProductToCartAlert();
+    homePage.clickOnCartLink();
+    cartPage.clickPlaceOrderButton();
 
-    checkout.fillOrderForm(
+    checkoutPage.fillOrderForm(
       testData.name,
       testData.country,
       testData.city,
@@ -44,6 +41,11 @@ describe('Demoblaze checkout', () => {
       testData.month,
       testData.year
     );
-    checkout.clickPurchaseButton();
+    checkoutPage.clickPurchaseButton();
+    checkoutPage.assertOrderInfo(
+      testData.creditCard,
+      testData.month,
+      testData.year
+    );
   });
 });

@@ -7,7 +7,6 @@ import faker from 'faker';
 
 const contactForm = new ContactFormPageObject();
 const homePage = new HomeAndCataloguePageObject();
-
 const testData = {
   email: faker.internet.email(),
   name: faker.name.firstName(),

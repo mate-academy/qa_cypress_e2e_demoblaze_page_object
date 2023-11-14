@@ -1,33 +1,7 @@
 import PageObject from '../PageObject';
 
-class checkoutPageObject extends PageObject {
+class CheckoutPageObject extends PageObject {
   url = '/index.html';
-
-  clickOnCategory(category) {
-    cy.get(`[onclick="byCat('${category}')"]`)
-      .click();
-  };
-
-  clickButton(button) {
-    cy.get(`[onclick="${button}"]`)
-      .click();
-  };
-
-  clickOnProduct(product) {
-    cy.contains('.hrefch', product)
-      .click();
-  };
-
-  assertAddingProductToCart(text) {
-    cy.on('window:confirm', () => {
-      expect(text).to.equal('Product added.');
-    });
-  };
-
-  clickPlaceOrderButton() {
-    cy.get('[data-target="#orderModal"]')
-      .click();
-  };
 
   fillOrderForm(name, country, city, card, month, year) {
     cy.get('#name')
@@ -44,9 +18,9 @@ class checkoutPageObject extends PageObject {
       .type(year);
   };
 
-  assertTotal(sum) {
-    cy.get('#totalm')
-      .should('contain', sum);
+  assertOrderInfo(name, card, month, year) {
+    cy.get('.sweet-alert')
+      .should('contain', name, card, month, year);
   };
 
   clickPurchaseButton() {
@@ -55,4 +29,4 @@ class checkoutPageObject extends PageObject {
   }
 }
 
-export default checkoutPageObject;
+export default CheckoutPageObject;
