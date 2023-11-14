@@ -5,7 +5,6 @@ import CheckoutFormPageObject from "../support/pages/checkoutForm.pageObject";
 
 const faker = require('faker');
 const homeCatalogue = new HomeAndCataloguePageObject();
-const homePage = new HomeAndCataloguePageObject();
 const checkoutForm = new CheckoutFormPageObject();
 
 const customer = {
@@ -17,12 +16,12 @@ const customer = {
   year: '2024'
 };
 
-describe('Contact', () => {
+describe('e2e Checkout', () => {
   before(() => {
-    homePage.visit();
+    homeCatalogue.visit();
   });
 
-  it('should provide the ability to send feedback', () => {
+  it('should provide the ability to place an order', () => {
     homeCatalogue.clickOnLaptopsBtn();
     homeCatalogue.clickOnProduct();
     homeCatalogue.clickOnAddToCartBtn();

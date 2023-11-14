@@ -1,7 +1,7 @@
 import PageObject from '../PageObject';
 
 class CheckoutFormPageObject extends PageObject {
-  url = '/index.html';
+  url = '/cart.html';
 
   get nameField() {
     return cy.get('#name');

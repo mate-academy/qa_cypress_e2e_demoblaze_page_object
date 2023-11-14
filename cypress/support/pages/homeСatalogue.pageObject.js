@@ -1,7 +1,7 @@
 import PageObject from '../PageObject';
 
 class HomeAndCataloguePageObject extends PageObject {
-  url = '/index.html';
+  url = '/';
 
   get laptopsBtn() {
     return cy.contains('.list-group-item', 'Laptops');
