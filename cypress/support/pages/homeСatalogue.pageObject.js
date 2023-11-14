@@ -9,6 +9,11 @@ visit() {
       .click();
   }
 
+  clickOnProduct(productName) {
+    cy.contains('.hrefch', productName)
+     .click();
+   }
+
   addToCart() {
     cy.contains('Add to cart').click();
     cy.on('window:alert', (str) => {
