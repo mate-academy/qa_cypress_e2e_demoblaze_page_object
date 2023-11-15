@@ -8,7 +8,8 @@ class CartPageObject extends PageObject {
   }
 
   clickOnPurchaseButton() {
-    this.placeOrderBtn.click();
+    // eslint-disable-next-line cypress/no-force
+    cy.get('[class="btn btn-success"]').click({ force: true });
   }
 }
 

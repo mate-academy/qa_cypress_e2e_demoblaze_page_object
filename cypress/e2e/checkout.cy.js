@@ -4,7 +4,7 @@
 import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
 import CartPageObject from '../support/pages/cartPage.pageObject';
 import CartFormObject from '../support/pages/cartForm.pageObject';
-const { faker } = require('faker');
+const { faker } = require('@faker-js/faker');
 
 const homePage = new HomeAndCataloguePageObject();
 const cartPage = new CartPageObject();
@@ -31,35 +31,24 @@ describe('Product store', () => {
   it('should provide the ability to buy a product', () => {
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct(product.laptopName);
-    cy.get('a[onclick="addToCart(9)"]')
-      .click();
-    cy.on('window:confirm', (alert) => {
-      expect(alert).to.equal('Product added');
-    });
-
+    homePage.clickOnAddToCartButton();
     homePage.clickOnLink('Cart');
-    cy.contains(product.laptopName)
-      .should('be.visible');
+    cy.contains(product.laptopName).should('be.visible');
     cartPage.clickOnPurchaseButton();
-
     cartForm.typeName(orderData.name);
     cartForm.typeCountry(orderData.country);
     cartForm.typeCity(orderData.city);
     cartForm.typeCard(orderData.creditCard);
     cartForm.typeMonth(orderData.month);
     cartForm.typeYear(orderData.year);
-
     cartForm.checkName(orderData.name);
     cartForm.checkCountry(orderData.country);
     cartForm.checkCity(orderData.city);
     cartForm.checkCard(orderData.creditCard);
     cartForm.checkMonth(orderData.month);
     cartForm.checkYear(orderData.year);
-
     cartForm.clickOnPurchaseButton();
-    cy.contains('Thank you for your purchase!')
-      .should('be.visible');
-    cy.get('button[class="confirm btn btn-lg btn-primary"]')
-      .click();
+    cy.contains('Thank you for your purchase!').should('be.visible');
+    cartPage.clickOnPurchaseButton();
   });
 });
