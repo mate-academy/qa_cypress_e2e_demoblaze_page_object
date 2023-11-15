@@ -1,49 +1,65 @@
 /// <reference types='cypress' />
-import faker from 'faker';
+
 // eslint-disable-next-line max-len
 import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
-const homePage = new HomeAndCataloguePageObject();
+import CartPageObject from '../support/pages/cartPage.pageObject';
+import CartFormObject from '../support/pages/cartForm.pageObject';
+const { faker } = require('faker');
 
-const testData = {
-  name: faker.name.firstName(),
-  country: faker.random.words(),
-  city: faker.random.words(),
-  month: faker.random.word()
+const homePage = new HomeAndCataloguePageObject();
+const cartPage = new CartPageObject();
+const cartForm = new CartFormObject();
+
+const orderData = {
+  name: faker.person.firstName(),
+  country: faker.location.county(),
+  city: faker.location.city(),
+  creditCard: faker.finance.creditCardNumber(),
+  month: faker.number.int({ max: 12 }),
+  year: faker.number.int({ min: 1940, max: 2023 })
 };
 
-describe('Demoblaze', () => {
+const product = {
+  laptopName: 'Sony vaio i7'
+};
+
+describe('Product store', () => {
   before(() => {
     homePage.visit();
   });
 
-  it('should add a product to the cart and place the order', () => {
+  it('should provide the ability to buy a product', () => {
     homePage.clickOnCategory('Laptops');
-    homePage.clickOnProduct('Sony vaio i7');
-
-    cy.get('.btn').contains('Add to cart').click();
-    cy.on('window:alert', (str) => {
-      expect(str).to.contains('Product added');
+    homePage.clickOnProduct(product.laptopName);
+    cy.get('a[onclick="addToCart(9)"]')
+      .click();
+    cy.on('window:confirm', (alert) => {
+      expect(alert).to.equal('Product added');
     });
 
-    cy.on('window:confirm', () => true);
     homePage.clickOnLink('Cart');
+    cy.contains(product.laptopName)
+      .should('be.visible');
+    cartPage.clickOnPurchaseButton();
 
-    cy.get('.table-responsive').should('contain', 'Sony vaio i7');
-    cy.get('.btn').contains('Place Order').click();
+    cartForm.typeName(orderData.name);
+    cartForm.typeCountry(orderData.country);
+    cartForm.typeCity(orderData.city);
+    cartForm.typeCard(orderData.creditCard);
+    cartForm.typeMonth(orderData.month);
+    cartForm.typeYear(orderData.year);
 
-    const card = '9999 8888 7777 0000';
+    cartForm.checkName(orderData.name);
+    cartForm.checkCountry(orderData.country);
+    cartForm.checkCity(orderData.city);
+    cartForm.checkCard(orderData.creditCard);
+    cartForm.checkMonth(orderData.month);
+    cartForm.checkYear(orderData.year);
 
-    cy.get('#name').type(testData.name);
-    cy.get('#country').type(testData.country);
-    cy.get('#city').type(testData.city);
-    cy.get('#card').type(card);
-    cy.get('#month').type(testData.month);
-    cy.get('#year').type('2001');
-    cy.get('.btn').contains('Purchase').click();
-
-    cy.get('[class="sweet-alert  showSweetAlert visible"]')
-      .should('contain', card);
-    cy.get('.btn').contains('OK')
+    cartForm.clickOnPurchaseButton();
+    cy.contains('Thank you for your purchase!')
+      .should('be.visible');
+    cy.get('button[class="confirm btn btn-lg btn-primary"]')
       .click();
   });
 });
