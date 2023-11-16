@@ -82,6 +82,10 @@ class CartFormObject extends PageObject {
   checkYear(year) {
     this.yearField.should('have.value', year);
   }
+
+  assertConfirmationMessageVisible() {
+    cy.contains('Thank you for your purchase!').should('be.visible');
+  }
 }
 
 export default CartFormObject;

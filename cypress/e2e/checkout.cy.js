@@ -33,7 +33,7 @@ describe('Product store', () => {
     homePage.clickOnProduct(product.laptopName);
     homePage.clickOnAddToCartButton();
     homePage.clickOnLink('Cart');
-    cy.contains(product.laptopName).should('be.visible');
+    cartPage.assertLaptopNameVisible(product.laptopName);
     cartPage.clickOnPurchaseButton();
     cartForm.typeName(orderData.name);
     cartForm.typeCountry(orderData.country);
@@ -48,7 +48,7 @@ describe('Product store', () => {
     cartForm.checkMonth(orderData.month);
     cartForm.checkYear(orderData.year);
     cartForm.clickOnPurchaseButton();
-    cy.contains('Thank you for your purchase!').should('be.visible');
+    cartForm.assertConfirmationMessageVisible();
     cartPage.clickOnPurchaseButton();
   });
 });
