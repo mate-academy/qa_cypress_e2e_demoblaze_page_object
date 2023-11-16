@@ -60,6 +60,17 @@ class CartPageObject extends PageObject {
     this.yearField.type(year);
   }
 
+  assertOrder() {
+    cy.wait(1000);
+    cy.contains('.sweet-alert', 'Thank you for your purchase!')
+      .should('exist');
+  }
+
+  ClickOnOkBtn() {
+    cy.contains('.confirm btn', 'OK')
+      .click();
+  }
+
 }
 
 export default CartPageObject;
