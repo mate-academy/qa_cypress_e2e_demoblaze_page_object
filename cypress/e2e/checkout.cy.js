@@ -25,14 +25,12 @@ const testData = {
     year: Math.floor(2023 + Math.random() * 10)
   }
 };
-describe('Product Selection and Purchase Flow', () => {
-  beforeEach(() => {
-    homePage.visit();
-    cy.viewport(1920, 1080);
-  });
 
+describe('Product Selection and Purchase Flow', () => {
   it('Should provide an ability to select, add and purchase the product',
     () => {
+      homePage.visit();
+      cy.viewport(1920, 1080);
       homePage.clickOnCategory(testData.categoryName);
       homePage.clickOnProduct(testData.productName);
 
@@ -42,7 +40,7 @@ describe('Product Selection and Purchase Flow', () => {
 
       homePage.clickOnLink('Cart');
       productCartPage.assertProduct(testData.productName);
-      productCartPage.placeOrderBtn
+      productCartPage.clickOnOrderBtn
         .click();
 
       placeOrderForm.nameField
@@ -62,7 +60,7 @@ describe('Product Selection and Purchase Flow', () => {
 
       placeOrderForm.assertCardNumber(testData.orderForm.creditCard);
       placeOrderForm.assertName(testData.orderForm.name);
-      placeOrderForm.okBtn
+      placeOrderForm.clickOnOKBtn
         .click();
     });
 });

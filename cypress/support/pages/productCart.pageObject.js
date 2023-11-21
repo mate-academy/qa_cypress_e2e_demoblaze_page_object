@@ -8,7 +8,7 @@ class ProductCartPageObject extends PageObject {
       .should('exist');
   }
 
-  get placeOrderBtn() {
+  get clickOnOrderBtn() {
     return cy.contains('.btn', 'Place Order');
   }
 }

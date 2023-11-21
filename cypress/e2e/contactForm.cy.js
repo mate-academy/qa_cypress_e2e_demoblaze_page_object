@@ -15,14 +15,11 @@ const testData = {
 };
 
 describe('Contact', () => {
-  before(() => {
-    homePage.visit();
-  });
-
   it('should provide the ability to send feedback', () => {
+    homePage.visit();
     homePage.clickOnLink('Contact');
-    contactForm.typeEmail(testData.email);
-    contactForm.typeName(testData.name);
+    contactForm.fillEmailField(testData.email);
+    contactForm.fillNameField(testData.name);
     contactForm.typeMessage(testData.message);
     contactForm.clickOnSendMessageBtn();
     contactForm.assertAllert(testData.successMessage);

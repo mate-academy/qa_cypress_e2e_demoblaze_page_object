@@ -41,7 +41,7 @@ class PlaceOrderFormPageObject extends PageObject {
       .should('contain', name);
   }
 
-  get okBtn() {
+  get clickOnOKBtn() {
     return cy.contains('.confirm', 'OK');
   }
 }
