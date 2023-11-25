@@ -7,6 +7,15 @@ import faker from 'faker';
 const homePage = new HomeAndCataloguePageObject();
 const cartForm = new CartFormPageObject();
 
+const testData = {
+  name: faker.name.findName(),
+  country: faker.address.country(),
+  city: faker.address.city(),
+  creditCard: faker.finance.creditCardNumber(),
+  month: faker.date.month(),
+  year: faker.random.number({ min: 1970, max: 2023 })
+};
+
 describe('Demoblaze Flow', () => {
   before(() => {
     homePage.visit();
@@ -21,12 +30,12 @@ describe('Demoblaze Flow', () => {
     cy.get('tr.success').contains('Sony vaio i7');
     cy.contains('button.btn-success', 'Place Order').click();
 
-    cartForm.typeName(faker.name.findName());
-    cartForm.typeCountry(faker.address.country());
-    cartForm.typeCity(faker.address.city());
-    cartForm.typeCreditCard(faker.finance.creditCardNumber());
-    cartForm.typeMonth(faker.date.month());
-    cartForm.typeYear(faker.random.number({ min: 1970, max: 2023 }));
+    cartForm.typeName(testData.name);
+    cartForm.typeCountry(testData.country);
+    cartForm.typeCity(testData.city);
+    cartForm.typeCreditCard(testData.creditCard);
+    cartForm.typeMonth(testData.month);
+    cartForm.typeYear(testData.year);
     cartForm.clickOnPurchaseBtn();
     cy.contains('Thank you for your purchase!').should('exist');
     cy.get('.confirm').click();
