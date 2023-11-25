@@ -26,7 +26,7 @@ describe('Demoblaze Flow', () => {
     cartForm.typeCity(faker.address.city());
     cartForm.typeCreditCard(faker.finance.creditCardNumber());
     cartForm.typeMonth(faker.date.month());
-    cartForm.typeYear(faker.random.number({ min: 2023, max: 2030 }));
+    cartForm.typeYear(faker.random.number({ min: 1970, max: 2023 }));
     cartForm.clickOnPurchaseBtn();
     cy.contains('Thank you for your purchase!').should('exist');
     cy.get('.confirm').click();
