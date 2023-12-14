@@ -2,10 +2,11 @@
 
 import CataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
+
 import CartPageObject
   from '../support/pages/orderForm.pageObject';
+
 import faker from 'faker';
-/// <reference types='cypress' />
 
 const homePage = new CataloguePageObject();
 const cartPage = new CartPageObject();
@@ -21,9 +22,6 @@ const randomData = {
 };
 
 describe('Buying process', () => {
-  
-  let expectedTotalAmount;
-
   before(() => {
     homePage.visit();
   });
