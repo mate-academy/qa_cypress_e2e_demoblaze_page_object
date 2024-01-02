@@ -3,6 +3,14 @@ import PageObject from '../PageObject';
 class CartFormPageObject extends PageObject {
   url = '/cart.html';
 
+  findProductInTheCart(productName) {
+    return cy.contains('.success td', productName);
+  }
+
+  clickOnPlaceOrderButton() {
+    cy.contains('button', 'Place Order').click();
+  }
+
   get nameField() {
     return cy.get('#name');
   }
@@ -31,6 +39,10 @@ class CartFormPageObject extends PageObject {
     return cy.contains('.btn', 'Purchase');
   }
 
+  get okButton() {
+    return cy.contains('button', 'OK');
+  }
+
   typeName(name) {
     this.nameField.type(name, { force: true });
   }
@@ -57,6 +69,10 @@ class CartFormPageObject extends PageObject {
 
   clickOnPurchaseBtn() {
     this.purchaseBtn.click();
+  }
+
+  clickOnOkButton() {
+    this.okButton.click();
   }
 }
 
