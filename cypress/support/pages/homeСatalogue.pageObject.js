@@ -34,5 +34,8 @@ class HomeAndCataloguePageObject extends PageObject {
     cy.contains('.hrefch', product)
       .click();
   }
+  assertProductInCart(productName) {
+    cy.get('td').should('contain', productName);
+  }
 }
 export default HomeAndCataloguePageObject;
