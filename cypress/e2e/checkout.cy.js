@@ -1,6 +1,6 @@
 /// <reference types='cypress' />
 import PageObject from '../support/PageObject';
-import HomeAndCataloguePageObject from '../support/pages/homeCatalogue.pageObject';
+import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
 
 const faker = require('faker');
 
