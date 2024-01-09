@@ -18,18 +18,28 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
+  get addToCart() {
+    return cy.get('[onclick="addToCart(9)"]');
+  }
+
   clickOnAddToCartButton() {
-    cy.get('[onclick="addToCart(9)"]')
-      .click();
+    this.addToCart.click();
+  }
+
+  get itemId () {
+    return cy.get('#tbodyid');
   }
 
   assertItemInCart(product) {
-    cy.get('#tbodyid').should('contain', product);
+    this.itemId.should('contain', product);
+  }
+
+  get buttonPlaceOrder() {
+    return cy.get('.btn.btn-success');
   }
 
   clickOnButtonPlaceOrder() {
-    cy.get('.btn.btn-success')
-      .click();
+    this.buttonPlaceOrder.click();
   }
 
   findFieldById(id, fieldName) {
@@ -37,17 +47,28 @@ class HomeAndCataloguePageObject extends PageObject {
       .type(fieldName);
   }
 
-  clickOnPurchase() {
-    cy.get('[onclick="purchaseOrder()"]')
-      .click();
+  get purchaseButton() {
+    return cy.get('[onclick="purchaseOrder()"]');
+  }
+
+  clickOnPurchaseButton() {
+    this.purchaseButton.click();
+  }
+
+  get allertAfterPurchase() {
+    return cy.get('.sweet-alert');
   }
 
   assertDataAfterPurchase(data) {
-    cy.get('.sweet-alert').should('contain', data);
+    this.allertAfterPurchase.should('contain', data);
+  }
+
+  get okButton () {
+    return cy.get('.confirm.btn.btn-lg.btn-primary');
   }
 
   clickOnOkAfterPurchase() {
-    cy.get('.confirm.btn.btn-lg.btn-primary').click();
+    this.okButton.click();
   }
 }
 export default HomeAndCataloguePageObject;

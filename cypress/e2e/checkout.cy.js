@@ -35,7 +35,7 @@ describe('Home page', () => {
     homePage.findFieldById('card', userInfo.creditCard);
     homePage.findFieldById('month', userInfo.month);
     homePage.findFieldById('year', userInfo.year);
-    homePage.clickOnPurchase();
+    homePage.clickOnPurchaseButton();
     homePage.assertDataAfterPurchase(userInfo.name);
     homePage.assertDataAfterPurchase(userInfo.creditCard);
     homePage.clickOnOkAfterPurchase();
