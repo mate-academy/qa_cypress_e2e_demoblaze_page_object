@@ -1,44 +1,56 @@
-import PurchaseFormObject from '../support/pages/purchaseForm.pageObject';
-import HomeAndCataloguePageObject
-  from '../support/pages/homeСatalogue.pageObject';
-import faker from 'faker';
 /// <reference types='cypress' />
 
-const purchaseForm = new PurchaseFormObject();
-const homePage = new HomeAndCataloguePageObject();
+import faker from 'faker';
+import HomeAndCataloguePageObject
+  from '../support/pages/homeСatalogue.pageObject';
 
+const homePage = new HomeAndCataloguePageObject();
 const testData = {
-  name: faker.name.firstName(),
-  country: faker.address.country(),
-  city: faker.address.city(),
-  creditCard: faker.finance.creditCardNumber(),
-  month: faker.date.month(),
-  year: faker.datatype.number(),
-  successMessage: 'Thank you for your purchase!'
+  categoryName: 'Laptops',
+  productName: 'Sony vaio i7',
+  link: 'Cart',
+  placeOrderFields: {
+    name: faker.name.firstName(),
+    country: faker.address.country(),
+    city: faker.address.city(),
+    card: faker.finance.creditCardNumber(),
+    month: faker.date.month(),
+    year: faker.datatype.number({
+      min: 2024,
+      max: 2029
+    })
+  },
+  messageText: 'Thank you for your purchase!'
 };
 
-describe('Demoblaze app', () => {
+describe('Full purchase', () => {
   before(() => {
     homePage.visit();
   });
 
-  it('should provide the ability to buy an item', () => {
-    homePage.clickOnCategory('Laptops');
-    homePage.clickOnProduct('Sony vaio i7');
-    purchaseForm.clickOnaddToCartBtn();
-    purchaseForm.assertAllert('Product added');
-    homePage.clickOnLink('Cart');
-    purchaseForm.itemInCart('Sony vaio i7');
-    purchaseForm.clickOnplaceOrderBtn();
-    purchaseForm.typeName(testData.name);
-    purchaseForm.typeCountry(testData.country);
-    purchaseForm.typeCity(testData.city);
-    purchaseForm.typeCard(testData.creditCard);
-    purchaseForm.typeMonth(testData.month);
-    purchaseForm.typeYear(testData.year);
-    purchaseForm.clickOnmakePurchaseBtn();
-    purchaseForm.purchaseDone(testData.successMessage);
-    purchaseForm.purchaseDone(testData.name);
-    purchaseForm.purchaseDone(testData.creditCard);
+  it('should add product to the cart and place order', () => {
+    homePage.clickOnCategory(testData.categoryName);
+    homePage.clickOnProduct(testData.productName);
+    homePage.clickOnButton('Add to cart');
+    homePage.waitTime(1000);
+    homePage.assertAllert('Product added');
+    homePage.clickOnLink(testData.link);
+    homePage.assertProductInCart(testData.productName);
+    homePage.clickOnButton('Place Order');
+    homePage.waitTime(500);
+    homePage.fillField('name', testData.placeOrderFields.name);
+    homePage.fillField('country', testData.placeOrderFields.country);
+    homePage.fillField('city', testData.placeOrderFields.city);
+    homePage.fillField('card', testData.placeOrderFields.card);
+    homePage.fillField('month', testData.placeOrderFields.month);
+    homePage.fillField('year', testData.placeOrderFields.year);
+    homePage.clickOnButton('Purchase');
+    homePage.assertAllert('Product added');
+    homePage.assertSuccess(
+      testData.messageText,
+      testData.placeOrderFields.card,
+      testData.placeOrderFields.name
+    );
+    homePage.clickOnButton('OK');
   });
 });
