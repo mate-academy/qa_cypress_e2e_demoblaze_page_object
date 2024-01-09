@@ -24,6 +24,7 @@ class HomeAndCataloguePageObject extends PageObject {
    clickOnButton4(buttonName) {
     cy.contains('.btn', buttonName)
       .click();
+   }
 
   clickOnCategory(categoryName) {
     cy.contains('#itemc', categoryName)
