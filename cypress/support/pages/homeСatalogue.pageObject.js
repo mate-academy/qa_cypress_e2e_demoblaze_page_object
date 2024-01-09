@@ -18,32 +18,56 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
+  get addToCart() {
+    return cy.get('.btn.btn-success.btn-lg')
+  }
+
   buttonAddToCart() {
-    cy.get('.btn.btn-success.btn-lg').click();
+    this.addToCart.click();
+  }
+
+  get placeOrder() {
+    return cy.get('.btn.btn-success')
   }
 
   buttonPlaceOrder() {
-    cy.get('.btn.btn-success').click();
+    this.placeOrder.click();
+  }
+
+  get purchase() {
+    return cy.get('[onclick="purchaseOrder()"]')
   }
 
   buttonPurchase() {
-    cy.get('[onclick="purchaseOrder()"]').click()
+    this.purchase.click()
+  }
+
+  get okAfterPurchase() {
+    return cy.get('.confirm')
   }
 
   buttonOkAfterPurchase() {
-    cy.get('.confirm').click()
+    this.okAfterPurchase.click()
+  }
+  
+  get productInCart() {
+    return cy.get('td')
   }
 
   assertProductInCart(product) {
-    cy.get('td').should('contain', product);
+    this.productInCart.should('contain', product);
   }
 
   getById(id, fieldName) {
     cy.get(`[id="${id}"]`).type(fieldName);
   }
 
+  get dataAfterPurchase() {
+    return cy.get('.sweet-alert')
+  }
+
   assertDataAfterPurchase(dataAboutUser) {
-    cy.get('.sweet-alert').should('contain', dataAboutUser)
+    this.dataAfterPurchase.should('contain', dataAboutUser)
   }
 }
 
