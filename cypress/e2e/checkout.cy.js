@@ -66,6 +66,7 @@ describe('DemoBlaze', () => {
     homePage.clickOnLink('Cart');
     cy.get('td').should('contain', 'Sony vaio i7');
     homePage.clickOnButton2('Place Order');
+    cy.wait(5000);
     cy.get('#name').type('Anna');
     cy.get('#country').type('Ukraine');
     cy.get('#city').type('Kyiv');
@@ -83,6 +84,7 @@ describe('DemoBlaze', () => {
     homePage.clickOnLink('Cart');
     cy.get('td').should('contain', 'Sony vaio i7');
     homePage.clickOnButton2('Place Order');
+    cy.wait(5000);
     cy.get('#name').type('Anna');
     cy.get('#country').type('Ukraine');
     cy.get('#city').type('Kyiv');
@@ -101,6 +103,7 @@ describe('DemoBlaze', () => {
     homePage.clickOnLink('Cart');
     cy.get('td').should('contain', 'Sony vaio i7');
     homePage.clickOnButton2('Place Order');
+    cy.wait(5000);
     cy.get('#name').type('Anna');
     cy.get('#country').type('Ukraine');
     cy.get('#city').type('Kyiv');
