@@ -39,7 +39,7 @@ describe('Demoblaze (POM basics)', () => {
     cart.monthField(testData.month, { force: true });
     cart.yearField(testData.year, { force: true });
     cart.clickOnPurchase('Purchase');
-    cart.enteredDataSsShownOnModal(testData.card, testData.name);
+    cart.assertOrderData(testData.card, testData.name);
     cart.clickOnOk('OK');
   });
 });
