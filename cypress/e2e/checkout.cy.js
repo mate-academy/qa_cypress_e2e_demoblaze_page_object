@@ -2,9 +2,11 @@
 
 import PageObject from "../support/PageObject";
 import HomeAndCataloguePageObject from "../support/pages/homeСatalogue.pageObject";
+import { ProductPage } from "../support/pages/product.pageObject";
 
 const homePage = new HomeAndCataloguePageObject();
 const pageObject = new PageObject();
+const productPage = new ProductPage()
 const faker = require("faker");
 
 const infoAboutUser = {
@@ -24,26 +26,27 @@ describe('Demoblaze', () => {
   it('should provide an ability to add item to the cart and buy it', () => {
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
-    homePage.buttonAddToCart();
+    productPage.clickOnAddToCartBtn();
+    cy.wait(1000);
 
     pageObject.assertAllert('Product added');
 
     homePage.clickOnLink('Cart');
 
-    homePage.assertProductInCart('Sony vaio i7');
+    productPage.assertProductInCart('Sony vaio i7');
 
-    homePage.buttonPlaceOrder();
-    homePage.getById('name', infoAboutUser.name);
-    homePage.getById('country', infoAboutUser.country);
-    homePage.getById('city', infoAboutUser.city);
-    homePage.getById('card', infoAboutUser.creditCard);
-    homePage.getById('month', infoAboutUser.month);
-    homePage.getById('year', infoAboutUser.year);
-    homePage.buttonPurchase();
+    productPage.clickOnPlaceOrderBtn();
+    productPage.getById('name', infoAboutUser.name);
+    productPage.getById('country', infoAboutUser.country);
+    productPage.getById('city', infoAboutUser.city);
+    productPage.getById('card', infoAboutUser.creditCard);
+    productPage.getById('month', infoAboutUser.month);
+    productPage.getById('year', infoAboutUser.year);
+    productPage.clickOnPurchaseBtn();
 
-    homePage.assertDataAfterPurchase(infoAboutUser.name);
-    homePage.assertDataAfterPurchase(infoAboutUser.creditCard);
+    productPage.assertDataAfterPurchase(infoAboutUser.name);
+    productPage.assertDataAfterPurchase(infoAboutUser.creditCard);
 
-    homePage.buttonOkAfterPurchase();
+    productPage.clickOnOkAfterPurchaseBtn();
   });
 });

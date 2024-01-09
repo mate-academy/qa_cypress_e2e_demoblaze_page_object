@@ -18,36 +18,36 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
-  get addToCart() {
+  get addToCartBtn() {
     return cy.get('.btn.btn-success.btn-lg')
   }
 
-  buttonAddToCart() {
-    this.addToCart.click();
+  clickOnAddToCartBtn() {
+    this.addToCartBtn.click();
   }
 
-  get placeOrder() {
+  get placeOrderBtn() {
     return cy.get('.btn.btn-success')
   }
 
-  buttonPlaceOrder() {
-    this.placeOrder.click();
+  clickOnPlaceOrderBtn() {
+    this.placeOrderBtn.click();
   }
 
-  get purchase() {
+  get purchaseBtn() {
     return cy.get('[onclick="purchaseOrder()"]')
   }
 
-  buttonPurchase() {
-    this.purchase.click()
+  clickOnPurchaseBtn() {
+    this.purchaseBtn.click()
   }
 
-  get okAfterPurchase() {
+  get okAfterPurchaseBtn() {
     return cy.get('.confirm')
   }
 
-  buttonOkAfterPurchase() {
-    this.okAfterPurchase.click()
+  clickOnOkAfterPurchaseBtn() {
+    this.okAfterPurchaseBtn.click()
   }
   
   get productInCart() {
