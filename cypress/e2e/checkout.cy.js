@@ -1,20 +1,20 @@
 /// <reference types='cypress' />
-const faker = require('faker');
+import PageObject from '../support/PageObject';
+import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
 
-import PageObject from "../support/PageObject";
-import HomeAndCataloguePageObject from "../support/pages/homeСatalogue.pageObject";
+const faker = require('faker');
 
 const homePage = new HomeAndCataloguePageObject();
 const pageObject = new PageObject();
 
-let userInfo = {
+const userInfo = {
   name: faker.name.firstName(),
   country: faker.address.country(),
   city: faker.address.city(),
   creditCard: '1111222233334444',
   month: faker.date.month(),
   year: '2002'
-}
+};
 
 describe('Home page', () => {
   before(() => {
@@ -29,12 +29,12 @@ describe('Home page', () => {
     homePage.clickOnLink('Cart');
     homePage.assertItemInCart('Sony vaio i7');
     homePage.clickOnButtonPlaceOrder();
-    homePage.findById('name', userInfo.name);
-    homePage.findById('country', userInfo.country);
-    homePage.findById('city', userInfo.city);
-    homePage.findById('card', userInfo.creditCard);
-    homePage.findById('month', userInfo.month);
-    homePage.findById('year', userInfo.year);
+    homePage.findFieldById('name', userInfo.name);
+    homePage.findFieldById('country', userInfo.country);
+    homePage.findFieldById('city', userInfo.city);
+    homePage.findFieldById('card', userInfo.creditCard);
+    homePage.findFieldById('month', userInfo.month);
+    homePage.findFieldById('year', userInfo.year);
     homePage.clickOnPurchase();
     homePage.assertDataAfterPurchase(userInfo.name);
     homePage.assertDataAfterPurchase(userInfo.creditCard);

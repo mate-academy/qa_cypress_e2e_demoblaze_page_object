@@ -32,7 +32,7 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
-  findFieldById(id, fieldName) { 
+  findFieldById(id, fieldName) {
     cy.get(`[id=${id}]`)
       .type(fieldName);
   }
