@@ -12,7 +12,7 @@ class HomeAndCataloguePageObject extends PageObject {
   }
 
   clickOnButton2(buttonName) {
-    cy.contains('.btn-success', buttonName)
+    cy.contains('.btn', buttonName)
       .click();
   }
 
@@ -37,8 +37,7 @@ class HomeAndCataloguePageObject extends PageObject {
   assertProductInCart(productName) {
     cy.get('td').should('contain', productName);
   }
-    fillOrderFormAndSubmit(name, country, city, card, month, year) {
-    cy.wait(5000);
+  fillOrderForm(name, country, city, card, month, year) {
     cy.get('#name').type(name);
     cy.get('#country').type(country);
     cy.get('#city').type(city);
@@ -47,4 +46,4 @@ class HomeAndCataloguePageObject extends PageObject {
     cy.get('#year').type(year);
   }
 }
-export default HomeAndCataloguePageObject;
+export default HomeAndCataloguePageObject;    
