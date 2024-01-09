@@ -27,7 +27,8 @@ module.exports = defineConfig({
             city: faker.address.city(),
             credit_card: faker.finance.creditCardNumber(),
             month: faker.date.month(),
-            year: faker.random.number({ min: 2020, max: new Date().getFullYear() })
+            year: faker.random.number({ min: 2020, max: new Date().getFullYear() 
+            })
 
           };
         }
