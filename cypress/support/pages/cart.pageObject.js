@@ -35,8 +35,52 @@ export class CartPage extends PageObject {
         this.productInCart.should('contain', product);
     }
 
-    getById(id, fieldName) {
-        cy.get(`[id="${id}"]`).type(fieldName);
+    get nameField() {
+        return cy.get('#name')
+    }
+
+    typeName(name) {
+        this.nameField.type(name)
+    }
+
+    get countryField() {
+        return cy.get('#country')
+    }
+
+    typeCountry(country) {
+        this.countryField.type(country)
+    }
+
+    get cityField() {
+        return cy.get('#city')
+    }
+
+    typeCity(city) {
+        this.cityField.type(city)
+    }
+
+    get creditCardField() {
+        return cy.get('#card')
+    }
+
+    typeCreditCard(card) {
+        this.creditCardField.type(card)
+    }
+
+    get monthField() {
+        return cy.get('#month')
+    }
+
+    typeMonth(month) {
+        this.monthField.type(month)
+    }
+
+    get yearField() {
+        return cy.get('#year')
+    }
+
+    typeYear(year) {
+        this.yearField.type(year)
     }
     
     get dataAfterPurchase() {

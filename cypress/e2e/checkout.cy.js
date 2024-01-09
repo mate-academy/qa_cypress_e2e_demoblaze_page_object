@@ -38,12 +38,12 @@ describe('Demoblaze', () => {
     cartPage.assertProductInCart('Sony vaio i7');
 
     cartPage.clickOnPlaceOrderBtn();
-    cartPage.getById('name', infoAboutUser.name);
-    cartPage.getById('country', infoAboutUser.country);
-    cartPage.getById('city', infoAboutUser.city);
-    cartPage.getById('card', infoAboutUser.creditCard);
-    cartPage.getById('month', infoAboutUser.month);
-    cartPage.getById('year', infoAboutUser.year);
+    cartPage.typeName(infoAboutUser.name);
+    cartPage.typeCountry(infoAboutUser.country);
+    cartPage.typeCity(infoAboutUser.city);
+    cartPage.typeCreditCard(infoAboutUser.creditCard);
+    cartPage.typeMonth(infoAboutUser.month);
+    cartPage.typeYear(infoAboutUser.year);
     cartPage.clickOnPurchaseBtn();
 
     cartPage.assertDataAfterPurchase(infoAboutUser.name);
