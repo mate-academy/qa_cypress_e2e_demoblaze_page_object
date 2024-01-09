@@ -64,10 +64,7 @@ describe('', () => {
       orderPage.nameIsDisplayedOnPopUp.should('contain', user.credit_card);
 
       orderPage.clickOnOk.click({force: true});
-
-
-
-
+      
   });
   
 });
