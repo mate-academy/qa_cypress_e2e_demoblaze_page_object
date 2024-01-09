@@ -6,7 +6,7 @@ import PlaceOrderForm from "../support/pages/placeOrderForm.pageObject";
 
 let user
 
-const checkOut = new HomeAndCataloguePageObject();
+const homePage = new HomeAndCataloguePageObject();
 const pagObj = new PageObject();
 const orderPage = new PlaceOrderForm();
 
@@ -22,30 +22,32 @@ describe('', () => {
 
   it('should provide an ability to add product to the cart', () => {
 
-    checkOut.visit();    
-    checkOut.clickOnLink();
-    checkOut.clickOnCategory();
-    checkOut.clickOnProduct();
+    homePage.visit(); 
+
+    homePage.clickOnLink.click();
+    homePage.clickOnCategory.click();
+    homePage.clickOnProduct.city.click();
     cy.wait(2000);
     pagObj.assertAllert();
 
-    checkOut.clickOnCart();
-    checkOut.checkContainProduct();
+    homePage.clickOnCart.click();
+    homePage.checkContainProduct();
 
   });
 
 
   it.only('should provide an ability to place an order', () => {
 
-    checkOut.visit();    
-    checkOut.clickOnLink();
-    checkOut.clickOnCategory();
-    checkOut.clickOnProduct();
+    homePage.visit();    
+
+    homePage.clickOnLink.click();
+    homePage.clickOnCategory.click();
+    homePage.clickOnProduct.city.click();
     cy.wait(2000);
     pagObj.assertAllert();
 
-    checkOut.clickOnCart();
-    checkOut.checkContainProduct();
+    homePage.clickOnCart.click();
+    homePage.checkContainProduct();
 
       orderPage.visit();
       orderPage.clickOnPlaceOrder();
