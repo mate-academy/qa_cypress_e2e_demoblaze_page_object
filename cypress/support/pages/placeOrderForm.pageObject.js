@@ -60,4 +60,5 @@ class PlaceOrderForm extends PageObject {
       }
 };
 
+
 export default PlaceOrderForm;
