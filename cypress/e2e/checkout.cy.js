@@ -26,16 +26,14 @@ describe('Cart page', () => {
   it('should allow to place an order', () => {
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
-
     homePage.clickOnButton('Add to cart');
 
-    cy.window().then((win) => {
-      cy.stub(win, 'alert').as('windowAlert');
-      cy.get('@windowAlert').should('have.been.calledWith', 'Product added');
-    });
+    homePage.assertAlertWindow('Product added');
 
     homePage.clickOnLink('Cart');
-    cy.get('.table-responsive').should('contain', 'Sony vaio i7');
+
+    cartPage.assertItemInTheCart();
+
     cy.clock();
     cartPage.clickOnButton('Place Order');
     cy.tick(5000);
@@ -50,9 +48,7 @@ describe('Cart page', () => {
 
     cartPage.clickOnButton('Purchase');
 
-    cy.get('.sweet-alert').should('contain', 'Thank you for your purchase')
-      .and('contain', buyer.card)
-      .and('contain', buyer.name);
+    cartPage.assertEnteredDataInModal(buyer.name, buyer.card);
 
     cartPage.confirmButton('OK');
   });

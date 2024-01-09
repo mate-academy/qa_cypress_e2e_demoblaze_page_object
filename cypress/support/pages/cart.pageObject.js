@@ -42,6 +42,24 @@ class CartPageObject extends PageObject {
     cy.contains('.confirm', confirm)
       .click();
   }
+
+  get selectedItem() {
+    return cy.get('.table-responsive');
+  }
+
+  assertItemInTheCart() {
+    this.selectedItem.should('contain', 'Sony vaio i7');
+  }
+
+  get modal() {
+    return cy.get('.sweet-alert');
+  }
+
+  assertEnteredDataInModal(buyerName, buyerCard) {
+    this.modal.should('contain', 'Thank you for your purchase')
+      .and('contain', buyerName)
+      .and('contain', buyerCard);
+  }
 }
 
 export default CartPageObject;
