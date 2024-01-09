@@ -6,7 +6,15 @@ import faker from 'faker';
 /// <reference types='cypress' />
 
 const homePage = new HomeAndCataloguePageObject();
-const contactForm = new ContactFormPageObject();
+
+const testData = {
+  name: faker.name.firstName(),
+  country: faker.address.country(),
+  city: faker.address.city(),
+  creditCard: faker.finance.creditCardNumber(),
+  month: faker.date.month({ abbr: true }),
+  year: faker.date.future().getFullYear(),
+};
 
 describe('DemoBlaze', () => {
   before(() => {
@@ -23,12 +31,12 @@ describe('DemoBlaze', () => {
     homePage.assertProductInCart('Sony vaio i7');
     homePage.clickOnButton2('Place Order');
     cy.wait(5000);
-    cy.get('#name').type('Anna');
-    cy.get('#country').type('Ukraine');
-    cy.get('#city').type('Kyiv');
-    cy.get('#card').type('55667');
-    cy.get('#month').type('january');
-    cy.get('#year').type('2024');
+    homePage.typeName(testData.name);
+    homePage.typeCountry(testData.country);
+    homePage.typeCity(testData.city);
+    homePage.typeCard(testData.creditCard);
+    homePage.typeMonth(testData.month);
+    homePage.typeYear(testData.year);;
     homePage.clickOnButton3('Purchase');
     homePage.clickOnButton4('OK');
   });
