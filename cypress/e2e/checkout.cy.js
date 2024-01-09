@@ -4,7 +4,7 @@ const homePage = new HomeAndCataloguePageObject();
 
 describe('DemoBlaze', () => {
   before(() => {
-    cy.viewport(1920, 1080);
+    cy.viewport(1000, 660);
   });
 
   it('able to complete the entire flow, () => {
