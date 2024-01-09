@@ -1,6 +1,10 @@
 import PageObject from '../PageObject';
 
 class HomeAndCataloguePageObject extends PageObject {
+  visit(url) {
+    cy.visit(url || this.url);
+  }
+
   url = '/index.html';
 
   clickOnLink(linkName) {
@@ -42,33 +46,10 @@ class HomeAndCataloguePageObject extends PageObject {
     this.buttonPlaceOrder.click();
   }
 
-  findFieldById(id, fieldName) {
-    cy.get(`[id=${id}]`)
-      .type(fieldName);
-  }
-
-  get purchaseButton() {
-    return cy.get('[onclick="purchaseOrder()"]');
-  }
-
-  clickOnPurchaseButton() {
-    this.purchaseButton.click();
-  }
-
-  get allertAfterPurchase() {
-    return cy.get('.sweet-alert');
-  }
-
-  assertDataAfterPurchase(data) {
-    this.allertAfterPurchase.should('contain', data);
-  }
-
-  get okButton () {
-    return cy.get('.confirm.btn.btn-lg.btn-primary');
-  }
-
-  clickOnOkAfterPurchase() {
-    this.okButton.click();
+  assertAllert(alertMessage) {
+    cy.on('window:alert', (alert) => {
+      expect(alert).to.eq(alertMessage);
+    });
   }
 }
 

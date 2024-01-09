@@ -1,11 +1,12 @@
 /// <reference types='cypress' />
-import PageObject from '../support/PageObject';
+
 import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
+import PurchaseFormPageObject from '../support/pages/purchaseForm.pageObject';
 
 const faker = require('faker');
 
-const homePage = new HomeAndCataloguePageObject();
-const pageObject = new PageObject();
+const productPage = new HomeAndCataloguePageObject();
+const placeOrderForm = new PurchaseFormPageObject();
 
 const userInfo = {
   name: faker.name.firstName(),
@@ -17,26 +18,26 @@ const userInfo = {
 };
 describe('Home page', () => {
   before(() => {
-    homePage.visit();
+    productPage.visit();
   });
 
   it('should be able to add item to the cart and buy it', () => {
-    homePage.clickOnCategory('Laptops');
-    homePage.clickOnProduct('Sony vaio i7');
-    homePage.clickOnAddToCartButton();
-    pageObject.assertAllert('Product added');
-    homePage.clickOnLink('Cart');
-    homePage.assertItemInCart('Sony vaio i7');
-    homePage.clickOnButtonPlaceOrder();
-    homePage.findFieldById('name', userInfo.name);
-    homePage.findFieldById('country', userInfo.country);
-    homePage.findFieldById('city', userInfo.city);
-    homePage.findFieldById('card', userInfo.creditCard);
-    homePage.findFieldById('month', userInfo.month);
-    homePage.findFieldById('year', userInfo.year);
-    homePage.clickOnPurchaseButton();
-    homePage.assertDataAfterPurchase(userInfo.name);
-    homePage.assertDataAfterPurchase(userInfo.creditCard);
-    homePage.clickOnOkAfterPurchase();
+    productPage.clickOnCategory('Laptops');
+    productPage.clickOnProduct('Sony vaio i7');
+    productPage.clickOnAddToCartButton();
+    productPage.assertAllert('Product added');
+    productPage.clickOnLink('Cart');
+    productPage.assertItemInCart('Sony vaio i7');
+    productPage.clickOnButtonPlaceOrder();
+    placeOrderForm.findFieldById('name', userInfo.name);
+    placeOrderForm.findFieldById('country', userInfo.country);
+    placeOrderForm.findFieldById('city', userInfo.city);
+    placeOrderForm.findFieldById('card', userInfo.creditCard);
+    placeOrderForm.findFieldById('month', userInfo.month);
+    placeOrderForm.findFieldById('year', userInfo.year);
+    placeOrderForm.clickOnPurchaseButton();
+    placeOrderForm.assertDataAfterPurchase(userInfo.name);
+    placeOrderForm.assertDataAfterPurchase(userInfo.creditCard);
+    placeOrderForm.clickOnOkAfterPurchase();
   });
 });
