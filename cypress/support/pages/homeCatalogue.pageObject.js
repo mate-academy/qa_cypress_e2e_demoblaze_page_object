@@ -3,29 +3,29 @@ import PageObject from '../PageObject';
 class HomeAndCataloguePageObject extends PageObject {
   url = '/index.html';
 
-  clickOnLink(Laptops) {
-    cy.contains('[onclick^="byCat"]', 'Laptops')
-      .click();
+  get clickOnLink() {
+    return cy.contains('[onclick^="byCat"]', 'Laptops');
+      
   }
 
-  clickOnCategory(Sony) {
-    cy.contains('a', 'Sony vaio i7')
-      .click();
+  get clickOnCategory() {
+    return cy.contains('a', 'Sony vaio i7');
+      
   }
 
-  clickOnProduct(Product) {
-    cy.contains('[onclick="addToCart(9)"]', 'Add to cart')
-      .click();
+  get clickOnProduct() {
+    return cy.contains('[onclick="addToCart(9)"]', 'Add to cart');
+      
   }
 
 
-  clickOnCart(Cart) {
-    cy.contains('[href="cart.html"]', 'Cart')
-      .click();
+  get clickOnCart() {
+    return cy.contains('[href="cart.html"]', 'Cart');
+      
   }
 
-  checkContainProduct(Check) {
-    cy.get('td').should('contain.text', 'Sony vaio i7');
+  get checkContainProduct() {
+    return cy.get('td').should('contain.text', 'Sony vaio i7');
       
   }
 }
