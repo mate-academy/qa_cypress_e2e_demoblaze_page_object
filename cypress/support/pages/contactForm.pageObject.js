@@ -1,14 +1,64 @@
 import PageObject from '../PageObject';
 
-class ContactFormPageObject extends PageObject {
+export class ContactFormPageObject extends PageObject {
   url = '/index.html';
+
+  get carturl() {
+    return cy.get('#cartur');
+  }
+
+  get assertInTheCart() {
+    return cy.get('#tbodyid')
+    .should('contain', 'Sony vaio i7');
+  }
+  get laptopslink() {
+    return cy.contains('Laptops');
+  }
+
+  get clickOnPlaceOrder() {
+    return cy.contains('Place Order');
+  }
 
   get emailField() {
     return cy.get('#recipient-email');
   }
 
   get nameField() {
-    return cy.get('#recipient-name');
+    return cy.get('#name');
+  }
+
+  get countryField() {
+    return cy.get('#country');
+  }
+
+  get cityField() {
+    return cy.get('#city');
+  }
+
+  get creditCartField() {
+    return cy.get('#card');
+  }
+
+  get monthField() {
+    return cy.get('#month');
+  }
+
+  get yearField() {
+    return cy.get('#year');
+  }
+
+  get purchaseButton() {
+    return cy.get('[onclick="purchaseOrder()"]');
+  }
+
+  get clickOn() {
+    return cy.get('.confirm btn btn-lg btn-primary');
+  }
+
+  get confirmMessage() {
+    return cy.on('window:alert', (alertText) => {
+      expect(alertText).to.include('Thank you fot your purchase');
+    });
   }
 
   get messageField() {
