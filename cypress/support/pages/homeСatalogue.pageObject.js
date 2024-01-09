@@ -37,5 +37,14 @@ class HomeAndCataloguePageObject extends PageObject {
   assertProductInCart(productName) {
     cy.get('td').should('contain', productName);
   }
+    fillOrderFormAndSubmit(name, country, city, card, month, year) {
+    cy.wait(5000);
+    cy.get('#name').type(name);
+    cy.get('#country').type(country);
+    cy.get('#city').type(city);
+    cy.get('#card').type(card);
+    cy.get('#month').type(month);
+    cy.get('#year').type(year);
+  }
 }
 export default HomeAndCataloguePageObject;
