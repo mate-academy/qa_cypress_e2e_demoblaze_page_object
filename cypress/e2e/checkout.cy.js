@@ -3,10 +3,12 @@
 import PageObject from "../support/PageObject";
 import HomeAndCataloguePageObject from "../support/pages/homeСatalogue.pageObject";
 import { ProductPage } from "../support/pages/product.pageObject";
+import { CartPage } from "../support/pages/cart.pageObject";
 
 const homePage = new HomeAndCataloguePageObject();
 const pageObject = new PageObject();
 const productPage = new ProductPage()
+const cartPage = new CartPage();
 const faker = require("faker");
 
 const infoAboutUser = {
@@ -33,20 +35,20 @@ describe('Demoblaze', () => {
 
     homePage.clickOnLink('Cart');
 
-    productPage.assertProductInCart('Sony vaio i7');
+    cartPage.assertProductInCart('Sony vaio i7');
 
-    productPage.clickOnPlaceOrderBtn();
-    productPage.getById('name', infoAboutUser.name);
-    productPage.getById('country', infoAboutUser.country);
-    productPage.getById('city', infoAboutUser.city);
-    productPage.getById('card', infoAboutUser.creditCard);
-    productPage.getById('month', infoAboutUser.month);
-    productPage.getById('year', infoAboutUser.year);
-    productPage.clickOnPurchaseBtn();
+    cartPage.clickOnPlaceOrderBtn();
+    cartPage.getById('name', infoAboutUser.name);
+    cartPage.getById('country', infoAboutUser.country);
+    cartPage.getById('city', infoAboutUser.city);
+    cartPage.getById('card', infoAboutUser.creditCard);
+    cartPage.getById('month', infoAboutUser.month);
+    cartPage.getById('year', infoAboutUser.year);
+    cartPage.clickOnPurchaseBtn();
 
-    productPage.assertDataAfterPurchase(infoAboutUser.name);
-    productPage.assertDataAfterPurchase(infoAboutUser.creditCard);
+    cartPage.assertDataAfterPurchase(infoAboutUser.name);
+    cartPage.assertDataAfterPurchase(infoAboutUser.creditCard);
 
-    productPage.clickOnOkAfterPurchaseBtn();
+    cartPage.clickOnOkAfterPurchaseBtn();
   });
 });
