@@ -4,7 +4,7 @@ class HomeAndCataloguePageObject extends PageObject {
   url = '/index.html';
 
   get clickOnLink() {
-    return cy.contains('[onclick^="byCat"]', 'Laptops');
+    return cy.contains('[onclick="byCat('notebook')"]', 'Laptops');
       
   }
 
