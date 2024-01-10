@@ -1,8 +1,13 @@
-import CheckoutPageObject from '../support/pages/checkout.pageObject';
+import CartPageObject from '../support/pages/cart.pageObject';
+import HomeAndCataloguePageObject
+  from '../support/pages/homeСatalogue.pageObject';
+import ProductPageObject from '../support/pages/product.pageObject';
 const faker = require('faker');
 /// <reference types='cypress' />
 
-const checkout = new CheckoutPageObject();
+const cartPage = new CartPageObject();
+const homePage = new HomeAndCataloguePageObject();
+const productPage = new ProductPageObject();
 
 const generateCustomer = {
   // eslint-disable-next-line max-len
@@ -23,33 +28,33 @@ describe('Demoblaze store', () => {
   it('adding to cart Sony vaio i7 and buy it', () => {
     cy.visit('');
 
-    checkout.clickOnCategory('Laptop');
+    homePage.clickOnCategory('Laptop');
 
-    checkout.clickOnProduct('Sony vaio i7');
+    productPage.clickOnProduct('Sony vaio i7');
 
-    checkout.clickOnButton('Add to cart');
+    productPage.clickOnButton('Add to cart');
 
-    checkout.assertAlertMessage('Product added');
+    productPage.assertAlertMessage('Product added');
 
-    checkout.clickOnLink('Cart');
+    productPage.clickOnLink('Cart');
 
-    checkout.assertProductName('Sony vaio i7');
+    cartPage.assertProductName('Sony vaio i7');
 
-    checkout.clickOnButton('Place Order');
+    cartPage.clickOnButton('Place Order');
 
-    checkout.typeName(generateCustomer.name);
-    checkout.typeCountry(generateCustomer.country);
-    checkout.typeCity(generateCustomer.city);
-    checkout.typeCard(generateCustomer.card);
-    checkout.typeMonth(generateCustomer.month);
-    checkout.typeYear(generateCustomer.year);
+    cartPage.typeName(generateCustomer.name);
+    cartPage.typeCountry(generateCustomer.country);
+    cartPage.typeCity(generateCustomer.city);
+    cartPage.typeCard(generateCustomer.card);
+    cartPage.typeMonth(generateCustomer.month);
+    cartPage.typeYear(generateCustomer.year);
 
-    checkout.clickOnButton('Purchase');
+    cartPage.clickOnButton('Purchase');
 
-    checkout.assertMessage(generateCustomer.message);
-    checkout.assertCreditCard(generateCustomer.card);
-    checkout.assertName(generateCustomer.name);
-    checkout.clickOnButton('OK');
-    checkout.assertEmptyCart();
+    cartPage.assertMessage(generateCustomer.message);
+    cartPage.assertCreditCard(generateCustomer.card);
+    cartPage.assertName(generateCustomer.name);
+    cartPage.clickOnButton('OK');
+    cartPage.assertEmptyCart();
   });
 });
