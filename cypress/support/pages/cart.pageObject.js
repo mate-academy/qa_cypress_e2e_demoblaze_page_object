@@ -2,7 +2,10 @@ import PageObject from "../PageObject";
 
 class CartPageObject extends PageObject {
   url = '/cart.html';
-
+  clickOnAddToCart() {
+    cy.contains('a', 'Add to cart')
+      .click();
+  }
   get productsTitle () {
     return cy.get('td');
   }

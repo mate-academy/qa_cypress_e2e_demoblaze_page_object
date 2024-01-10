@@ -27,9 +27,8 @@ describe('demoblaze', () => {
   it('should provide an ability to checkout', () => {
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
-    homePage.clickOnAddToCart();
-    homePage.assertAllert('Product added');
-    homePage.assertModalIsVisible();
+    cartPage.clickOnAddToCart();
+    cartPage.assertAllert('Product added');
     homePage.clickOnCart();
     cartPage.assertProductInTheCart('Sony vaio i7');
     cartPage.clickPlaceOrder();
