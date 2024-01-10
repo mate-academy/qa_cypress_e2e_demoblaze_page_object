@@ -42,7 +42,7 @@ describe('', () => {
 
     homePage.clickOnLink.click();
     homePage.clickOnCategory.click();
-    homePage.clickOnProduct.city.click();
+    homePage.clickOnProduct.click();
     cy.wait(2000);
     pagObj.assertAllert();
 
