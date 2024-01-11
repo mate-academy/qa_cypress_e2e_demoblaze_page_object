@@ -10,12 +10,16 @@ export class HomePage extends PageObject {
     product(name) {
         return cy.contains(name);
     }
+    
+    openProduct(name) {
+        this.product(name).click();
+    }
 
     get addToCartButton() {
         return cy.contains('Add to cart');
     }
 
-    clickaddToCartButton() {
+    clickAddToCartButton() {
         this.addToCartButton.click();
     }
 
@@ -25,5 +29,13 @@ export class HomePage extends PageObject {
 
     clickLinkCart() {
         this.linkCart.click();
+    }
+
+    checkProduct(name) {
+        return cy.contains(name).should('exist');
+    }
+
+    checkUrl(url) {
+        cy.url().should('include', url);
     }
 }

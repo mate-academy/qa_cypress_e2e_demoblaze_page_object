@@ -15,32 +15,16 @@ export class Cart extends PageObject {
         return cy.inputField(field);
     }
 
-    // get country() {
-    //     return cy.get('#country');
-    // }
-
-    // get city() {
-    //     return cy.get('#city');
-    // }
-
-    // get card() {
-    //     return cy.get('#card');
-    // }
-
-    // get month() {
-    //     return cy.get('#month');
-    // }
-
-    // get year() {
-    //     return cy.get('#year');
-    // }
-
     get purchace() {
         return cy.contains('Purchase');
     }
 
     clickPurchace() {
         this.purchace.click();
+    }
+
+    checkUserInAlert(username) {
+        cy.get('.sweet-alert').should('contain', username);
     }
 
     get confirmButton() {
