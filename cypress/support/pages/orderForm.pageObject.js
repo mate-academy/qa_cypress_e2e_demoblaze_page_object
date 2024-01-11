@@ -66,6 +66,10 @@ class OrderFormPageObject extends PageObject {
   clickPlaceOrderBtn() {
     this.placeOrderBtn.click();
   }
+
+  assertSuccess() {
+    this.purchaseAlert.should('contain', 'Thank you for your purchase!');
+  }
 }
 
 export default OrderFormPageObject;

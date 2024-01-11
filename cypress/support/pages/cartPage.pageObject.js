@@ -14,6 +14,10 @@ class CartPagePageObject extends PageObject {
   clickPlaceOrderBtn() {
     this.placeOrderBtn.click();
   }
+
+  assertLaptop() {
+    this.prodTable.should('contain', 'Sony vaio i7');
+  }
 }
 
 export default CartPagePageObject;

@@ -27,14 +27,14 @@ describe('Demoblaze app', () => {
     homePage.clickOnAddToCartBtn();
 
     // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(200);
+    cy.wait(300);
     cy.on('window:alert', (str) => {
       expect(str).to.equal(`Product added`);
     });
 
-    homePage.clickOnLink('Cart');
+    homePage.clickOnCart();
 
-    cartPage.prodTable.should('contain', laptop);
+    cartPage.assertLaptop();
 
     cartPage.clickPlaceOrderBtn();
 
@@ -46,6 +46,6 @@ describe('Demoblaze app', () => {
     orderForm.typeYear(user.year);
     orderForm.clickPurchaseBtn();
 
-    orderForm.purchaseAlert.should('contain', 'Thank you for your purchase!');
+    orderForm.assertSuccess();
   });
 });
