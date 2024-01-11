@@ -1,5 +1,5 @@
 /// <reference types='cypress' />
-import HomeAndCataloguePageObject from "../support/pages/homeСatalogue.pageObject"
+import HomeAndCataloguePageObject from "../support/pages/homeCatalogue.pageObject"
 import PageObject from "../support/PageObject";
 import PlaceOrderForm from "../support/pages/placeOrderForm.pageObject";
 
@@ -22,35 +22,32 @@ describe('', () => {
 
   it('should provide an ability to add product to the cart', () => {
 
-    homePage.visit(); 
-
-    homePage.clickOnLink.click();
-    homePage.clickOnCategory.click();
-    homePage.clickOnProduct.city.click();
-    cy.wait(2000);
-    pagObj.assertAllert();
-
-    homePage.clickOnCart.click();
-    homePage.checkContainProduct();
-
-  });
-
-
-  it.only('should provide an ability to place an order', () => {
-
     homePage.visit();    
-
     homePage.clickOnLink.click();
     homePage.clickOnCategory.click();
     homePage.clickOnProduct.click();
     cy.wait(2000);
-    pagObj.assertAllert();
+    pagObj.assertAllert('Product added');
 
     homePage.clickOnCart.click();
-    homePage.checkContainProduct();
+    homePage.checkContainProduct.should('contain.text', 'Sony vaio i7');
+
+  });
+
+
+  it('should provide an ability to place an order', () => {
+
+    homePage.visit();    
+    homePage.clickOnLink.click();
+    homePage.clickOnCategory.click();
+    homePage.clickOnProduct.click();
+    cy.wait(2000);
+    pagObj.assertAllert('Product added');
+
+    homePage.clickOnCart.click();
 
       orderPage.visit();
-      orderPage.clickOnPlaceOrder();
+      orderPage.clickOnPlaceOrder.click()
       orderPage.fieldName.type(user.name);
       orderPage.fieldCountry.type(user.country);
       orderPage.fieldCity.type(user.city);
@@ -60,13 +57,16 @@ describe('', () => {
 
       orderPage.clickOnPurchase();
 
-      orderPage.popUpIsVisible();
-      orderPage.popUpContainText();
+      orderPage.popUpIsVisible.should('be.visible');
+      orderPage.popUpContainText.should('contain.text', 'Thank you for your purchase!');
 
       orderPage.nameIsDisplayedOnPopUp.should('contain', user.credit_card);
 
       orderPage.clickOnOk.click({force: true});
-      
+
+
+
+
   });
   
 });
