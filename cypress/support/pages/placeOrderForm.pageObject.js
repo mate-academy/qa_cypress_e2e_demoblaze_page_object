@@ -5,8 +5,8 @@ class PlaceOrderForm extends PageObject {
     url = '/cart.html';
 
 
-    clickOnPlaceOrder(Order) {
-        cy.contains('[data-target="#orderModal"]', 'Place Order').click();
+    get clickOnPlaceOrder() {
+        return cy.contains('[data-target="#orderModal"]', 'Place Order');
           
       }
 
@@ -38,12 +38,12 @@ class PlaceOrderForm extends PageObject {
          cy.contains('.btn-primary', 'Purchase').click({force:true});
       }
 
-      popUpIsVisible(){
-        cy.get('.sa-placeholder').should('be.visible');
+      get popUpIsVisible(){
+        return cy.get('.sa-placeholder');
       }
 
-      popUpContainText(){
-        cy.contains('h2', 'Thank you for your purchase!').should('contain.text', 'Thank you for your purchase!');
+      get popUpContainText(){
+        return cy.contains('h2', 'Thank you for your purchase!');
         
       }
 
@@ -58,7 +58,12 @@ class PlaceOrderForm extends PageObject {
       get clickOnOk(){
         return cy.get('[style="display: inline-block;"]')
       }
-};
 
+
+
+     
+
+
+};
 
 export default PlaceOrderForm;
