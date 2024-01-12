@@ -8,7 +8,7 @@ export class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
-  clickOnCategory(categoryName) {
+  clickOnCategoryButton(categoryName) {
     cy.contains('#itemc', categoryName)
       .click();
   }

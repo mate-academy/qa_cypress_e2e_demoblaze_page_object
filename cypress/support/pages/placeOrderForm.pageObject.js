@@ -35,6 +35,10 @@ class PageOrderForm extends PageObject {
     this.countryField.type(country);
   }
 
+  typeCity(city) {
+    this.cityField.type(city);
+  }
+
   typeCreditCard(card) {
     this.creditCardField.type(card);
   }
@@ -47,27 +51,27 @@ class PageOrderForm extends PageObject {
     this.yearField.type(year);
   }
 
-  typeCity(city) {
-    this.cityField.type(city);
+  get purchaseButton() {
+    return cy.get('[onclick="purchaseOrder()"]');
   }
 
-  clickOnPurchase(button) {
-    cy.get('[onclick="purchaseOrder()"]').click();
+  clickOnPurchaseButton() {
+    this.purchaseButton.click();
   }
 
-  get modal() {
-    return cy.contains('h2', 'Thank you for your purchase!');
+  get successfulPurchaseMessage() {
+    return cy.get('.sweet-alert');
   }
 
-  checkModalData() {
-    this.modal.should('be.visible');
+  assertSuccessfulPurcheseMessage(data) {
+    this.successfulPurchaseMessage.should('contain', data);
   }
 
   get buttonOK() {
     return cy.contains('[class="confirm btn btn-lg btn-primary"]', 'OK');
   }
 
-  clickOnOK() {
+  clickOnOkAfterPurchase() {
     this.buttonOK.click();
   }
 };

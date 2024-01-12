@@ -23,26 +23,15 @@ describe('Contact', () => {
     homePage.visit();
   });
 
-  it('should provide an ability to add a laptop', () => {
+  it('should provide an ability to add product to the cart and buy it', () => {
     homePage.visit();
-    homePage.clickOnCategory('Laptops');
+    homePage.clickOnCategoryButton('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
     homePage.clickOnAddToCart();
     homePage.assertAllert('Product added');
     homePage.clickOnLink('Cart');
-    cartPage.nameOfProduct('Sony vaio i7');
-    cartPage.clickOnPlaceOrder();
-  });
-
-  it('should provide an ability to fill all fields in place order form', () => {
-    homePage.visit();
-    homePage.clickOnCategory('Laptops');
-    homePage.clickOnProduct('Sony vaio i7');
-    homePage.clickOnAddToCart();
-    homePage.assertAllert('Product added');
-    homePage.clickOnLink('Cart');
-    cartPage.nameOfProduct('Sony vaio i7');
-    cartPage.clickOnPlaceOrder();
+    cartPage.assertProductInTheCart('Sony vaio i7');
+    cartPage.clickOnPlaceOrderButton();
 
     orderForm.typeName(testData.name);
     orderForm.typeCountry(testData.country);
@@ -50,8 +39,11 @@ describe('Contact', () => {
     orderForm.typeCreditCard(testData.card);
     orderForm.typeMonth(testData.month);
     orderForm.typeYear(testData.year);
-    orderForm.clickOnPurchase();
-    orderForm.checkModalData();
-    orderForm.clickOnOK();
+    orderForm.clickOnPurchaseButton();
+
+    orderForm.assertSuccessfulPurcheseMessage('Thank you for your purchase!');
+    orderForm.assertSuccessfulPurcheseMessage(testData.name);
+    orderForm.assertSuccessfulPurcheseMessage(testData.card);
+    orderForm.clickOnOkAfterPurchase();
   });
 });
