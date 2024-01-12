@@ -1,4 +1,5 @@
 const { defineConfig } = require('cypress');
+const faker = require('faker');
 
 module.exports = defineConfig({
   e2e: {
@@ -9,11 +10,11 @@ module.exports = defineConfig({
           const randomNumber = Math.ceil(Math.random(1000) * 1000);
           return {
             username: faker.name.firstName() + `${randomNumber}`,
-            email: 'test' + `${randomNumber}` + '@mail.com',
+            email: 'test' + `${randomNumber}` + '@gmail.com',
             password: 'Password12345!'
           };
         }
-      })
+      });
     }
   }
 });
