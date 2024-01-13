@@ -2,29 +2,27 @@ import PageObject from '../PageObject';
 
 class HomeAndCataloguePageObject extends PageObject {
   url = '/index.html';
-
-
-
-  get clickOnLink(){
-    return cy.contains('[onclick^="byCat"]', 'Laptops');
+  
+  clickOnLink(linkName){
+    cy.contains('[onclick^="byCat"]', linkName).click();
 
   }
 
-  get clickOnCategory(){
-    return cy.contains('a', 'Sony vaio i7');
+  clickOnCategory(categoryName){
+    cy.contains('a', categoryName).click();
   }
 
-  get clickOnProduct(){
-    return cy.contains('[onclick="addToCart(9)"]', 'Add to cart');     
+  clickOnProduct(productName){
+    cy.contains('.col-sm-12 > .btn', productName).click();     
   }
 
 
-  get clickOnCart(){
-    return cy.contains('[href="cart.html"]', 'Cart');
+  clickOnCart(cart){
+    cy.get('#cartur').click();
   }
 
-  get checkContainProduct(){
-    return cy.get('td');
+  checkContainProduct(productName){
+    cy.get('td').should('contain.text', productName);;
       
   }
 
