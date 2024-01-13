@@ -5,33 +5,33 @@ class PlaceOrderForm extends PageObject {
     url = '/cart.html';
 
 
-    get clickOnPlaceOrder() {
-        return cy.contains('[data-target="#orderModal"]', 'Place Order');
+    clickOnPlaceOrder(placeOrderBtn) {
+        cy.contains('[data-target="#orderModal"]', placeOrderBtn).click();
           
       }
 
-      get fieldName(){
-        return cy.get('#name');
+       typeFieldName(name){
+      cy.get('#name').type(name);
       }
 
-      get fieldCountry(){
-        return cy.get('#country');
+      typeFieldCountry(country){
+        cy.get('#country').type(country);
       }
 
-      get fieldCity(){
-        return cy.get('#city');
+      typeFieldCity(city){
+        cy.get('#city').type(city);
       }
 
-      get fieldCard(){
-        return cy.get('#card');
+      typeFieldCard(card){
+        cy.get('#card').type(card);
       }
 
-      get fieldMonth(){
-        return cy.get('#month');
+      typeFieldMonth(month){
+        cy.get('#month').type(month);
       }
 
-      get fieldYear(){
-        return cy.get('#year');
+      typeFieldYear(year){
+        cy.get('#year').type(year);
       }
 
        clickOnPurchase(){
@@ -39,24 +39,24 @@ class PlaceOrderForm extends PageObject {
       }
 
       get popUpIsVisible(){
-        return cy.get('.sa-placeholder');
+        return cy.get('.sa-placeholder').should('be.visible');
       }
 
-      get popUpContainText(){
-        return cy.contains('h2', 'Thank you for your purchase!');
+      popUpContainText(textInPopUp){
+        cy.contains('h2', textInPopUp).should('contain.text', textInPopUp)
         
       }
 
-      get nameIsDisplayedOnPopUp(){
-        return cy.contains('p', 'Name:')
+      nameIsDisplayedOnPopUp(nameExistInField){
+        return cy.contains('p', nameExistInField).should('contain', nameExistInField);
       }
 
-      get numberOfCardIsDisplayedOnPopUp(){
-        return cy.contains('p', 'Card Number:')
+      numberOfCardIsDisplayedOnPopUp(cardExistOnPopUp){
+        return cy.contains('p', cardExistOnPopUp).should('contain', cardExistOnPopUp);
       }
 
       get clickOnOk(){
-        return cy.get('[style="display: inline-block;"]')
+        return cy.get('[style="display: inline-block;"]').click({force: true});
       }
 
 
