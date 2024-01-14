@@ -3,9 +3,12 @@ import PageObject from '../PageObject';
 export class ContactFormPageObject extends PageObject {
   url = '/index.html';
 
-  get carturl() {
-    return cy.get('#cartur');
+  get clickTheCartLink() {
+    return cy.get('#cartur').click();
   }
+
+  get clickAddToCartButton() {
+    return cy.contain('Add To Cart').click();
 
   get assertInTheCart() {
     return cy.get('#tbodyid')
@@ -15,8 +18,8 @@ export class ContactFormPageObject extends PageObject {
     return cy.contains('Laptops');
   }
 
-  get clickOnPlaceOrder() {
-    return cy.contains('Place Order');
+  get fillTheNameField() {
+    return cy.contains('Place Order').click();
   }
 
   get emailField() {
