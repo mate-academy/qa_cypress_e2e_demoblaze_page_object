@@ -8,7 +8,14 @@ const faker = require('faker');
 
 describe('Demoblaze page', () => {
   const checkoutPage = new CheckoutPageObject();
-  let user;
+  const cartData = {
+  name: faker.name.firstName(),
+  country: faker.address.country(),
+  city: faker.address.city(),
+  creditCard: faker.finance.creditCardNumber(),
+  month: faker.date.month(),
+  year: faker.datatype.number(),
+ };
   const checkcart = new ContactFormPageObject();
 
 beforeEach(() => {
@@ -17,31 +24,22 @@ beforeEach(() => {
     })
   })
  it('should visit the page and add the product to the cart', () => {
-    checkoutPage.visit();
-    checkoutPage.laptopslink.click();
-    checkoutPage.sonylink.click();
-    checkoutPage.addToCart.click();
-    checkoutPage.assertaddedmessage;
-});
-
-it.only('should be able to check the cart and purchase an order', () => {
-  checkoutPage.visit();
-  checkoutPage.laptopslink.click();
+   checkoutPage.visit();
+  checkoutPage.clickTheLaptopsLink();
   checkoutPage.sonylink.click();
-  checkoutPage.addToCart.click();
+  productPage.clickAddToCartButton();
   checkoutPage.assertaddedmessage;
-
-  checkcart.carturl.click();
+  homePage.clickTheCartLink();
   checkcart.assertInTheCart;
   checkcart.clickOnPlaceOrder.click();
-  checkcart.nameField.type(user.username);
-  checkcart.countryField.type('USA');
-  checkcart.cityField.type('New York');
-  checkcart.creditCartField.type('1478569874569874')
-  checkcart.monthField.type('3');
-  checkcart.yearField.type('2022');
+  checkcart.fillTheNameField(user.username);
+  checkcart.countryField.type(cartData.country);
+  checkcart.cityField.type(cartData.city);
+  checkcart.creditCartField.type(cartData.creditCard)
+  checkcart.monthField.type(cartData.month);
+  checkcart.yearField.type(cartData.year);
   checkcart.purchaseButton.click();
-  checkcart.confirmMessage;
+   checkcart.confirmMessage;
   checkcart.clickOn.click();
 });
-});
+
