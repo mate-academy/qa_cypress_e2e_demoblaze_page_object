@@ -15,6 +15,7 @@ describe('Demoblaze page', () => {
   creditCard: faker.finance.creditCardNumber(),
   month: faker.date.month(),
   year: faker.datatype.number(),
+  success: 'Thank you for your purchase!'
  };
   const checkcart = new ContactFormPageObject();
 
@@ -24,22 +25,24 @@ beforeEach(() => {
     })
   })
  it('should visit the page and add the product to the cart', () => {
-   checkoutPage.visit();
-  checkoutPage.clickTheLaptopsLink();
-  checkoutPage.clickTheLink('Sony viao 17');
-  productPage.clickAddToCartButton();
-  checkoutPage.assertAddedMessage('Product added');
-  homePage.clickTheCartLink();
+  checkoutPage.visit();
+  checkoutPage.clickOnCategory('Laptops');
+  checkoutPage.clickOnProduct('Sony vaio i7');
+  checkoutPage.clickOnButton('Add to cart');
+  checkoutPage.assertAllert('Product added');
+  checkoutPage.clickOnLink('Cart');
   checkcart.assertProductInTheCart('Sony viao 17');
-  checkcart.clickOnPlaceOrder();
-  checkcart.fillTheNameField(user.username);
-  checkcart.countryField.type(cartData.country);
-  checkcart.cityField.type(cartData.city);
-  checkcart.creditCartField.type(cartData.creditCard)
-  checkcart.monthField.type(cartData.month);
-  checkcart.yearField.type(cartData.year);
-  checkcart.purchaseButton.click();
-   checkcart.confirmMessage;
-  checkcart.clickOn.click();
+  checkcart.clickOnButton('Place Order');
+  checkcart.typeName(user.username);
+  checkcart.typeCountry(cartData.country);
+  checkcart.typeCity(cartData.city);
+  checkcart.typeCreditCard(cartData.creditCard)
+  checkcart.typeMonth(cartData.month);
+  checkcart.typeYear(cartData.year);
+  checkcart.clickOnButton('Purchase');
+  checkcart.assertSuccessMessage(cartData.success);
+  checkcart.assertName(cartData.name);
+  checkcart.clickOnButton('OK');
+});
 });
 
