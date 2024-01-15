@@ -26,12 +26,12 @@ beforeEach(() => {
  it('should visit the page and add the product to the cart', () => {
    checkoutPage.visit();
   checkoutPage.clickTheLaptopsLink();
-  checkoutPage.sonylink.click();
+  checkoutPage.clickTheLink('Sony viao 17');
   productPage.clickAddToCartButton();
-  checkoutPage.assertaddedmessage;
+  checkoutPage.assertAddedMessage('Product added');
   homePage.clickTheCartLink();
-  checkcart.assertInTheCart;
-  checkcart.clickOnPlaceOrder.click();
+  checkcart.assertProductInTheCart('Sony viao 17');
+  checkcart.clickOnPlaceOrder();
   checkcart.fillTheNameField(user.username);
   checkcart.countryField.type(cartData.country);
   checkcart.cityField.type(cartData.city);
