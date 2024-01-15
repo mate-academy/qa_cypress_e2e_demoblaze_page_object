@@ -5,11 +5,7 @@ import ContactFormPageObject from "./contactForm.pageObject";
 export class CheckoutPageObject extends PageObject {
 url = '';
 
-//get laptopslink() {
-//  return cy.get('[onclick="byCat('notebook')"]');
-//}
-
-get laptopslink() {
+  get laptopslink() {
   return cy.contains('Laptops');
 }
 
