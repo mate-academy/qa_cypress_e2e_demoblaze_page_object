@@ -3,21 +3,27 @@ import faker from 'faker';
 import ContactFormPageObject from "./contactForm.pageObject";
 
 export class CheckoutPageObject extends PageObject {
-url = '';
+ url = '/index.html';
 
-  get laptopslink() {
-  return cy.contains('Laptops');
+  clickOnLink(linkName) {
+    cy.contains('.nav-link', linkName)
+      .click();
+  }
+
+  clickOnCategory(categoryName) {
+    cy.contains('#itemc', categoryName)
+      .click();
+  }
+
+  clickOnProduct(product) {
+    cy.contains('.hrefch', product)
+      .click();
+  }
+
+  clickOnButton(button) {
+    cy.contains('.btn', button)
+      .click();
+  }
 }
 
-get sonylink() {
-   return cy.contains('Sony vaio i7');
-}
- get addToCart() {
-   return cy.get('[onclick="addToCart(9)"]');
- }
- get assertaddedmessage() {
-  return cy.on('window:alert', (alertText) => {
-    expect(alertText).to.include('Product added');
-  });
- }
-}
+export default CheckoutPageObject;
