@@ -1,7 +1,7 @@
 /// <reference types='cypress' />
 
 import { CheckoutPageObject } from "../support/pages/Demoblaze.pageObject";
-import ContactFormPageObject from "../support/pages/contactForm.pageObject";
+import {ContactFormPageObject} from "../support/pages/contactForm.pageObject";
 const faker = require('faker');
 
 
