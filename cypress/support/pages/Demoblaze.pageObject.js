@@ -2,7 +2,7 @@ import PageObject from "../PageObject"
 import faker from 'faker';
 import ContactFormPageObject from "./contactForm.pageObject";
 
-export class CheckoutPageObject extends PageObject {
+class CheckoutPageObject extends PageObject {
   url = '/cart.html';
 
   get nameField() {
