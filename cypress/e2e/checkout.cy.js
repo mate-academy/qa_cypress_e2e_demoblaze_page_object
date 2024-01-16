@@ -19,12 +19,12 @@ const testData = {
   year: faker.finance.account(4)
 };
 
-describe('', () => {
+describe('Checkout', () => {
   before(() => {
 
   });
 
-  it('', () => {
+  it('should provide the ability to purchase a product', () => {
     homePage.visit();
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
