@@ -1,13 +1,14 @@
 /// <reference types='cypress' />
 
-import { CheckoutPageObject } from "../support/pages/Demoblaze.pageObject";
-import {ContactFormPageObject} from "../support/pages/contactForm.pageObject";
+import CheckoutPageObject from '../support/pages/Demoblaze.pageObject';
+import ContactFormPageObject from '../support/pages/contactForm.pageObject';
 const faker = require('faker');
 
 
 
 describe('Demoblaze page', () => {
   const checkoutPage = new CheckoutPageObject();
+  const homePage = new ContactFormPageObject();
   const cartData = {
   name: faker.name.firstName(),
   country: faker.address.country(),
@@ -17,32 +18,33 @@ describe('Demoblaze page', () => {
   year: faker.datatype.number(),
   success: 'Thank you for your purchase!'
  };
-  const checkcart = new ContactFormPageObject();
+  
 
-beforeEach(() => {
+before(() => {
     cy.task('generateUser').then(generateUser => {
    user = generateUser;
     })
+  homePage.visit();
   })
+  
  it('should visit the page and add the product to the cart', () => {
-  checkoutPage.visit();
-  checkoutPage.clickOnCategory('Laptops');
-  checkoutPage.clickOnProduct('Sony vaio i7');
-  checkoutPage.clickOnButton('Add to cart');
-  checkoutPage.assertAllert('Product added');
-  checkoutPage.clickOnLink('Cart');
-  checkcart.assertProductInTheCart('Sony viao 17');
-  checkcart.clickOnButton('Place Order');
-  checkcart.typeName(user.username);
-  checkcart.typeCountry(cartData.country);
-  checkcart.typeCity(cartData.city);
-  checkcart.typeCreditCard(cartData.creditCard)
-  checkcart.typeMonth(cartData.month);
-  checkcart.typeYear(cartData.year);
-  checkcart.clickOnButton('Purchase');
-  checkcart.assertSuccessMessage(cartData.success);
-  checkcart.assertName(cartData.name);
-  checkcart.clickOnButton('OK');
-});
+    homePage.clickOnCategory('Laptops');
+    homePage.clickOnProduct('Sony vaio i7');
+    checkoutPage.clickOnaddToCartBtn();
+    checkoutPage.assertAllert('Product added');
+    homePage.clickOnLink('Cart');
+    checkoutPage.itemInCart('Sony vaio i7');
+    checkoutPage.clickOnplaceOrderBtn();
+    checkoutPage.typeName(cartData.name);
+    checkoutPage.typeCountry(cartData.country);
+    checkoutPage.typeCity(cartData.city);
+    checkoutPage.typeCard(cartData.creditCard);
+    checkoutPage.typeMonth(cartData.month);
+    checkoutPage.typeYear(cartData.year);
+    checkoutPage.clickOnmakePurchaseBtn();
+    checkoutPage.purchaseDone(cartData.success);
+    checkoutPage.purchaseDone(cartData.name);
+    checkoutPage.purchaseDone(cartData.creditCard);
+  });
 });
 
