@@ -27,8 +27,11 @@ describe('Product store', () => {
     cy.on('window:alert', (alert) => {
       expect(alert).to.equal(`Product added`);
     });
+
     homePage.cartMenu('Cart');
+
     cy.get('.success > :nth-child(2)').should('contain', 'Sony vaio i7');
+
     homePage.placeOrder('Place Order');
     homePage.typeName(testData.name);
     homePage.typeCountry(testData.country);
@@ -37,6 +40,7 @@ describe('Product store', () => {
     homePage.typeYear(testData.year);
     homePage.typeMonth(testData.month);
     homePage.click('Purchase');
+
     // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(2000);
     cy.get('.sweet-alert > h2')
