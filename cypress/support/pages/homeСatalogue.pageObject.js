@@ -23,55 +23,72 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
-  cartMenu(menuItem) {
+  openCart(menuItem) {
     cy.contains('#cartur', menuItem)
       .click();
   }
 
-  placeOrder(Item) {
+  clickPlaceOrderButton(Item) {
     cy.contains('.col-lg-1 > .btn', Item)
       .click();
   }
 
-  click(zItem) {
+  clickPurchaseButton(zItem) {
     // eslint-disable-next-line max-len
     cy.contains('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary', zItem)
       .click();
   }
 
-  clickOk(yItem) {
+  clickOkButton(yItem) {
     // eslint-disable-next-line max-len
     cy.contains('.confirm', yItem)
       .click();
   }
 
-  typeName(argument) {
+  typeName(userName) {
     cy.get('#name')
-      .type(argument);
+      .type(userName);
   }
 
-  typeCountry(argument1) {
+  typeCountry(country) {
     cy.get('#country')
-      .type(argument1);
+      .type(country);
   }
 
-  typeCity(argument2) {
+  typeCity(city) {
     cy.get('#city')
-      .type(argument2);
+      .type(city);
   }
 
-  typeCard(argument3) {
+  typeCard(card) {
     cy.get('#card')
-      .type(argument3);
+      .type(card);
   }
 
-  typeMonth(argument4) {
+  typeMonth(month) {
     cy.get('#month')
-      .type(argument4);
+      .type(month);
   }
 
-  typeYear(argument5) {
+  typeYear(year) {
     cy.get('#year')
-      .type(argument5);
+      .type(year);
+  }
+
+  alertProduct(alert) {
+    cy.on('window:alert', (alert) => {
+      expect(alert).to.equal(`Product added`);
+    });
+  }
+
+  addedProduct(product) {
+    cy.get('.success > :nth-child(2)')
+      .should('contain', 'Sony vaio i7');
+  }
+
+  thankAlert(thanks) {
+    cy.get('.sweet-alert > h2')
+      .should('contain', 'Thank you for your purchase!');
   }
 }
+export default HomeAndCataloguePageObject;
