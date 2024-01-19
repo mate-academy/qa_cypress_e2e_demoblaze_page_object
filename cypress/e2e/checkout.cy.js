@@ -32,8 +32,8 @@ describe('Product store', () => {
     homePage.typeCard(testData.card);
     homePage.typeYear(testData.year);
     homePage.typeMonth(testData.month);
-    homePage.clickPurchaseButton('Purchase');
+    homePage.clickPurchaseButton();
     homePage.thankAlert();
-    homePage.clickOkButton('OK');
+    homePage.clickButton('OK');
   });
 });

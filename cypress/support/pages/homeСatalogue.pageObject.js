@@ -33,15 +33,15 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
-  clickPurchaseButton(zItem) {
+  clickPurchaseButton() {
     // eslint-disable-next-line max-len
-    cy.contains('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary', zItem)
+    cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary')
       .click();
   }
 
-  clickOkButton(yItem) {
+  clickButton(button) {
     // eslint-disable-next-line max-len
-    cy.contains('.confirm', yItem)
+    cy.contains('.confirm', button)
       .click();
   }
 
