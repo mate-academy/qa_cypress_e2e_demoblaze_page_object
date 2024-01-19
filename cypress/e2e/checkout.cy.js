@@ -21,7 +21,7 @@ describe('Product store', () => {
   it('should have an ability to add product to the card and make checkout', () => {
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
-    homePage.clickaddToCartButton('Add to cart');
+    homePage.clickaddToCartButton();
     homePage.alertProduct('Product added');
     homePage.openCart();
     homePage.addedProduct('Sony vaio i7');

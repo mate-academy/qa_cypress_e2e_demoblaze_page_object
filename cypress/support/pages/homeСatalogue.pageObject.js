@@ -18,8 +18,8 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
-  clickaddToCartButton(button) {
-    cy.contains('.col-sm-12 > .btn', button)
+  clickaddToCartButton() {
+    cy.get('.col-sm-12 > .btn')
       .click();
   }
 
