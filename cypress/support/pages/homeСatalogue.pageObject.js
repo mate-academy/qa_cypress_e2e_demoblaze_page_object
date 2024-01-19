@@ -18,13 +18,13 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
-  addToCart(button) {
+  clickaddToCartButton(button) {
     cy.contains('.col-sm-12 > .btn', button)
       .click();
   }
 
-  openCart(menuItem) {
-    cy.contains('#cartur', menuItem)
+  openCart() {
+    cy.get('#cartur')
       .click();
   }
 
@@ -83,7 +83,7 @@ class HomeAndCataloguePageObject extends PageObject {
 
   addedProduct(product) {
     cy.get('.success > :nth-child(2)')
-      .should('contain', 'Sony vaio i7');
+      .should('contain', product);
   }
 
   thankAlert(thanks) {

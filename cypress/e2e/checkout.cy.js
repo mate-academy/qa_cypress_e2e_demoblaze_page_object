@@ -21,9 +21,9 @@ describe('Product store', () => {
   it('should have an ability to add product to the card and make checkout', () => {
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
-    homePage.addToCart('Add to cart');
+    homePage.clickaddToCartButton('Add to cart');
     homePage.alertProduct('Product added');
-    homePage.openCart('Cart');
+    homePage.openCart();
     homePage.addedProduct('Sony vaio i7');
     homePage.clickPlaceOrderButton('Place Order');
     homePage.typeName(testData.name);
@@ -33,7 +33,7 @@ describe('Product store', () => {
     homePage.typeYear(testData.year);
     homePage.typeMonth(testData.month);
     homePage.clickPurchaseButton('Purchase');
-    homePage.thankAlert('Thank you for your purchase!');
+    homePage.thankAlert();
     homePage.clickOkButton('OK');
   });
 });
