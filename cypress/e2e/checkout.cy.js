@@ -43,7 +43,7 @@ describe('Checkout', () => {
     homePage.assertAllert('Product added');
     homePage.clickOnLink('Cart');
 
-    cy.get('#tbodyid').should('contain.text', 'Sony vaio i7');
+    cartPage.assertAddedProduct('Sony vaio i7');
 
     cartPage.placeOrderButton.click();
     cartPage.nameField.type(user.firstName);

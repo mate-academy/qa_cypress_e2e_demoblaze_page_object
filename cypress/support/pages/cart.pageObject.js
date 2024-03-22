@@ -37,6 +37,10 @@ class CartPage extends PageObject {
     return cy.get('.confirm');
   }
 
+  assertAddedProduct(productName) {
+    return cy.get('#tbodyid').should('contain.text', productName);
+  }
+
   assertConfirmText(text) {
     return cy.get('.sweet-alert')
       .should('contain.text', text);
