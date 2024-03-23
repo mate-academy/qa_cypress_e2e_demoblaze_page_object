@@ -8,6 +8,7 @@ const productPage = new ProductPage();
 
 describe('Checkout page', () => {
   let user;
+  const productName = 'Sony vaio i7';
 
   before(() => {
     homeCatalog.visit();
@@ -18,11 +19,11 @@ describe('Checkout page', () => {
 
   it('should provide the ability to purchase the product', () => {
     homeCatalog.clickOnCategory('Laptops');
-    homeCatalog.clickOnProduct('Sony vaio i7');
+    homeCatalog.clickOnProduct(productName);
     productPage.clickOnAddToCartButton();
     productPage.assertAllert('Product added');
     productPage.clickOnCartLink();
-    productPage.assertProductInTheCart('Sony vaio i7');
+    productPage.assertProductInTheCart(productName);
     productPage.clickOnPlaceOrderButton();
     productPage.typeName(user.name);
     productPage.typeCountry(user.country);
