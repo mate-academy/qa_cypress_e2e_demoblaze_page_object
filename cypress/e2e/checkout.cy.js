@@ -1,8 +1,10 @@
 /// <reference types='cypress' />
-//import { BuyproductPageObject } from '.buyproduct.PageObject';
-import { BuyProductPageObject } from '../support/pages/buyproduct.PageObject';
+//import { productPagePageObject } from '.productPage.PageObject';
+import { cartPageObject } from '../support/pages/cart.PageObject';
+import { ProductPageObject } from '../support/pages/productPage.PageObject';
 const { faker } = require('@faker-js/faker');
-const buyProduct = new BuyProductPageObject();
+const productPage = new ProductPageObject();
+const cartPage = new cartPageObject();
 let user;
 describe('Demo Blaze Store', () => {
   before(() => {
@@ -24,23 +26,25 @@ describe('Demo Blaze Store', () => {
   it('should provide the ability to purchase a product', () => {
     const item = 'Sony vaio i7';
     const message = 'Product added';
-    buyProduct.choosingCategory;
-    buyProduct.chooseItem(item);
-    buyProduct.addToCart;
-    buyProduct.assertAllertMessage(message);
-    buyProduct.goToCart;
-    buyProduct.wait2SecForItemAppearInCart;
-    buyProduct.aseertItemIsAdded(item);
-    buyProduct.clickBtnPlaseOrder;
-    buyProduct.selectNameField.type(checkoutData.name);
-    buyProduct.selectCountryField.type(checkoutData.country);
-    buyProduct.selectCityField.type(checkoutData.city);
-    buyProduct.selectCardField.type(checkoutData.card);
-    buyProduct.selectMonthField.type(checkoutData.month);
-    buyProduct.selectYearField.type(checkoutData.year);
-    buyProduct.clickPurchaseBtn;
-    buyProduct.assertModalWinHasCardNumber(checkoutData.card);
-    buyProduct.assertModalWinHasCustomerName(checkoutData.name);
-    buyProduct.clickOkBtn;
+    const category = 'Laptops';
+    productPage.choosingCategory(category);
+    productPage.wait2SecForItemAppear;
+    productPage.chooseItem(item);
+    productPage.addToCart;
+    productPage.assertAllertMessage(message);
+    productPage.goToCart;
+    productPage.wait2SecForItemAppearInCart;
+    cartPage.aseertItemIsAdded(item);
+    cartPage.clickBtnPlaseOrder;
+    cartPage.selectNameField.type(checkoutData.name);
+    cartPage.selectCountryField.type(checkoutData.country);
+    cartPage.selectCityField.type(checkoutData.city);
+    cartPage.selectCardField.type(checkoutData.card);
+    cartPage.selectMonthField.type(checkoutData.month);
+    cartPage.selectYearField.type(checkoutData.year);
+    cartPage.clickPurchaseBtn;
+    cartPage.assertModalWinHasCardNumber(checkoutData.card);
+    cartPage.assertModalWinHasCustomerName(checkoutData.name);
+    cartPage.clickOkBtn;
   });
 });

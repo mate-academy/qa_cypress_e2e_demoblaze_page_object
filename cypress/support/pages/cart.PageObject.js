@@ -1,33 +1,6 @@
 import PageObject from '../PageObject';
-
-export class BuyProductPageObject extends PageObject {
+export class cartPageObject extends PageObject {
   url = '/';
-  get choosingCategory() {
-    return cy.get('[onclick="byCat(\'notebook\')"]').click();
-  }
-
-  chooseItem(item) {
-    return cy.contains('[href="prod.html?idp_=9"]', item).click();
-  }
-
-  get addToCart() {
-    return cy.contains('[onclick="addToCart(9)"]', 'Add to cart').click();
-  }
-
-  assertAllertMessage(message) {
-    return cy.on('window:alert', (string) => {
-      expect(string).to.equal(message);
-    });
-  }
-
-  get goToCart() {
-    return cy.get('#cartur').click();
-  }
-
-  get wait2SecForItemAppearInCart() {
-    return cy.wait(2000);
-  }
-
   aseertItemIsAdded(item) {
     return cy.get('.success', { timeout: 10000 }).should('contain', item);
   }
