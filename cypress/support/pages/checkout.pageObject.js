@@ -35,6 +35,24 @@ export class CheckoutPageObject {
     return cy.get('[class="confirm btn btn-lg btn-primary"]');
   }
 
+  selectLaptop() {
+    cy.get('.list-group-item').contains('Laptops').click();
+    cy.get('[href="prod.html?idp_=9"]').contains('Sony vaio i7').click();
+  }
+
+  addToCart() {
+    cy.get('.btn.btn-success.btn-lg').click();
+    cy.on('window:alert', (confirmText) => {
+      expect(confirmText).to.equal('Product added');
+    });
+  }
+
+  verifyProductAdded() {
+    cy.get('#cartur', { timeout: 5000 }).click();
+    cy.get('.success', { timeout: 5000 }).should('contain', 'Sony vaio i7');
+    cy.get('.btn-success').click();
+  }
+
   fillCustomerData(customer) {
     this.customerName.type(customer.firstName);
     this.customerCountry.type(customer.country);
