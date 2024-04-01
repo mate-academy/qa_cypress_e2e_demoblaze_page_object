@@ -24,7 +24,7 @@ describe('Checkout', () => {
     homePage.visit();
   });
 
-  it('', () => {
+  it('should provide an ability to checkout', () => {
     homePage.clickOnCategory('Laptops');
 
     homePage.clickOnProduct('Sony vaio i7');
