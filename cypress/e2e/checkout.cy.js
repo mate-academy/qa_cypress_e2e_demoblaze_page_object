@@ -7,12 +7,12 @@ const homePage = new HomeAndCataloguePageObject();
 const category = 'Laptops';
 const product = 'Sony vaio i7';
 
-describe('', () => {
+describe('Checkout', () => {
   before(() => {
     homePage.visit();
   });
 
-  it('', () => {
+  it('should provide an ability to checkout', () => {
     homePage.clickOnCategory(category);
     homePage.clickOnProduct(product);
     homePage.clickByClass('.col-sm-12 > .btn');
@@ -26,9 +26,8 @@ describe('', () => {
     homePage.inputFilling('#card', 1234567887654321);
     homePage.inputFilling('#month', 'Aug');
     homePage.inputFilling('#year', 2030);
-    cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary')
-      .click();
+    homePage.clickByClass('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary');
     homePage.assertAllert('Thank you for your purchase!');
-    cy.get('.confirm').click();
+    homePage.clickByClass('.confirm');
   });
 });
