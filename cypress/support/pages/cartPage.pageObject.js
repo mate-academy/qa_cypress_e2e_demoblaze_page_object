@@ -37,11 +37,11 @@ class CartPageObject extends PageObject {
   }
 
   typeCountry(country) {
-    this.countryField.type(country, { force: true });
+    this.countryField.type(country);
   }
 
   typeName(name) {
-    this.nameField.type(name, { force: true });
+    this.nameField.type(name);
   }
 
   typeCity(city) {

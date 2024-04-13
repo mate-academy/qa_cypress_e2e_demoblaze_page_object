@@ -2,7 +2,8 @@ import PageObject from '../PageObject';
 
 class ProductPagePageObject extends PageObject {
   clickOnAddToCart() {
-    cy.contains('.btn', 'Add to cart')
+    cy.get('a.btn')
+      .should('contain', 'Add to cart')
       .click();
   }
 }

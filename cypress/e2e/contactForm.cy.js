@@ -1,4 +1,5 @@
-import ContactFormPageObject from '../support/pages/contactForm.pageObject';
+import ContactFormPageObject
+  from '../support/pages/contactForm.pageObject';
 import HomeAndCataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
 import faker from 'faker';
@@ -25,7 +26,6 @@ describe('Contact', () => {
     contactForm.typeName(testData.name);
     contactForm.typeMessage(testData.message);
     contactForm.clickOnSendMessageBtn();
-
     contactForm.assertAllert(testData.successMessage);
   });
 });

@@ -20,11 +20,11 @@ class ContactFormPageObject extends PageObject {
   }
 
   typeEmail(email) {
-    this.emailField.type(email, { force: true });
+    this.emailField.type(email);
   }
 
   typeName(name) {
-    this.nameField.type(name, { force: true });
+    this.nameField.type(name);
   }
 
   typeMessage(message) {
