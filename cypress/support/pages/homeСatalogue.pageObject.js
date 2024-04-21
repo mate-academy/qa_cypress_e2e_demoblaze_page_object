@@ -1,3 +1,4 @@
+/// <reference types='cypress' />
 import PageObject from '../PageObject';
 
 class HomeAndCataloguePageObject extends PageObject {
@@ -16,6 +17,20 @@ class HomeAndCataloguePageObject extends PageObject {
   clickOnProduct(product) {
     cy.contains('.hrefch', product)
       .click();
+  }
+
+  clickByClass(product) {
+    cy.get(product)
+      .click();
+  }
+
+  mustHave(clipbord, text) {
+    cy.get(clipbord)
+      .should('contain.text', text);
+  }
+
+  inputFilling(clipbord, text) {
+    cy.get(clipbord).type(text);
   }
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
@@ -13,7 +14,7 @@ module.exports = defineConfig({
             password: 'Password12345!'
           };
         }
-      })
+      });
     }
   }
 });
