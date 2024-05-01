@@ -8,12 +8,12 @@ module.exports = defineConfig({
         generateUser() {
           const randomNumber = Math.ceil(Math.random(1000) * 1000);
           return {
-            username: faker.name.firstName() + `${randomNumber}`,
+            username: `${randomNumber}`,
             email: 'test' + `${randomNumber}` + '@mail.com',
             password: 'Password12345!'
           };
         }
-      })
+      });
     }
   }
 });
