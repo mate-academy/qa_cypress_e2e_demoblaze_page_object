@@ -8,6 +8,10 @@ class PageObject {
       expect(alert).to.eq(alertMessage);
     });
   }
-}
 
+  clickOnButton(button) {
+    cy.contains('.btn', button)
+      .click();
+  }
+}
 export default PageObject;
