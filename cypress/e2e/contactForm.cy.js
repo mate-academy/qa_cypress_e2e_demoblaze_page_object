@@ -1,7 +1,6 @@
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
-import HomeAndCataloguePageObject
-  from '../support/pages/homeСatalogue.pageObject';
-import faker from 'faker';
+import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
+import { faker } from '@faker-js/faker';
 /// <reference types='cypress' />
 
 const contactForm = new ContactFormPageObject();
@@ -11,7 +10,7 @@ const testData = {
   email: faker.internet.email(),
   name: faker.name.firstName(),
   message: faker.random.words(),
-  successMessage: 'Thanks for the message!!'
+  successMessage: 'Thanks for the message!!',
 };
 
 describe('Contact', () => {
