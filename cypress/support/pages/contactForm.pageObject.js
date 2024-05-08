@@ -3,6 +3,12 @@ import PageObject from '../PageObject';
 class ContactFormPageObject extends PageObject {
   url = '/index.html';
 
+  assertAlert(message) {
+    cy.on('window:alert', (alertMessage) => {
+      expect(alertMessage).to.equal(message);
+    });
+  }
+
   get emailField() {
     return cy.get('#recipient-email');
   }
