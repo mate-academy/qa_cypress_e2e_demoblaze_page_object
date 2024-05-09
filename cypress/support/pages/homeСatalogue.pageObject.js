@@ -17,6 +17,13 @@ class HomeAndCataloguePageObject extends PageObject {
     cy.contains('.hrefch', product)
       .click();
   }
+  get laptopLink() {
+    return cy.contains('Laptops').click()
+  }
+  get addToCartBtn() {
+    return cy.get('.btn-success').click()
+  }
+
 }
 
 export default HomeAndCataloguePageObject;
