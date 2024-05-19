@@ -1,8 +1,10 @@
 /// <reference types='cypress' />
 
-import { goToLaptop } from '../support/pages_MK/HomePageObj';
-import { addedProduct } from '../support/pages_MK/AddProductToCart';
-import { orderProcess } from '../support/pages_MK/OrderProcess';
+import { homePage } from '../support/pages_MK/HomePageObj';
+import { productPage } from '../support/pages_MK/ProductPage';
+import { orderProcess } from '../support/pages_MK/OrderProcessPage';
+import { cartPage } from '../support/pages_MK/CartPage';
+
 describe('E2E FLOW', () => {
   let userInfo;
   const productName = 'Sony vaio i7';
@@ -11,23 +13,22 @@ describe('E2E FLOW', () => {
       userInfo = generateUser;
     });
   });
+  it('should provide an ability to order the laptop', () => {
+    homePage.visit();
 
-  it('should provide the flow of ordering items', () => {
-    goToLaptop.visit();
+    homePage.clickTheLaptopLink();
 
-    goToLaptop.reachLaptopPage();
+    homePage.clickTheItemLink(productName);
 
-    goToLaptop.reachItemPage(productName);
+    productPage.clickAddToCartButton();
 
-    addedProduct.addProduct();
+    cartPage.clickToCartLink();
 
-    addedProduct.goToCart();
-
-    addedProduct.assertProduct(productName);
+    cartPage.assertProductExistsInTheCart(productName);
 
     orderProcess.clickOrderButton();
 
-    orderProcess.fillAllField(userInfo);
+    orderProcess.fillAllFields(userInfo);
 
     orderProcess.clickPurchaseButton();
 
