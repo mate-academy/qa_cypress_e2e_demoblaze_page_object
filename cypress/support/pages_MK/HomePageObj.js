@@ -1,15 +1,15 @@
-class GoToLaptop {
+class HomePage {
   visit() {
     cy.visit('');
   }
 
-  reachLaptopPage() {
+  clickTheLaptopLink() {
     cy.get('.list-group-item').contains('Laptops').click();
   }
 
-  reachItemPage(productName) {
+  clickTheItemLink(productName) {
     cy.get('.card-title').contains(productName).click();
   }
 };
 
-export const goToLaptop = new GoToLaptop();
+export const homePage = new HomePage();
