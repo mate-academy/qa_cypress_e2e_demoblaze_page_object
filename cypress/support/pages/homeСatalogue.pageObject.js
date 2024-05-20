@@ -3,8 +3,12 @@ import PageObject from '../PageObject';
 class HomeAndCataloguePageObject extends PageObject {
   url = '/index.html';
 
-  clickOnLink(linkName) {
-    cy.contains('.nav-link', linkName)
+  get cardBtn() {
+    return cy.get('#cartur');
+  }
+
+  clickOnBtn(btnName) {
+    cy.contains('.btn', btnName)
       .click();
   }
 
