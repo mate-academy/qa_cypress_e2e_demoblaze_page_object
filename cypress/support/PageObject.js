@@ -1,13 +1,32 @@
-class PageObject {
-  visit(url) {
-    cy.visit(url || this.url);
-  }
-
-  assertAllert(alertMessage) {
-    cy.on('window:alert', (alert) => {
-      expect(alert).to.eq(alertMessage);
-    });
-  }
+get SonyVaioAssert() {
+  return cy.contains('.col-lg-8', 'Sony vaio i7');
 }
 
-export default PageObject;
+callAssert() {
+  this.SonyVaioAssert.should('contain', 'Sony vaio i7');
+}
+
+clickOnPlaceOrder() {
+  cy.get('.btn').contains('Place Order').click();
+}
+
+fillPlaceOrder(Name, Country, City, Card, Month, Year) {
+  cy.get('#name').type(Name);
+  cy.get('#country').type(Country);
+  cy.get('#city').type(City);
+  cy.get('#card').type(Card);
+  cy.get('#month').type(Month);
+  cy.get('#year').type(Year);
+  cy.get('.btn').contains('Purchase').click();
+}
+
+assertDataOnModal(Card, Name) {
+  cy.get('.lead').should('contain', Card);
+  cy.get('.lead').should('contain', Name);
+}
+
+clickOnOk() {
+  cy.get('.confirm').click();
+}
+}
+export default MainPageObject;
