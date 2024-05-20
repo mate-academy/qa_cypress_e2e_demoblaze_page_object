@@ -3,36 +3,19 @@ import PageObject from '../PageObject';
 class ContactFormPageObject extends PageObject {
   url = '/index.html';
 
-  get emailField() {
-    return cy.get('#recipient-email');
+  clickOnLink(linkName) {
+    cy.contains('.nav-link', linkName)
+      .click();
   }
 
-  get nameField() {
-    return cy.get('#recipient-name');
+  clickOnCategory(categoryName) {
+    cy.contains('#itemc', categoryName)
+      .click();
   }
 
-  get messageField() {
-    return cy.get('#message-text');
-  }
-
-  get sendMessageBtn() {
-    return cy.contains('.btn', 'Send message');
-  }
-
-  typeEmail(email) {
-    this.emailField.type(email, { force: true });
-  }
-
-  typeName(name) {
-    this.nameField.type(name, { force: true });
-  }
-
-  typeMessage(message) {
-    this.messageField.type(message);
-  }
-
-  clickOnSendMessageBtn() {
-    this.sendMessageBtn.click();
+  clickOnProduct(product) {
+    cy.contains('.hrefch', product)
+      .click();
   }
 }
 
