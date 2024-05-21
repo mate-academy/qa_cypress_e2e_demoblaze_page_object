@@ -8,6 +8,10 @@ class CartPage extends PageObject {
   get placeOrderBtn() {
     return cy.contains('Place Order');
   }
+
+  get deleteBtn() {
+    return cy.contains('Delete');
+  }
 }
 
 export default CartPage;

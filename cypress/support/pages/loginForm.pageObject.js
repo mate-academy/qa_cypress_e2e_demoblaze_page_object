@@ -12,6 +12,10 @@ class LogIn extends PageObject {
   get confirmBtn() {
     return cy.contains('.btn', 'Log in');
   }
+
+  confirmation(username) {
+    cy.get('#nameofuser').should('contain', username);
+  }
 }
 
 export default LogIn;

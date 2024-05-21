@@ -2,12 +2,24 @@ import HeaderNav from '../support/pages/headerNav.pageObject';
 import signUpGen from '../support/generation';
 import SignUp from '../support/pages/signupForm.pageObject';
 import LogIn from '../support/pages/loginForm.pageObject';
+import HomeAndCataloguePageObject
+  from '../support/pages/homeСatalogue.pageObject';
+import ProductPage
+  from '../support/pages/productPage.pageObject';
+import CartPage from '../support/pages/cartPage.pageObject';
 /// <reference types='cypress' />
 
 const headerNav = new HeaderNav();
 const signUp = new SignUp();
 const logIn = new LogIn();
 const user = signUpGen;
+const homePageObject = new HomeAndCataloguePageObject();
+const productPage = new ProductPage();
+const cartObject = new CartPage();
+
+const product = 'Samsung galaxy s6';
+const productAddSuccessfulMsg = 'Product added.';
+const signUpSuccessfulMsg = 'Sign up successful.';
 
 describe('', () => {
   beforeEach(() => {
@@ -27,9 +39,10 @@ describe('', () => {
 
     signUp.confirmBtn.click();
 
-    // cy.wait(1000);
+    // eslint-disable-next-line
+    cy.wait(1000);
 
-    signUp.assertAllert('Sign up successful.');
+    signUp.assertAllert(signUpSuccessfulMsg);
   });
 
   it(`should log in`, () => {
@@ -45,6 +58,19 @@ describe('', () => {
 
     logIn.confirmBtn.click();
 
-    logIn.assertAllert('Sign up successful.');
+    logIn.confirmation(user.username);
+  });
+
+  it('should add product to the cart', () => {
+    cy.login();
+
+    homePageObject.clickOnProduct(product);
+    productPage.clickOnAddBtn();
+    productPage.assertAllert(productAddSuccessfulMsg);
+
+    homePageObject.clickOnLink('Cart');
+
+    cartObject.productsList.should('contain', product);
+    cartObject.deleteBtn.click();
   });
 });
