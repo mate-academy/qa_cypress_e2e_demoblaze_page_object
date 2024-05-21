@@ -6,18 +6,13 @@ import { faker } from '@faker-js/faker';
 
 const cartPage = new CartPageObject();
 const homePage = new HomeAndCataloguePageObject();
-const categoryLaptop = 'Laptops';
-const nameLaptop = 'Sony vaio i7';
-const alert = 'Product added';
-const cart = 'Cart';
+const nameProduct = 'Samsung galaxy s6';
+const btnName = 'Add to cart';
+const linkName = 'Cart';
 
 const testData = {
-  name: faker.name.firstName(),
-  country: faker.location.country(),
-  city: faker.location.city(),
-  creditCard: faker.number.int({ min: 500, max: 1000 }),
-  cardMonth: faker.date.anytime().getMonth(),
-  cardYear: faker.date.anytime().getFullYear()
+  name: faker.internet.userName(),
+  password: faker.internet.password()
 };
 
 describe('', () => {
@@ -26,22 +21,20 @@ describe('', () => {
   });
 
   it('', () => {
-    homePage.clickOnCategory(categoryLaptop);
-    homePage.clickOnProduct(nameLaptop);
-    homePage.clickOnAddToCartBtn();
-    homePage.assertAllert(alert);
-    homePage.clickOnLink(cart);
-    cartPage.assertProductInCart(nameLaptop);
-    cartPage.clickOnPlasceOrderBtn();
-    cartPage.typeName(testData.name);
-    cartPage.typeCountry(testData.country);
-    cartPage.typeCity(testData.city);
-    cartPage.typeCard(testData.creditCard);
-    cartPage.typeMounth(testData.cardMonth);
-    cartPage.typeYear(testData.cardYear);
-    cartPage.clickOnPurchase();
-    cartPage.assertUserName(testData.name);
-    cartPage.assertCardNumber(testData.creditCard);
-    cartPage.clickOnOkBtn();
+    homePage.clickOnSignUpBtn();
+    cy.wait(1000);
+    homePage.typeSignInName(testData.name);
+    homePage.typeSignInPassword(testData.password);
+    homePage.clickOnSignUpAcceptBtn();
+    homePage.clickOnLogInBtn();
+    cy.wait(1000);
+    homePage.typeLoginName(testData.name);
+    homePage.typeLoginPassword(testData.password);
+    homePage.clickOnLogInAcceptBtn();
+    homePage.assertUsername(testData.name);
+    homePage.clickOnProduct(nameProduct);
+    homePage.clickOnAddToCartBtn(btnName);
+    homePage.clickOnLink(linkName);
+    cartPage.assertProductInCart(nameProduct);
   });
 });
