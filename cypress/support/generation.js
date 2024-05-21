@@ -1,18 +1,15 @@
 import { faker } from '@faker-js/faker';
 
-function userGeneration() {
+function signUp() {
   const userGen = {
-    name: faker.name.fullName(),
-    country: faker.address.country(),
-    city: faker.address.city(),
-    creditCardNumber: faker.finance.creditCardNumber(),
-    month: faker.date.month(),
-    year: faker.date.future().getFullYear()
+    username: faker.internet.userName().toLowerCase().split('.').join('') +
+    faker.internet.userName().toLowerCase().split('.').join(''),
+    password: faker.internet.password().toLowerCase()
   };
 
   return userGen;
 }
 
-const generated = userGeneration();
+const signUpGen = signUp();
 
-export default generated;
+export default signUpGen;
