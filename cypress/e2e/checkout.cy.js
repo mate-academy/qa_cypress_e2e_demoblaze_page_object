@@ -29,7 +29,7 @@ describe('', () => {
     productPage.assertAllert('Product added');
     homePageObject.clickOnLink('Cart');
 
-    cartObject.productsList.should('contain', product);
+    cartObject.assertCartContainProduct(product);
 
     cartObject.placeOrderBtn.click();
 
