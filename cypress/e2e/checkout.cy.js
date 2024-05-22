@@ -5,10 +5,10 @@ import { faker } from '@faker-js/faker';
 
 /// <reference types='cypress' />
 
-const homePage = new HomeAndCataloguePageObject();
-const cartPage = new CartPage();
-
 describe('Checkout process', () => {
+  const homePage = new HomeAndCataloguePageObject();
+  const cartPage = new CartPage();
+
   before(() => {
     homePage.visit();
   });
@@ -29,13 +29,9 @@ describe('Checkout process', () => {
 
     homePage.clickOnProduct('Sony vaio i7');
 
-    cy.contains('a', 'Add to cart').click();
-
-    cy.on('window:alert', (text) => {
-      expect(text).to.contains('Product added');
-    });
-
-    cy.get('#cartur').click();
+    cartPage.addToCart();
+    
+    cartPage.goToCart();
 
     cartPage.assertProductInCart('Sony vaio i7');
 

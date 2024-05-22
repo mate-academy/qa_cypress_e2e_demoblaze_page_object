@@ -3,6 +3,17 @@ import PageObject from '../PageObject';
 class CartPage extends PageObject {
   url = '/cart.html';
 
+  addToCart() {
+    cy.contains('a', 'Add to cart').click();
+    cy.on('window:alert', (text) => {
+      expect(text).to.contains('Product added');
+    });
+  }
+
+  goToCart() {
+    cy.get('#cartur').click();
+  }
+
   assertProductInCart(product) {
     cy.contains('tr', product).should('be.visible');
   }
