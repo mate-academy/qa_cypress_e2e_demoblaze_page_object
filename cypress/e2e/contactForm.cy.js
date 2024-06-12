@@ -1,7 +1,7 @@
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
 import HomeAndCataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
-import faker from 'faker';
+const { faker } = require('@faker-js/faker');
 /// <reference types='cypress' />
 
 const contactForm = new ContactFormPageObject();
@@ -9,8 +9,8 @@ const homePage = new HomeAndCataloguePageObject();
 
 const testData = {
   email: faker.internet.email(),
-  name: faker.name.firstName(),
-  message: faker.random.words(),
+  name: faker.person.firstName(),
+  message: faker.lorem.words(4),
   successMessage: 'Thanks for the message!!'
 };
 
