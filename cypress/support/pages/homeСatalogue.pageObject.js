@@ -1,13 +1,6 @@
 import PageObject from '../PageObject';
 
 class HomeAndCataloguePageObject extends PageObject {
-  url = '/index.html';
-
-  clickOnLink(linkName) {
-    cy.contains('.nav-link', linkName)
-      .click();
-  }
-
   clickOnCategory(categoryName) {
     cy.contains('#itemc', categoryName)
       .click();
@@ -16,6 +9,17 @@ class HomeAndCataloguePageObject extends PageObject {
   clickOnProduct(product) {
     cy.contains('.hrefch', product)
       .click();
+  }
+
+  addToCart() {
+    cy.contains('Add to cart').click();
+    cy.on('window:alert', (str) => {
+      expect(str).to.equal('Product added');
+    });
+  }
+
+  clickOnCart() {
+    cy.contains('Cart').click();
   }
 }
 
