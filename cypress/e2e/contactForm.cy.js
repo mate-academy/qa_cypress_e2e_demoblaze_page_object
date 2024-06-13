@@ -1,31 +1,37 @@
-import ContactFormPageObject from '../support/pages/contactForm.pageObject';
-import HomeAndCataloguePageObject
-  from '../support/pages/homeСatalogue.pageObject';
+import HomePageObject from '../support/pages/home.pageObject';
+import CartPageObject from '../support/pages/cart.pageObject';
 import faker from 'faker';
+
 /// <reference types='cypress' />
 
-const contactForm = new ContactFormPageObject();
-const homePage = new HomeAndCataloguePageObject();
+const homePage = new HomePageObject();
+const cartPage = new CartPageObject();
 
 const testData = {
-  email: faker.internet.email(),
   name: faker.name.firstName(),
-  message: faker.random.words(),
-  successMessage: 'Thanks for the message!!'
+  country: faker.address.country(),
+  city: faker.address.city(),
+  card: faker.finance.creditCardNumber(),
+  month: 'December',
+  year: '2023'
 };
 
-describe('Contact', () => {
+describe('Checkout', () => {
   before(() => {
     homePage.visit();
   });
 
-  it('should provide the ability to send feedback', () => {
-    homePage.clickOnLink('Contact');
-    contactForm.typeEmail(testData.email);
-    contactForm.typeName(testData.name);
-    contactForm.typeMessage(testData.message);
-    contactForm.clickOnSendMessageBtn();
-
-    contactForm.assertAllert(testData.successMessage);
+  it('should add product to cart and place order', () => {
+    homePage.clickOnCategory('Laptops');
+    homePage.clickOnProduct('Sony vaio i7');
+    homePage.clickOnAddToCart();
+    homePage.assertAlert('Product added');
+    homePage.clickOnCart();
+    cartPage.assertProductInCart('Sony vaio i7');
+    cartPage.clickOnPlaceOrder();
+    cartPage.fillAllFields(testData);
+    cartPage.clickOnPurchase();
+    cartPage.assertDataOnModal(testData);
+    cartPage.clickOnOk();
   });
 });
