@@ -6,17 +6,22 @@ class HomeAndCataloguePageObject extends PageObject {
   clickOnLink(linkName) {
     cy.contains('.nav-link', linkName)
       .click();
-  }
+  };
 
   clickOnCategory(categoryName) {
     cy.contains('#itemc', categoryName)
       .click();
-  }
+  };
 
   clickOnProduct(product) {
     cy.contains('.hrefch', product)
       .click();
-  }
+  };
+
+  clickOnButton(button) {
+    cy.contains('.btn', button)
+      .click();
+  };
 }
 
 export default HomeAndCataloguePageObject;
