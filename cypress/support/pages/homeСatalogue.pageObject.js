@@ -3,8 +3,8 @@ import PageObject from '../PageObject';
 class HomeAndCataloguePageObject extends PageObject {
   url = '/index.html';
 
-  clickOnLink(linkName) {
-    cy.contains('.nav-link', linkName)
+  clickOnCartLink() {
+    cy.contains('.nav-link', 'Cart')
       .click();
   }
 
@@ -17,6 +17,27 @@ class HomeAndCataloguePageObject extends PageObject {
     cy.contains('.hrefch', product)
       .click();
   }
+
+  clickOnNotebookCategory() {
+    cy.get(`[onclick="byCat('notebook')"]`)
+      .click();
+  };
+
+  clickOnSonyVaioI7() {
+    cy.contains('.hrefch', 'Sony vaio i7')
+      .click();
+  };
+
+  clickAddToCartButton() {
+    cy.get(`[onclick="addToCart(9)"]`)
+      .click();
+  };
+
+  assertAddingProductToCartAlert() {
+    cy.on('window:alert', (text) => {
+      expect(text).to.equal('Product added');
+    });
+  };
 }
 
 export default HomeAndCataloguePageObject;
