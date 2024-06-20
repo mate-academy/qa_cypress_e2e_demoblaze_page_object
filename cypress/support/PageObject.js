@@ -10,4 +10,5 @@ class PageObject {
   }
 }
 
+
 export default PageObject;
