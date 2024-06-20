@@ -1,11 +1,38 @@
 /// <reference types='cypress' />
 
-describe('', () => {
-  before(() => {
+import HomeAndCataloguePageObject
+  from '../support/pages/homeСatalogue.pageObject';
+import ProductPageObject from '../support/pages/product.pageObject';
+import CartPageObject from '../support/pages/cart.pageObject';
+const homePage = new HomeAndCataloguePageObject();
+const productPage = new ProductPageObject();
+const cartPage = new CartPageObject();
 
+describe('Demoblaze flow', () => {
+  before(() => {
+    homePage.visit();
   });
 
-  it('', () => {
-
+  it('should allow to make purchase', () => {
+    homePage.clickOnCategory('Laptops');
+    homePage.clickOnProduct('Sony vaio i7');
+    productPage.clickOnAddToCartBtn('Add to cart');
+    productPage.assertAlert('Product added');
+    homePage.clickOnLink('Cart');
+    cartPage.cartProduct('Sony vaio i7');
+    cartPage.placeOrder();
+    cartPage.typeName('Danylo');
+    cartPage.typeCountry('Ukraine');
+    cartPage.typeCity('Kyiv');
+    cartPage.typeCard('471828930012934');
+    cartPage.typeMonth(12);
+    cartPage.typeYear(1995);
+    cartPage.purchaseBtn();
+    cartPage.successMessage(
+      '471828930012934',
+      'Danylo',
+      'Thank you for your purchase!'
+    );
+    cartPage.okButton();
   });
 });
