@@ -8,9 +8,14 @@ module.exports = defineConfig({
         generateUser() {
           const randomNumber = Math.ceil(Math.random(1000) * 1000);
           return {
-            username: faker.name.firstName() + `${randomNumber}`,
+            username: faker.name.firstName(),
             email: 'test' + `${randomNumber}` + '@mail.com',
-            password: 'Password12345!'
+            password: 'Password12345!',
+            country: 'Ukraine',
+            city: 'Odesa',
+            cart: randomNumber('################'),
+            month: faker.date.month(),
+            year: Math.floor(1970 + Math.random() * 10),
           };
         }
       })

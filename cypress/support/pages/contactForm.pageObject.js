@@ -1,38 +1,58 @@
-import PageObject from '../PageObject';
+import PageObject from "../PageObject";
 
 class ContactFormPageObject extends PageObject {
-  url = '/index.html';
+  url = "/cart.html";
 
-  get emailField() {
-    return cy.get('#recipient-email');
+  get placeOrderBtn() {
+    return cy.get(".btn:contains('Place Order')");
+  }
+  clickPlaceOrderBtn() {
+    this.placeOrderBtn.click();
   }
 
   get nameField() {
-    return cy.get('#recipient-name');
+    return cy.get("#name").should('exist')
   }
 
-  get messageField() {
-    return cy.get('#message-text');
+  get countryField() {
+    return cy.get("#country");
   }
 
-  get sendMessageBtn() {
-    return cy.contains('.btn', 'Send message');
+  get cityField() {
+    return cy.get("#city");
   }
 
-  typeEmail(email) {
-    this.emailField.type(email, { force: true });
+  get cardField() {
+    return cy.get("#card");
   }
 
-  typeName(name) {
-    this.nameField.type(name, { force: true });
+  get monthField() {
+    return cy.get("#month");
   }
 
-  typeMessage(message) {
-    this.messageField.type(message);
+  get yearField() {
+    return cy.get("#year");
   }
 
-  clickOnSendMessageBtn() {
-    this.sendMessageBtn.click();
+  get purchaseBtn() {
+    return cy.get(".btn", "Purchase");
+  }
+  clickPurchaseBtn() {
+    this.purchaseBtn.click();
+  }
+
+  get successfulMessageModal() {
+    return cy.get(".sweet-alert");
+  }
+  assertSuccessfulMessageModal() {
+    this.successfulMessageModal.should("be.visible");
+  }
+
+  get okBtn() {
+    return cy.get(".confirm", "OK");
+  }
+  clickOKBtn() {
+    this.okBtn.click();
   }
 }
 
