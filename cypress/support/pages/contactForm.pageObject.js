@@ -3,24 +3,28 @@ import PageObject from '../PageObject';
 class ContactFormPageObject extends PageObject {
   url = '/index.html';
 
-  get emailField() {
-    return cy.get('#recipient-email');
-  }
-
   get nameField() {
-    return cy.get('#recipient-name');
+    return cy.get('#name');
   }
 
-  get messageField() {
-    return cy.get('#message-text');
+  get countryField() {
+    return cy.get('#country');
   }
 
-  get sendMessageBtn() {
-    return cy.contains('.btn', 'Send message');
+  get cityField() {
+    return cy.get('#city');
   }
 
-  typeEmail(email) {
-    this.emailField.type(email, { force: true });
+  get cardField() {
+    return cy.get('#card');
+  }
+
+  get monthField() {
+    return cy.get('#month');
+  }
+
+  get yearField() {
+    return cy.get('#year');
   }
 
   typeName(name) {
@@ -31,8 +35,24 @@ class ContactFormPageObject extends PageObject {
     this.messageField.type(message);
   }
 
-  clickOnSendMessageBtn() {
-    this.sendMessageBtn.click();
+  typeCountry(country) {
+    this.countryField.type(country, { force: true });
+  }
+
+  typeCity(city) {
+    this.cityField.type(city, { force: true });
+  }
+
+  typeCard(card) {
+    this.cardField.type(card, { force: true });
+  }
+
+  typeMonth(month) {
+    this.monthField.type(month, { force: true });
+  }
+
+  typeYear(year) {
+    this.yearField.type(year, { force: true });
   }
 }
 
