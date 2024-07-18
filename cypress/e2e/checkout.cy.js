@@ -1,11 +1,7 @@
 /// <reference types='cypress' />
 
 describe('', () => {
-  before(() => {
+  before(() => {});
 
-  });
-
-  it('', () => {
-
-  });
+  it('', () => {});
 });
