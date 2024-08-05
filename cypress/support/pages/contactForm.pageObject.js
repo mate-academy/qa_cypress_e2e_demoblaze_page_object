@@ -19,20 +19,34 @@ class ContactFormPageObject extends PageObject {
     return cy.contains('.btn', 'Send message');
   }
 
-  typeEmail(email) {
-    this.emailField.type(email, { force: true });
-  }
-
-  typeName(name) {
-    this.nameField.type(name, { force: true });
+  get orderModal() {
+    return cy.get('#orderModal');
   }
 
   typeMessage(message) {
     this.messageField.type(message);
   }
 
-  clickOnSendMessageBtn() {
-    this.sendMessageBtn.click();
+  fillOrderForm(name, country, city, card, month, year) {
+    cy.get('#name').type(name);
+    cy.get('#country').type(country);
+    cy.get('#city').type(city);
+    cy.get('#card').type(card);
+    cy.get('#month').type(month);
+    cy.get('#year').type(year);
+  }
+
+  clickPurchaseButton() {
+    cy.contains('Purchase').click();
+  }
+
+  assertAlert(expectedMessage) {
+    this.orderModal.should('be.visible');
+    this.orderModal.should('contain', expectedMessage);
+  }
+
+  clickOkButton() {
+    cy.get('.confirm').should('be.visible').click();
   }
 }
 
