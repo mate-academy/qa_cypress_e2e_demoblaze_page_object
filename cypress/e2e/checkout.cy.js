@@ -5,15 +5,18 @@ import { faker } from '@faker-js/faker';
 
 /// <reference types='cypress' />
 
-describe('Checkout process', () => {
-  const homePage = new HomeAndCataloguePageObject();
-  const cartPage = new CartPage();
-  before(() => {
 
+const homePage = new HomeAndCataloguePageObject();
+const cartPage = new CartPage();
+
+describe('Checkout process', () => {
+  
+  before(() => {
+    homePage.visit();
   });
 
   it('should complete the checkout process', () => {
-    orderDetails = {
+    const orderDetails = {
       name: faker.name.firstName(),
       country: faker.address.country(),
       city: faker.address.city(),
