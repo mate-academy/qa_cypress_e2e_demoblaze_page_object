@@ -1,43 +1,48 @@
-import OrderFormPageObject from '../support/pages/orderForm.pageObject';
 import HomeAndCataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
+import CartPage from '../support/pages/cartPage.pageObject';
 import { faker } from '@faker-js/faker';
+
 /// <reference types='cypress' />
 
-const contactForm = new OrderFormPageObject();
-const homePage = new HomeAndCataloguePageObject();
+describe('Checkout process', () => {
+  const homePage = new HomeAndCataloguePageObject();
+  const cartPage = new CartPage();
 
-const orderData = {
-  name: faker.name.firstName(),
-  country: faker.random.word(),
-  city: faker.random.word(),
-  creditCard: '1111-1111-1111-1111',
-  month: faker.random.word(),
-  year: 2024,
-  successMessage: 'Thank you for your purchase!'
-};
-
-describe('User purchasing flow', () => {
   before(() => {
     homePage.visit();
   });
 
-  it('should allow user to buy a product', () => {
+  it('should complete the checkout process', () => {
+    const orderDetails = {
+      name: faker.name.firstName(),
+      country: faker.address.country(),
+      city: faker.address.city(),
+      card: faker.finance.creditCardNumber(),
+      month: faker.date.month(),
+      year: faker.date.future().getFullYear().toString()
+    };
+
+    homePage.visit();
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
-    homePage.clickOnBtn('Add to cart');
-    homePage.clickOnLink('Cart');
-    homePage.assertAllert('Product added');
-    homePage.clickOnBtn('Place Order');
 
-    contactForm.nameField.type(orderData.name);
-    contactForm.countryField.type(orderData.country);
-    contactForm.cityField.type(orderData.city);
-    contactForm.creditCardField.type(orderData.creditCard);
-    contactForm.monthField.type(orderData.month);
-    contactForm.yearField.type(orderData.year);
-    homePage.clickOnBtn('Purchase');
+    cartPage.addToCart();
 
-    contactForm.confirmBtn.click();
+    cartPage.goToCart();
+
+    cartPage.assertProductInCart('Sony vaio i7');
+
+    cartPage.placeOrder();
+
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(1000);
+    cartPage.fillOrderForm(orderDetails);
+
+    cartPage.purchase();
+
+    cartPage.assertOrderData();
+
+    cartPage.confirmOrder();
   });
 });
