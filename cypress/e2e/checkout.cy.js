@@ -41,7 +41,7 @@ describe('Checkout process', () => {
 
     cartPage.purchase();
 
-    cartPage.assertOrderData();
+    cartPage.assertOrderData('name', 'card');
 
     cartPage.confirmOrder();
   });
