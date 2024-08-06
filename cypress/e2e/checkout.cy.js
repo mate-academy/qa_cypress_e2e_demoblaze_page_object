@@ -13,7 +13,7 @@ describe('Checkout process', () => {
   });
 
   it('should complete the checkout process', () => {
-    const orderDetails = {
+    orderDetails = {
       name: faker.name.firstName(),
       country: faker.address.country(),
       city: faker.address.city(),
@@ -41,7 +41,7 @@ describe('Checkout process', () => {
 
     cartPage.purchase();
 
-    cartPage.assertOrderData();
+    cartPage.assertOrderData(orderDetails);
 
     cartPage.confirmOrder();
 
