@@ -3,7 +3,6 @@ import HomeAndCataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
 
 /// <reference types='cypress' />
-
 const homePage = new HomeAndCataloguePageObject();
 const cartPage = new CartPageObject();
 
@@ -30,18 +29,18 @@ describe('Demoblaze', () => {
     homePage.clickOnCart();
     homePage.assertAllert(testData.alertMessage);
     homePage.clickOnLink(testData.link);
-    cartPage.productAssert.should('contain', testData.product);
+    cartPage.assertProduct(testData.product);
     cartPage.clickOrderBtn();
-    cartPage.nameField.type(user.username);
-    cartPage.countryField.type(user.country);
-    cartPage.cityField.type(user.city);
-    cartPage.creditCardField.type(user.creditCard);
-    cartPage.monthField.type(user.month);
-    cartPage.yearField.type(user.year);
+    cartPage.fillTheNameField(user.username);
+    cartPage.fillTheCountryField(user.country);
+    cartPage.fillTheCityField(user.city);
+    cartPage.fillTheCreditCardField(user.creditCard);
+    cartPage.fillTheMonthField(user.month);
+    cartPage.fillTheYearField(user.year);
     cartPage.clickPurchaseBtn();
-    cartPage.orderAssert.should('contain', testData.successMessage);
-    cartPage.cardNumberAssert.should('contain', user.username);
-    cartPage.cardNumberAssert.should('contain', user.creditCard);
+    cartPage.assertOrderConfirmation(testData.successMessage);
+    cartPage.assertName(user.username);
+    cartPage.assertCardNumber(user.creditCard);
     cartPage.clickOkBtn();
   });
 });

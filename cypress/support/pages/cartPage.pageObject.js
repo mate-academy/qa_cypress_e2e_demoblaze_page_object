@@ -3,36 +3,32 @@ import PageObject from '../PageObject';
 class CartPageObject extends PageObject {
   url = '/index.html';
 
-  get productAssert() {
-    return cy.get('.table');
-  }
-
   clickOrderBtn() {
     return cy.contains('.btn', 'Place Order').click();
   }
 
-  get nameField() {
-    return cy.get('#name');
+  fillTheNameField(name) {
+    cy.get('#name').type(name);
   }
 
-  get countryField() {
-    return cy.get('#country');
+  fillTheCountryField(country) {
+    cy.get('#country').type(country);
   }
 
-  get cityField() {
-    return cy.get('#city');
+  fillTheCityField(city) {
+    cy.get('#city').type(city);
   }
 
-  get creditCardField() {
-    return cy.get('#card');
+  fillTheCreditCardField(creditCard) {
+    cy.get('#card').type(creditCard);
   }
 
-  get monthField() {
-    return cy.get('#month');
+  fillTheMonthField(month) {
+    cy.get('#month').type(month);
   }
 
-  get yearField() {
-    return cy.get('#year');
+  fillTheYearField(year) {
+    cy.get('#year').type(year);
   }
 
   clickPurchaseBtn() {
@@ -43,16 +39,24 @@ class CartPageObject extends PageObject {
     return cy.get('h2');
   }
 
-  get cardNumberAssert() {
-    return cy.get('.lead');
-  }
-
-  get nameAssert() {
-    return cy.get('.lead');
-  }
-
   clickOkBtn() {
     return cy.contains('.btn', 'OK').click();
+  }
+
+  assertProduct(productName) {
+    cy.get('.table').should('contain', productName);
+  }
+
+  assertOrderConfirmation(expectedMessage) {
+    cy.get('h2').should('contain', expectedMessage);
+  }
+
+  assertCardNumber(cardNumber) {
+    cy.get('.lead').should('contain', cardNumber);
+  }
+
+  assertName(name) {
+    cy.get('.lead').should('contain', name);
   }
 }
 
