@@ -38,6 +38,7 @@ class CartPage extends PageObject {
   assertOrderData() {
     cy.contains('Id').should('be.visible');
     cy.contains('Amount').should('be.visible');
+    cy.get('input[name="cardNumber"]').invoke('val').should('not.be.empty');
     cy.contains('Card Number').should('be.visible');
   }
 
