@@ -10,7 +10,7 @@ class ContactFormPageObject extends PageObject {
   get nameField() {
     return cy.get('#recipient-name');
   }
-
+  
   get messageField() {
     return cy.get('#message-text');
   }
