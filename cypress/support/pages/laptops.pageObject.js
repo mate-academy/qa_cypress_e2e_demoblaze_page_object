@@ -1,5 +1,5 @@
 class LaptopsPage {
-  clickSony() {
+  clickTheCategory() {
     cy.get('.card-title').contains('Sony vaio i7').click();
   }
 
@@ -7,7 +7,7 @@ class LaptopsPage {
     cy.get('.btn.btn-success.btn-lg').contains('Add to cart').click();
   }
 
-  getAlert(alertMessage) {
+  assertAlert(alertMessage) {
     cy.on('window.alert', (alertText) => {
       expect(alertText).to.equal(alertMessage);
     });
