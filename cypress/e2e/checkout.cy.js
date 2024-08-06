@@ -25,14 +25,12 @@ describe('', () => {
 
     productInfo.clickOnButton('Add to cart');
 
-    cy.on('window:alert', (alertText) => {
-      expect(alertText).to.contains('Product added');
-    });
+    productInfo.checkAlertContains('Product added');
 
-    productInfo.clickOnCart('Cart');
+    productInfo.clickOnCartIcon();
 
     cart.assertProductInCart('Sony vaio i7');
-    cart.clickPlaceOrder('Place Order');
+    cart.clickPlaceOrderButton();
 
     placeOrder.typeName(fakeUser.name);
     placeOrder.typeCity(fakeUser.city);

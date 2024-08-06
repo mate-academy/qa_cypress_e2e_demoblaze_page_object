@@ -11,8 +11,8 @@ class CartPageObject extends PageObject {
     this.cartItems.contains(productName).should('be.visible');
   }
 
-  clickPlaceOrder(buttonName) {
-    cy.contains('button', buttonName).click();
+  clickPlaceOrderButton() {
+    cy.contains('button', 'Place Order').click();
   }
 }
 

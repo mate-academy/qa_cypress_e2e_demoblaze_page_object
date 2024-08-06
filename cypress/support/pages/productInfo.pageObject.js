@@ -8,9 +8,14 @@ class ProductInfoPageObject extends PageObject {
       .click();
   }
 
-  clickOnCart(cartName) {
-    cy.contains('#cartur', cartName)
-      .click();
+  clickOnCartIcon() {
+    cy.contains('#cartur', 'Cart').click();
+  }
+
+  checkAlertContains(text) {
+    cy.on('window:alert', (alertText) => {
+      expect(alertText).to.contains(text);
+    });
   }
 }
 
