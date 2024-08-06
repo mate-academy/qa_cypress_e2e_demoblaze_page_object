@@ -10,6 +10,8 @@ describe('Purchase Laptop', () => {
   const laptopsPage = new LaptopsPage();
   const cartPage = new CartPage();
   const orderPage = new OrderPage();
+  const cardNumber = '5555444433332222';
+  const name = 'Mariia';
 
   it('Should make the purchase', () => {
     homePage.visit();
@@ -22,15 +24,16 @@ describe('Purchase Laptop', () => {
     cartPage.assertCartContainsProduct('Sony vaio i7');
     cartPage.clickOrderButton();
 
-    orderPage.fillNameField.type('Mariia');
+    orderPage.fillNameField.type(name);
     orderPage.fillCountryField.type('Ukraine');
     orderPage.fillCityField.type('Kyiv');
-    orderPage.fillCardField.type('5555444433332222');
+    orderPage.fillCardField.type(cardNumber);
     orderPage.fillMonthField.type('07');
     orderPage.fillYearField.type('2026');
 
     orderPage.clickPurchaseButton();
-    orderPage.assertOrder.should('contain', 'Name');
+    orderPage.assertOrderCard(cardNumber);
+    //orderPage.assertOrderName(name);
     orderPage.clickOkButton();
   });
 });

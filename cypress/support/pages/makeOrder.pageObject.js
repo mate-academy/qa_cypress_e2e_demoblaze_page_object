@@ -27,9 +27,13 @@ class OrderPage {
     cy.get('button').contains('Purchase').click();
   }
 
-  get assertOrder() {
-    return cy.contains('Name');
+  assertOrderCard(cardNumber) {
+    cy.contains('Card Number').should('contain', cardNumber);
   }
+
+  //assertOrderName(name) {
+  //  cy.contains('Name').should('contain', name);
+  //}
 
   clickOkButton() {
     cy.get('.confirm.btn.btn-lg.btn-primary').click();
