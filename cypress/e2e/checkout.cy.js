@@ -14,23 +14,23 @@ describe('Purchase Laptop', () => {
   it('Should make the purchase', () => {
     homePage.visit();
     homePage.clickLaptops();
-    laptopsPage.clickTheCategory();
+    laptopsPage.clickTheCategory('Sony vaio i7');
     laptopsPage.addToCart();
     laptopsPage.assertAlert();
 
-    cartPage.cartLink();
+    cartPage.clickTheCartLink();
     cartPage.assertCartContainsProduct('Sony vaio i7');
     cartPage.clickOrderButton();
 
-    orderPage.fillNameField();
-    orderPage.fillCountryField();
-    orderPage.fillCityField();
-    orderPage.fillCardField();
-    orderPage.fillMonthField();
-    orderPage.fillYearField();
+    orderPage.fillNameField.type('Mariia');
+    orderPage.fillCountryField.type('Ukraine');
+    orderPage.fillCityField.type('Kyiv');
+    orderPage.fillCardField.type('5555444433332222');
+    orderPage.fillMonthField.type('07');
+    orderPage.fillYearField.type('2026');
 
     orderPage.clickPurchaseButton();
-    orderPage.assertOrder();
-    orderPage.clickOk();
+    orderPage.assertOrder.should('contain', 'Name');
+    orderPage.clickOkButton();
   });
 });

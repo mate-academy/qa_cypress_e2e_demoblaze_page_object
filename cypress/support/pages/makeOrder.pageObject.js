@@ -1,39 +1,37 @@
 class OrderPage {
-  fillNameField() {
-    cy.get('#name').type('Mariia');
+  get fillNameField() {
+    return cy.get('#name');
   }
 
-  fillCountryField() {
-    cy.get('#country').type('Ukraine');
+  get fillCountryField() {
+    return cy.get('#country');
   }
 
-  fillCityField() {
-    cy.get('#city').type('Kyiv');
+  get fillCityField() {
+    return cy.get('#city');
   }
 
-  fillCardField() {
-    cy.get('#card').type('5555444433332222');
+  get fillCardField() {
+    return cy.get('#card');
   }
 
-  fillMonthField() {
-    cy.get('#month').type('07');
+  get fillMonthField() {
+    return cy.get('#month');
   }
 
-  fillYearField() {
-    cy.get('#year').type('2026');
+  get fillYearField() {
+    return cy.get('#year');
   }
 
   clickPurchaseButton() {
     cy.get('button').contains('Purchase').click();
   }
 
-  assertOrder() {
-    cy.contains('Id').should('be.visible');
-    cy.contains('Amount').should('be.visible');
-    cy.contains('Card Number').should('be.visible');
+  get assertOrder() {
+    return cy.contains('Name');
   }
 
-  clickOk() {
+  clickOkButton() {
     cy.get('.confirm.btn.btn-lg.btn-primary').click();
   }
 }

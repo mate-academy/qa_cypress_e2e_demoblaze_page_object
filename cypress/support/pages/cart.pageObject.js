@@ -3,7 +3,7 @@ class CartPage {
     cy.get('.btn.btn-success').click();
   }
 
-  cartLink() {
+  clickTheCartLink() {
     cy.contains('Cart').click();
   }
 
