@@ -1,8 +1,6 @@
 import PageObject from '../PageObject';
-
 class HomeAndCataloguePageObject extends PageObject {
   url = '/index.html';
-
   clickOnLink(linkName) {
     cy.contains('.nav-link', linkName)
       .click();
@@ -15,6 +13,11 @@ class HomeAndCataloguePageObject extends PageObject {
 
   clickOnProduct(product) {
     cy.contains('.hrefch', product)
+      .click();
+  }
+
+  clickOnBtn(button) {
+    cy.contains('.btn', button)
       .click();
   }
 }
