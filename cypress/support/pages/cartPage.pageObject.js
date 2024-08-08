@@ -35,10 +35,11 @@ class CartPage extends PageObject {
     cy.contains('button', 'Purchase').click();
   }
 
-  assertOrderData() {
+  assertOrderData({ name, card }) {
     cy.contains('Id').should('be.visible');
     cy.contains('Amount').should('be.visible');
-    cy.contains('Card Number').should('be.visible');
+    cy.contains(name).should('be.visible');
+    cy.contains(card).should('be.visible');
   }
 
   confirmOrder() {
