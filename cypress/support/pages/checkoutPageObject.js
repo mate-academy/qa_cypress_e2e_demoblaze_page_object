@@ -10,7 +10,7 @@ class CheckoutPageObject extends PageObject {
       cy.get('#name').type(name);
     }
 
-    clickOrderModal(orderButton) {
+    clickOrderModal() {
         cy.get('#btn btn-success').click()
     }
     
@@ -34,11 +34,11 @@ class CheckoutPageObject extends PageObject {
         cy.get('#year').type(year)
     }
 
-    clickPurchaseBtn(btn) {
-        cy.get('#btn btn-primary').click(btn)
+    clickPurchaseBtn() {
+        cy.get('#btn btn-primary').click()
     }
 
-    clickOnConfirmBtn(confirmBtn) {
+    clickOnConfirmBtn() {
         cy.get('#confirm btn btn-lg btn-primary').click();
     }
 
