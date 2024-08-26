@@ -1,3 +1,5 @@
+const { faker } = require('@faker-js/faker');
+const moment = require('moment');
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
@@ -5,15 +7,29 @@ module.exports = defineConfig({
     baseUrl: 'https://www.demoblaze.com/',
     setupNodeEvents(on, config) {
       on('task', {
-        generateUser() {
+        generateUserData() {
           const randomNumber = Math.ceil(Math.random(1000) * 1000);
+          const username = faker.person.firstName() + `${randomNumber}`;
+
           return {
-            username: faker.name.firstName() + `${randomNumber}`,
-            email: 'test' + `${randomNumber}` + '@mail.com',
+            username,
+            email: `test${username}@mail.com`,
             password: 'Password12345!'
           };
+        },
+
+        placeOrderFormData() {
+          return {
+            name: faker.person.firstName(),
+            country: faker.location.country(),
+            city: faker.location.city(),
+            creditCard:
+              faker.finance.creditCardNumber('6379-####-####-####'),
+            month: moment().format('MM'),
+            year: moment().format('YYYY')
+          };
         }
-      })
+      });
     }
   }
 });
