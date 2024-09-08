@@ -1,7 +1,8 @@
+import { faker } from '@faker-js/faker';
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
 import HomeAndCataloguePageObject
   from '../support/pages/homeСatalogue.pageObject';
-import faker from 'faker';
+
 /// <reference types='cypress' />
 
 const contactForm = new ContactFormPageObject();
