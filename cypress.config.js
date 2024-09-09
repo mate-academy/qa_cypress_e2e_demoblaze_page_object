@@ -1,8 +1,10 @@
 const { defineConfig } = require('cypress');
+const { faker } = require('@faker-js/faker');
 
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://www.demoblaze.com/',
+    defaultCommandTimeout: 12000,
     setupNodeEvents(on, config) {
       on('task', {
         generateUser() {
@@ -13,7 +15,7 @@ module.exports = defineConfig({
             password: 'Password12345!'
           };
         }
-      })
+      });
     }
   }
 });

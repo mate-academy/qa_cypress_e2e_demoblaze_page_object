@@ -1,38 +1,66 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 import PageObject from '../PageObject';
 
 class ContactFormPageObject extends PageObject {
-  url = '/index.html';
-
-  get emailField() {
-    return cy.get('#recipient-email');
-  }
+  url = '/cart.html';
 
   get nameField() {
-    return cy.get('#recipient-name');
+    return cy.get('#name');
   }
 
-  get messageField() {
-    return cy.get('#message-text');
+  get countryField() {
+    return cy.get('#country');
   }
 
-  get sendMessageBtn() {
-    return cy.contains('.btn', 'Send message');
+  get cityField() {
+    return cy.get('#city');
   }
 
-  typeEmail(email) {
-    this.emailField.type(email, { force: true });
+  get cardField() {
+    return cy.get('#card');
   }
 
-  typeName(name) {
-    this.nameField.type(name, { force: true });
+  get monthField() {
+    return cy.get('#month');
   }
 
-  typeMessage(message) {
-    this.messageField.type(message);
+  get yearField() {
+    return cy.get('#year');
   }
 
-  clickOnSendMessageBtn() {
-    this.sendMessageBtn.click();
+  fillForm() {
+    this.nameField.type('User 123');
+    this.countryField.type('Ukraine');
+    this.cityField.type('Kyiv');
+    this.cardField.type('4444 4444 1111 1111');
+    this.monthField.type('3');
+    this.yearField.type('2025');
+  }
+
+  assertForm() {
+    cy.contains('p', 'Id:').as('submitForm');
+
+    cy.get('@submitForm')
+      .should('exist');
+
+    cy.get('@submitForm')
+      .should('include.text', 'Amount: 790 USD');
+
+    cy.get('@submitForm')
+      .should('include.text', 'Card Number: 4444 4444 1111 1111');
+
+    cy.get('@submitForm')
+      .should('include.text', 'Name: User 123');
+  }
+
+  clickOnPurchase() {
+    cy.contains('.btn', 'Purchase')
+      .click();
+  }
+
+  clickOk() {
+    cy.contains('button', 'OK')
+      .click();
   }
 }
 
