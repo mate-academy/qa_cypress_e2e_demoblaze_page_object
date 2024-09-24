@@ -7,4 +7,5 @@ class CheckoutPageObject extends PageObject {
     cy.get(".btn-success", linkName).click();
   }
 }
+
 export default CheckoutPageObject;
