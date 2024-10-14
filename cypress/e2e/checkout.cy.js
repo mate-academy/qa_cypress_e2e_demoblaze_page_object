@@ -2,7 +2,7 @@
 
 import HomeAndCataloguePageObject from '../support/pages/homeСatalogue.pageObject';
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
-import { faker } from '@faker-js/faker';  // Обновленный импорт
+import { faker } from '@faker-js/faker';
 
 const homePage = new HomeAndCataloguePageObject();
 const contactForm = new ContactFormPageObject();
@@ -21,7 +21,7 @@ const testData = {
 
 describe('Demoblaze Checkout Flow', () => {
   before(() => {
-    homePage.visit(); // Переход на домашнюю страницу
+    homePage.visit();
   });
 
   it('should complete checkout flow', () => {
@@ -34,25 +34,20 @@ describe('Demoblaze Checkout Flow', () => {
     homePage.assertAllert(testData.alertMessage);
 
 
-    cy.contains('Cart').click();
-    cy.contains(testData.product).should('be.visible');
-    cy.contains('Place Order').click();
+    homePage.clickOnCart();
+    homePage.placeOrder();
+    homePage.fillOrderForm(testData.name,
+        testData.country,
+        testData.city,
+        testData.card,
+        testData.month,
+        testData.year);
 
 
-    cy.get('#name').type(testData.name);
-    cy.get('#country').type(testData.country);
-    cy.get('#city').type(testData.city);
-    cy.get('#card').type(testData.card);
-    cy.get('#month').type(testData.month);
-    cy.get('#year').type(testData.year);
+    homePage.Purchase();
+    homePage.assertModalContent(testData.name, testData.card);
 
-
-    cy.contains('Purchase').click();
-
-    cy.get('.sweet-alert').should('contain', testData.name);
-    cy.get('.sweet-alert').should('contain', testData.card);
-
-    cy.contains('OK').click();
+    homePage.ConfirmOk();
   });
 });
 
