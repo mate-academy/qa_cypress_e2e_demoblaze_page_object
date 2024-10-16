@@ -1,10 +1,10 @@
 /// <reference types='cypress' />
 // eslint-disable-next-line max-len
 import HomeAndCataloguePageObject
-  from '../support/pages/homeСatalogue.pageObject';
+  from '../support/pages/homeCatalogue.pageObject';
 import { faker } from '@faker-js/faker';
 
-const homePage = new HomeAndCataloguePageObject(); // Создаем экземпляр класса
+const homePage = new HomeAndCataloguePageObject();
 
 const testData = {
   product: 'Sony vaio i7',
@@ -28,7 +28,7 @@ describe('Demoblaze Checkout Flow', () => {
     homePage.clickOnCategory(testData.category);
     homePage.clickOnProduct(testData.product);
     homePage.addToCart();
-    homePage.assertAllert(testData.alertMessage);
+    homePage.assertAlert(testData.alertMessage);
 
     homePage.clickOnCart();
     homePage.placeOrder();
@@ -41,8 +41,8 @@ describe('Demoblaze Checkout Flow', () => {
       testData.year
     );
 
-    homePage.Purchase();
+    homePage.purchase();
     homePage.assertModalContent(testData.name, testData.card);
-    homePage.ConfirmOk();
+    homePage.confirmOk();
   });
 });
