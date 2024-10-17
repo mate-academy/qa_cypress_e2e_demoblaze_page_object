@@ -1,4 +1,3 @@
-//correct
 import PageObject from '../PageObject';
 
 class HomeAndCataloguePageObject extends PageObject {
