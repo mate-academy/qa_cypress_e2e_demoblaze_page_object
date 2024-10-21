@@ -1,15 +1,15 @@
-import PlaceOnOrderPageObject
+import PlaceAnOrderPageObject
   from '../support/pages/PlaceAnOrder.pageObject.js';
 import PageObject from '../support/PageObject.js';
 import HomeAndCataloguePageObject
   from '../support/pages/homeCatalogue.pageObject';
 const { faker } = require('@faker-js/faker');
 
-const ProductPage = new PlaceOnOrderPageObject();
+const ProductPage = new PlaceAnOrderPageObject();
 const homePage = new HomeAndCataloguePageObject();
-const allertAssertion = new PageObject();
-const cartPage = new PlaceOnOrderPageObject();
-const submitOrderFrom = new PlaceOnOrderPageObject();
+const alertAssertion = new PageObject();
+const cartPage = new PlaceAnOrderPageObject();
+const submitOrderForm = new PlaceAnOrderPageObject();
 
 /// <reference types='cypress' />
 
@@ -33,19 +33,19 @@ describe('Demoblaze (POM basics) Workflow', () => {
   it('should provide an ability to place an order', () => {
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
-    ProductPage.clickOnAddToCardBtn();
-    allertAssertion.assertAllert('Product added');
+    ProductPage.clickOnAddToCartBtn();
+    alertAssertion.assertAllert('Product added');
     homePage.clickOnLink('Cart');
     cartPage.ensureProductInCart('Sony vaio i7');
     cartPage.openPlaceOrderForm();
-    submitOrderFrom.typeName(testData.name);
-    submitOrderFrom.typeCoutry(testData.country);
-    submitOrderFrom.typeCity(testData.city);
-    submitOrderFrom.typeCreditCard(testData.creditCard);
-    submitOrderFrom.typeMonth(testData.month);
-    submitOrderFrom.typeYear(testData.year);
-    submitOrderFrom.clickOnPurchaseBtn();
-    submitOrderFrom.ensureSuccessAllert(testData.successMessage);
-    submitOrderFrom.sumbitSucessModal();
+    submitOrderForm.typeName(testData.name);
+    submitOrderForm.typeCountry(testData.country);
+    submitOrderForm.typeCity(testData.city);
+    submitOrderForm.typeCreditCard(testData.creditCard);
+    submitOrderForm.typeMonth(testData.month);
+    submitOrderForm.typeYear(testData.year);
+    submitOrderForm.clickOnPurchaseBtn();
+    submitOrderForm.ensureSuccessAlert(testData.successMessage);
+    submitOrderForm.sumbitSuccessModal();
   });
 });

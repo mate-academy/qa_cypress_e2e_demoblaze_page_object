@@ -1,6 +1,6 @@
 import PageObject from '../PageObject';
 
-class PlaceOnOrderPageObject extends PageObject {
+class PlaceAnOrderPageObject extends PageObject {
   url = '/index.html';
 
   get emailField() {
@@ -71,7 +71,7 @@ class PlaceOnOrderPageObject extends PageObject {
     this.nameField.type(name);
   }
 
-  typeCoutry(country) {
+  typeCountry(country) {
     this.countryField.type(country);
   }
 
@@ -87,15 +87,11 @@ class PlaceOnOrderPageObject extends PageObject {
     this.yearFiedl.type(year);
   }
 
-  typeMessage(message) {
-    this.messageField.type(message);
-  }
-
   clickOnSendMessageBtn() {
     this.sendMessageBtn.click();
   }
 
-  clickOnAddToCardBtn() {
+  clickOnAddToCartBtn() {
     this.BtnForAddedProduct.click();
   }
 
@@ -111,13 +107,13 @@ class PlaceOnOrderPageObject extends PageObject {
     this.purchaseBtn.click();
   }
 
-  ensureSuccessAllert(successMessage) {
+  ensureSuccessAlert(successMessage) {
     this.messageAllert.should('contain', successMessage);
   }
 
-  sumbitSucessModal() {
+  sumbitSuccessModal() {
     this.confirmAllertBtn.click();
   }
 }
 
-export default PlaceOnOrderPageObject;
+export default PlaceAnOrderPageObject;
