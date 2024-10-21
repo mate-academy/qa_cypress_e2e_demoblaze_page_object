@@ -24,7 +24,7 @@ describe('Checkout Test', () => {
     cy.contains('Place Order').click();
 
     // Заповнення форми замовлення
-    cy.get('#name').type('mariana khrys');
+    cy.get('#name').type('mariana khrys'); // Ensure this matches the expected output
     cy.get('#country').type('Canada');
     cy.get('#city').type('Ottawa');
     cy.get('#card').type('1234455666778');
@@ -33,7 +33,7 @@ describe('Checkout Test', () => {
     cy.contains('Purchase').click();
 
     // Перевірка, що модальне вікно містить правильні дані
-    cy.get('.lead').should('contain.text', 'mariana khr'); // Перевіряємо скорочене ім'я
+    cy.get('.lead').should('contain.text', 'mariana khrys'); // Now matching the input
     cy.get('.lead').should('contain.text', '790 USD');
     cy.get('.lead').should('contain.text', '1234455666778');
 
