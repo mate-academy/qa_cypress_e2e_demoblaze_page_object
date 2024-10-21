@@ -14,7 +14,7 @@ const homePage = new HomeAndCataloguePageObject();
 const productPage = new ProductPageObject();
 const cartPage = new CartPage();
 
-const catagoryName = 'Laptops';
+const categoryName = 'Laptops';
 const productName = 'Sony vaio i7';
 const orderName = faker.person.firstName();
 const userCountry = faker.location.country();
@@ -30,7 +30,7 @@ describe('Demoblaze Checkout Flow', () => {
   });
 
   it('should complete the checkout process', () => {
-    homePage.clickOnCategory(catagoryName);
+    homePage.clickOnCategory(categoryName);
     homePage.clickOnProduct(productName);
 
     productPage.addToCartBtn.click();

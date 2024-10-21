@@ -26,8 +26,7 @@ class CartPage extends PageObject {
     cy.contains('.btn', 'Purchase').click();
   };
 
-  assertEnteredDataOnModal
-  (orderName, creditCard) {
+  assertEnteredDataOnModal (orderName, creditCard) {
     cy.get('.lead.text-muted').should('contain', orderName)
       .and('contain', creditCard);
   };
