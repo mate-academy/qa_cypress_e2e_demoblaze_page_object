@@ -1,3 +1,4 @@
+const { faker } = require('@faker-js/faker'); // Імпорт FakerJS
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
@@ -6,14 +7,14 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       on('task', {
         generateUser() {
-          const randomNumber = Math.ceil(Math.random(1000) * 1000);
+          const randomNumber = Math.ceil(Math.random() * 1000);
           return {
             username: faker.name.firstName() + `${randomNumber}`,
             email: 'test' + `${randomNumber}` + '@mail.com',
             password: 'Password12345!'
           };
         }
-      })
+      });
     }
   }
 });
