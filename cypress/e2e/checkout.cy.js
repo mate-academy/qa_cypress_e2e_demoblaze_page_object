@@ -1,43 +1,59 @@
+import { faker } from '@faker-js/faker';
 
-describe('Checkout Test', () => {
-  it('should complete a purchase and verify order details', () => {
-    // Дії для додавання продукту до кошика
-    cy.visit('https://www.demoblaze.com/index.html');
-    cy.contains('Laptops').click();
-    cy.contains('Sony vaio i7').click();
+/// <reference types='cypress' />
+
+const categoryName = 'Laptops';
+const product = 'Sony vaio i7';
+const testMessage = 'Product added';
+const cart = 'Cart';
+const item = 'Sony vaio i7';
+const user = {
+  name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+  country: 'Canada',
+  city: 'Ottawa',
+  creditCard: {
+    number: faker.finance.creditCardNumber(),
+    expirationMonth: faker.date.month(),
+    expirationYear: faker.date.future({ years: 5 }).getFullYear()
+  }
+};
+
+describe('Visit the home page', () => {
+  before(() => {
+    cy.visit('/');
+  });
+
+  it('Should complete a flow', () => {
+    cy.contains(categoryName).click();
+    cy.contains(product).click();
     cy.contains('Add to cart').click();
 
-    // Перевірка повідомлення
     cy.on('window:alert', (str) => {
-      expect(str).to.equal('Product added');
+      expect(str).to.equal(testMessage);
     });
 
-    // Перехід до кошика
-    cy.get('#cartur').click();
+    cy.contains(cart).click();
 
-    // Перевірка, що продукт в кошику
     cy.get('tr').within(() => {
-      cy.get('td').contains('Sony vaio i7').should('be.visible');
+      cy.get('td').contains(item).should('be.visible');
     });
 
-    // Клік на "Place order"
     cy.contains('Place Order').click();
 
-    // Заповнення форми замовлення
-    cy.get('#name').type('mariana khrys'); // Ensure this matches the expected output
-    cy.get('#country').type('Canada');
-    cy.get('#city').type('Ottawa');
-    cy.get('#card').type('1234455666778');
-    cy.get('#month').type('April');
-    cy.get('#year').type('2024');
+    // Заполнение формы заказа
+    cy.get('#name').type(user.name);
+    cy.get('#country').type(user.country);
+    cy.get('#city').type(user.city);
+    cy.get('#card').type(user.creditCard.number);
+    cy.get('#month').type(user.creditCard.expirationMonth);
+    cy.get('#year').type(user.creditCard.expirationYear);
     cy.contains('Purchase').click();
 
-    // Перевірка, що модальне вікно містить правильні дані
-    cy.get('.lead').should('contain.text', 'mariana khrys'); // Now matching the input
-    cy.get('.lead').should('contain.text', '790 USD');
-    cy.get('.lead').should('contain.text', '1234455666778');
+    // Проверка, что модальное окно содержит правильные данные
+    cy.get('.lead').should('include.text', user.name.split(' ')[0]); // Проверяем только имя
+    cy.get('.lead').should('include.text', user.creditCard.number); // Проверяем номер карты
 
-    // Клік на "ОК" для завершення покупки
+    // Клик на "ОК" для завершения покупки
     cy.get('button.confirm.btn.btn-lg.btn-primary').click();
   });
 });
