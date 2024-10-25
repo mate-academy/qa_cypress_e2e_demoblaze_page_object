@@ -1,11 +1,48 @@
 /// <reference types='cypress' />
+// eslint-disable-next-line max-len
+import HomeAndCataloguePageObject
+  from '../support/pages/homeCatalogue.pageObject';
+import { faker } from '@faker-js/faker';
 
-describe('', () => {
+const homePage = new HomeAndCataloguePageObject();
+
+const testData = {
+  product: 'Sony vaio i7',
+  category: 'Laptops',
+  alertMessage: 'Product added',
+  name: faker.person.firstName(),
+  country: faker.location.country(),
+  city: faker.location.city(),
+  card: faker.finance.creditCardNumber(),
+  month: faker.date.month(),
+  year: Math.floor(Math.random() * (2024 - 1900 + 1)) + 1900,
+  successMessage: 'Thanks for the message!!'
+};
+
+describe('Demoblaze Checkout Flow', () => {
   before(() => {
-
+    homePage.visit();
   });
 
-  it('', () => {
+  it('should complete checkout flow', () => {
+    homePage.clickOnCategory(testData.category);
+    homePage.clickOnProduct(testData.product);
+    homePage.addToCart();
+    homePage.assertAlert(testData.alertMessage);
 
+    homePage.clickOnCart();
+    homePage.placeOrder();
+    homePage.fillOrderForm(
+      testData.name,
+      testData.country,
+      testData.city,
+      testData.card,
+      testData.month,
+      testData.year
+    );
+
+    homePage.purchase();
+    homePage.assertModalContent(testData.name, testData.card);
+    homePage.confirmOk();
   });
 });
