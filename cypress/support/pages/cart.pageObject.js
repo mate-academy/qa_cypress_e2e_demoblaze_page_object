@@ -3,7 +3,7 @@ import PageObject from '../PageObject';
 class CartPageObject extends PageObject {
   assertProductInCart(prodName) {
     cy.get('tbody tr td:nth-child(2)')
-      .should('have.text', prodName + '\n');
+      .should('have.text', prodName);
   }
 
   placeOrder() {
@@ -22,7 +22,7 @@ class CartPageObject extends PageObject {
       .click();
   }
 
-  assertPurcaseInfo(name, cardNo) {
+  assertPurchaseInfo(name) {
     cy.get('.sweet-alert p.text-muted')
       .should('contain.text', 'Name: ' + name);
   }

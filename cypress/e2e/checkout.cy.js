@@ -1,5 +1,4 @@
-import HomeAndCataloguePageObject
-  from '../support/pages/homeCatalogue.pageObject';
+import HomeAndCataloguePageObject from '../support/pages/homeCatalogue.pageObject';
 import ProdPagePageObject from '../support/pages/prodPage.pageObject';
 import CartPageObject from '../support/pages/cart.pageObject';
 const homePage = new HomeAndCataloguePageObject();
@@ -41,7 +40,7 @@ describe('checkout flow', () => {
       testData.cardMonth,
       testData.cardYear
     );
-    cartPage.assertPurcaseInfo(testData.customerName, testData.customerCardNo);
+    cartPage.assertPurchaseInfo(testData.customerName);
     cartPage.closePurchaseModal();
   });
 });
