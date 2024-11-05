@@ -13,6 +13,7 @@ export const goodsFromServer = [
   'Honey',
   'Jam',
   'Garlic',
+  'Tomatoes',
 ];
 
 const prepareGoods = (goods, { field, isReverse }) => {
