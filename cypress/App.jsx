@@ -27,13 +27,7 @@ export const App = () => {
   const [originalGoods] = useState(goodsFromServer);
 
   const handleSortByName = () => {
-    setSortField('alphabetical');
-    setVisibleGoods(
-      prepareGoods(goodsFromServer, {
-        field: 'alphabetical',
-        isReverse: isReversed,
-      }),
-    );
+    return false;
   };
 
   const handleSortByLength = () => {
