@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import './App.scss';
 
-export const goodsFromServer = [
-  'Dumplings',
-  'Carrot',
-  'Eggs',
-  'Ice cream',
-  'Apple',
-  'Bread',
-];
+export const goodsFromServer = [];
 
 const prepareGoods = (goods, { field, isReverse }) => {
   const sortedGoods = [...goods];
