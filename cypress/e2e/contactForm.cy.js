@@ -1,13 +1,25 @@
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
-import HomeAndCataloguePageObject
-  from '../support/pages/homeCatalogue.pageObject';
+import HomeAndCataloguePageObject from '../support/pages/homeCatalogue.pageObject';
+import {
+  getRandomCountry,
+  getRandomCity,
+  getRandomAddress,
+  getRandomPostalCode,
+  getRandomPhoneNumber
+} from '../support/testData';
 import faker from 'faker';
+
 /// <reference types='cypress' />
 
 const contactForm = new ContactFormPageObject();
 const homePage = new HomeAndCataloguePageObject();
 
 const testData = {
+  country: getRandomCountry(),
+  city: getRandomCity(),
+  address: getRandomAddress(),
+  postalCode: getRandomPostalCode(),
+  phone: getRandomPhoneNumber(),
   email: faker.internet.email(),
   name: faker.name.firstName(),
   message: faker.random.words(),
