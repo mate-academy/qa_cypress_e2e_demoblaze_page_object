@@ -13,7 +13,7 @@ const {
 const testData = {
   name: getRandomName(),
   country: getRandomCountry(),
-  cities: getRandomCity(),
+  city: getRandomCity(),
   creditCard: getRandomCreditCard(),
   month: getRandomMonth(),
   year: getRandomYear()
@@ -45,7 +45,7 @@ describe('Login and Add to Cart Workflow', () => {
 
     cy.get('#name').should('be.visible').type(testData.name);
     cy.get('#country').should('be.visible').type(testData.country);
-    cy.get('#city').should('be.visible').type(testData.cities);
+    cy.get('#city').should('be.visible').type(testData.city);
     cy.get('#card').should('be.visible').type(testData.creditCard);
     cy.get('#month').should('be.visible').type(testData.month);
     cy.get('#year').should('be.visible').type(testData.year);
