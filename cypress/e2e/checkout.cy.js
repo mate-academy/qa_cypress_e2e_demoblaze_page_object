@@ -15,22 +15,22 @@ const homePage = new HomeAndCataloguePageObject();
 //   successMessage: 'Thanks for the message!!'
 // };
 
-describe('', () => {
+describe('testing card', () => {
   before(() => {
     homePage.visit();
   });
 
-  it('', () => {
+  it('should allow to purchase the product', () => {
     homePage.clickOnCategory('Laptop');
     homePage.clickOnProduct('Sony vaio i7');
     homePage.assertAllert('Product added');
-    homePage.clickOnAddToCartButton('.col-sm-12 > .btn');
+    homePage.clickOnAddToCartButton();
     homePage.clickOnLink('Cart');
     cartPage.assertProduct('Sony vaio i7');
     cartPage.clickOnPlaceOrderButton();
     cartPage.typeName('ukraina');
     cartPage.typeCountryField('ukraina');
-    cartPage.typecityField('ukraina');
+    cartPage.typeCityField('ukraina');
     cartPage.typeCardField(4449444944494449);
     cartPage.typeMonthField(12);
     cartPage.typeYearField(2008);

@@ -27,10 +27,6 @@ class CartPageObject extends PageObject {
     return cy.get('#year');
   }
 
-  typeMessage(message) {
-    this.messageField.type(message);
-  }
-
   typeName(name) {
     this.nameField.type(name, { force: true });
   }
@@ -39,7 +35,7 @@ class CartPageObject extends PageObject {
     this.countryField.type(country, { force: true });
   }
 
-  typecityField(city) {
+  typeCityField(city) {
     this.cityField.type(city, { force: true });
   }
 
