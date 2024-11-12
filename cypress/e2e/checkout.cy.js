@@ -28,5 +28,14 @@ describe('', () => {
     homePage.clickOnLink('Cart');
     cartPage.assertProduct('Sony vaio i7');
     cartPage.clickOnPlaceOrderButton();
+    cartPage.typeName('ukraina');
+    cartPage.typeCountryField('ukraina');
+    cartPage.typecityField('ukraina');
+    cartPage.typeCardField(4449444944494449);
+    cartPage.typeMonthField(12);
+    cartPage.typeYearField(2008);
+    cartPage.clickOnPurchaseButton();
+    cartPage.assertSuccess();
+    cartPage.clickOnOkButton();
   });
 });

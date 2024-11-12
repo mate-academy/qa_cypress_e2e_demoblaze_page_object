@@ -8,6 +8,6 @@ class PageObject {
       expect(alert).to.eq(alertMessage);
     });
   }
-}
+};
 
 export default PageObject;
