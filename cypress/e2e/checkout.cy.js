@@ -9,7 +9,7 @@ const cartPage = new CartpageObject();
 
 const testData = {
   firstName: faker.person.firstName(),
-  conuntry: 'USA',
+  country: 'USA',
   city: 'New York',
   card: faker.finance.creditCardNumber(),
   month: faker.date.month(),
