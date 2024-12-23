@@ -1,6 +1,6 @@
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
 import HomeAndCataloguePageObject
-  from '../support/pages/homeСatalogue.pageObject';
+  from '../support/pages/homeAndCataloguePageObject';
 import faker from 'faker';
 /// <reference types='cypress' />
 

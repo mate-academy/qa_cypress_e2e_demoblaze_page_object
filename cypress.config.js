@@ -3,13 +3,13 @@ const { faker } = require('@faker-js/faker');
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'https://www.demoblaze.com',
+    baseUrl: 'https://www.demoblaze.com/',
     setupNodeEvents(on, config) {
       on('task', {
         generateUser() {
           const randomNumber = Math.ceil(Math.random(1000) * 1000);
-          const randomMonth = Math.ceil(Math.random(1000) * 12);
-          const randomYear = Math.ceil(Math.random(1000) * 2024);
+          const randomMonth = Math.ceil(Math.random() * 12);
+          const randomYear = Math.ceil(Math.random() * 2024);
           return {
             username: faker.name.firstName() + `${randomNumber}`,
             email: 'user' + `${randomNumber}` + '@mail.com',

@@ -22,7 +22,7 @@ describe('The order', () => {
     homePage.visit();
   });
 
-  it('should be placed by purchuase the form', () => {
+  it('should be placed by purchase the form', () => {
     const confirmationMessage = 'Thank you for your purchase!';
     homePage.clickOnCategory('Laptops');
     homePage.clickOnProduct('Sony vaio i7');
