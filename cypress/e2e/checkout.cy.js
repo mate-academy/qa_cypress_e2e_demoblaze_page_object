@@ -9,7 +9,7 @@ describe('', () => {
     homePage.visit();
   });
 
-  it('', () => {
+  it('should allow a user to add a product to the car', () => {
     homePage.clickOnLinkOther('Laptops');
     cy.get('.hrefch').contains('a', 'Sony vaio i7').click();
     cy.get('.col-sm-12 > .btn').click();
@@ -24,6 +24,6 @@ describe('', () => {
     cy.get('#month').type('September');
     cy.get('#year').type('2024');
     cy.get('[onclick="purchaseOrder()"]').click();
-    cy.get('.confirm').click();
+    homePage.clickOnButton('OK');
   });
 });

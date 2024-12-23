@@ -13,6 +13,11 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
+  clickOnButton(linkName) {
+    cy.contains('.confirm', linkName)
+      .click();
+  }
+
   clickOnCategory(categoryName) {
     cy.contains('#itemc', categoryName)
       .click();
