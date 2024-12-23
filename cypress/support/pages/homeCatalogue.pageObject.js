@@ -8,6 +8,11 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
+  clickOnLinkOther(linkName) {
+    cy.contains('.list-group-item', linkName)
+      .click();
+  }
+
   clickOnCategory(categoryName) {
     cy.contains('#itemc', categoryName)
       .click();
