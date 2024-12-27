@@ -1,4 +1,5 @@
 const { defineConfig } = require('cypress');
+const { faker } = require('@faker-js/faker');
 
 module.exports = defineConfig({
   e2e: {
@@ -7,13 +8,20 @@ module.exports = defineConfig({
       on('task', {
         generateUser() {
           const randomNumber = Math.ceil(Math.random(1000) * 1000);
+          const randomMonth = Math.ceil(Math.random() * 12);
+          const randomYear = Math.ceil(Math.random() * 2024);
           return {
             username: faker.name.firstName() + `${randomNumber}`,
-            email: 'test' + `${randomNumber}` + '@mail.com',
-            password: 'Password12345!'
+            email: 'user' + `${randomNumber}` + '@mail.com',
+            password: 'Password12345!',
+            country: faker.lorem.word(),
+            city: faker.lorem.word(),
+            card: faker.lorem.word(),
+            month: randomMonth,
+            year: randomYear
           };
         }
-      })
+      });
     }
   }
 });
