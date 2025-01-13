@@ -1,11 +1,10 @@
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
-import HomeAndCataloguePageObject
-  from '../support/pages/homeCatalogue.pageObject';
+import HomeAndCatalogue from '../support/pages/homeCatalogue.pageObject';
 import faker from 'faker';
 /// <reference types='cypress' />
 
 const contactForm = new ContactFormPageObject();
-const homePage = new HomeAndCataloguePageObject();
+const homePage = new HomeAndCatalogue();
 
 const testData = {
   email: faker.internet.email(),

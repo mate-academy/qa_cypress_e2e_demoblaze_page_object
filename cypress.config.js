@@ -1,6 +1,7 @@
-const { defineConfig } = require('cypress');
+import { faker } from '@faker-js/faker';
+import { defineConfig } from 'cypress';
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
     baseUrl: 'https://www.demoblaze.com/',
     setupNodeEvents(on, config) {
@@ -13,7 +14,7 @@ module.exports = defineConfig({
             password: 'Password12345!'
           };
         }
-      })
+      });
     }
   }
 });
