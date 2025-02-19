@@ -13,6 +13,18 @@ module.exports = defineConfig({
             email: 'test' + `${randomNumber}` + '@mail.com',
             password: 'Password12345!'
           };
+        },
+        generateOrderInfo() {
+          const name = faker.person.firstName();
+          const country = faker.location.country();
+          const city = faker.location.city();
+          const creditCardNumber = faker.finance.creditCardNumber();
+          const month = faker.date.month();
+          const year = Math.ceil(Math.random() * 30) + 2000;
+
+          return {
+            name, country, city, creditCardNumber, month, year
+          };
         }
       });
     }
