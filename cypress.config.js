@@ -3,6 +3,8 @@ const { faker } = require('@faker-js/faker');
 
 module.exports = defineConfig({
   e2e: {
+    viewportHeight: 1080,
+    viewportWidth: 1900,
     baseUrl: 'https://www.demoblaze.com/',
     setupNodeEvents(on, config) {
       on('task', {
