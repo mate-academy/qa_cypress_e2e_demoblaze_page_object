@@ -1,3 +1,4 @@
+const faker = require('faker');
 const { defineConfig } = require('cypress');
 const { faker } = require('@faker-js/faker');
 
