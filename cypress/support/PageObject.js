@@ -8,6 +8,10 @@ class PageObject {
       expect(alert).to.eq(alertMessage);
     });
   }
+
+  clickOnCartLink() {
+    cy.contains('.nav-link', 'Cart').click();
+  }
 }
 
 export default PageObject;
