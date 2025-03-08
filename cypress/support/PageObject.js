@@ -1,6 +1,7 @@
 class PageObject {
   visit(url) {
-    cy.visit(url || this.url);
+    const baseUrl = Cypress.config('baseUrl');
+    cy.visit(url || baseUrl);
   }
 
   assertAllert(alertMessage) {
