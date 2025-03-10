@@ -13,6 +13,25 @@ module.exports = defineConfig({
             email: 'test' + `${randomNumber}` + '@mail.com',
             password: 'Password12345!'
           };
+        },
+
+        generatePurchaseData() {
+          return {
+            name: faker.person.firstName(),
+            country: faker.location.country(),
+            city: faker.location.city(),
+            card: faker.finance.creditCardNumber(),
+            month: faker.date.month(),
+            year: faker.number.int({ min: 1920, max: 2007 })
+          };
+        },
+
+        convertCurrentDate() {
+          const currentDate = new Date();
+          const year = currentDate.getFullYear();
+          const month = currentDate.getMonth();
+          const day = currentDate.getDate();
+          return `${day}/${month}/${year}`;
         }
       });
     }
