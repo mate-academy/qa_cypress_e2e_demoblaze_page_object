@@ -3,6 +3,7 @@ const { faker } = require('@faker-js/faker');
 
 module.exports = defineConfig({
   e2e: {
+    chromeWebSecurity: false,
     baseUrl: 'https://www.demoblaze.com/',
     setupNodeEvents(on, config) {
       on('task', {

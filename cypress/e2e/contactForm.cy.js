@@ -4,17 +4,16 @@ import HomeAndCataloguePageObject
 import { faker } from '@faker-js/faker';
 /// <reference types='cypress' />
 
-const contactForm = new ContactFormPageObject();
-const homePage = new HomeAndCataloguePageObject();
-
-const testData = {
-  email: faker.internet.email(),
-  name: faker.name.firstName(),
-  message: faker.random.words(),
-  successMessage: 'Thanks for the message!!'
-};
-
 describe('Contact', () => {
+  const contactForm = new ContactFormPageObject();
+  const homePage = new HomeAndCataloguePageObject();
+  const testData = {
+    email: faker.internet.email(),
+    name: faker.name.firstName(),
+    message: faker.random.words(),
+    successMessage: 'Thanks for the message!!'
+  };
+
   before(() => {
     homePage.visit();
   });
