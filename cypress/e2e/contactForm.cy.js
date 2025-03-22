@@ -26,6 +26,6 @@ describe('Contact', () => {
     contactForm.typeMessage(testData.message);
     contactForm.clickOnSendMessageBtn();
 
-    contactForm.assertAllert(testData.successMessage);
+    contactForm.assertAlert(testData.successMessage);
   });
 });
