@@ -2,8 +2,8 @@
 /// <reference types='cypress' />
 
 import HomeAndCataloguePageObject from '../support/pages/homeCatalogue.pageObject';
-import CartPageObject from '../support/pages/CartPageObject';
-import CheckoutPageObject from '../support/pages/CheckoutPageObject';
+import CartPageObject from '../support/pages/cart.pageObject'; // Fixed import path
+import CheckoutPageObject from '../support/pages/checkout.pageObject'; // Fixed import path
 import { faker } from '@faker-js/faker';
 
 const homePage = new HomeAndCataloguePageObject();
