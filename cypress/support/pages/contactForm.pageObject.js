@@ -1,8 +1,6 @@
 import PageObject from '../PageObject';
 
 class ContactFormPageObject extends PageObject {
-  url = '/index.html';
-
   get emailField() {
     return cy.get('#recipient-email');
   }

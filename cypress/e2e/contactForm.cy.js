@@ -8,6 +8,7 @@ const contactForm = new ContactFormPageObject();
 const homePage = new HomeAndCataloguePageObject();
 
 const testData = {
+  url: '/index.html',
   email: faker.internet.email(),
   name: faker.name.firstName(),
   message: faker.random.words(),
@@ -16,7 +17,7 @@ const testData = {
 
 describe('Contact', () => {
   before(() => {
-    homePage.visit();
+    homePage.visit(testData.url);
   });
 
   it('should provide the ability to send feedback', () => {
@@ -26,6 +27,6 @@ describe('Contact', () => {
     contactForm.typeMessage(testData.message);
     contactForm.clickOnSendMessageBtn();
 
-    contactForm.assertAllert(testData.successMessage);
+    contactForm.assertAlert(testData.successMessage);
   });
 });

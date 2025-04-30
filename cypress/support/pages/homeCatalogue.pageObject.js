@@ -1,7 +1,13 @@
 import PageObject from '../PageObject';
 
 class HomeAndCataloguePageObject extends PageObject {
-  url = '/index.html';
+  getInputField(elementId) {
+    return cy.get(`#${elementId}`);
+  }
+
+  typeInputField(elementId, data) {
+    this.getInputField(elementId).type(data);
+  }
 
   clickOnLink(linkName) {
     cy.contains('.nav-link', linkName)
@@ -16,6 +22,10 @@ class HomeAndCataloguePageObject extends PageObject {
   clickOnProduct(product) {
     cy.contains('.hrefch', product)
       .click();
+  }
+
+  clickOnButton(buttonName) {
+    cy.contains('.btn', buttonName).should('be.visible').click();
   }
 }
 
