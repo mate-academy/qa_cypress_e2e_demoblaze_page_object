@@ -21,42 +21,40 @@ describe('Checkout Flow', () => {
   });
 });
 
-it('', () => {
-  it('should add a laptop to cart and complete purchase', () => {
-    homePage.clickOnCategory('Laptops');
+it('should add a laptop to cart and complete purchase', () => {
+  homePage.clickOnCategory('Laptops');
 
-    productPage.selectProduct('Sony vaio i7');
+  productPage.selectProduct('Sony vaio i7');
 
-    productPage.clickAddToCart();
+  productPage.clickAddToCart();
 
-    cy.on('window:alert', (alertText) => {
-      expect(alertText).to.eq('Product added');
-    });
-
-    cy.contains('.nav-link', 'Cart').click();
-
-    cartPage.verifyProductInCart('Sony vaio i7');
-
-    cartPage.clickPlaceOrder();
-
-    const orderData = {
-      name: faker.person.firstName(),
-      country: faker.location.country(),
-      city: faker.location.city(),
-      creditCard: faker.finance.creditCardNumber(),
-      month: '12',
-      year: '2025'
-    };
-
-    orderModal.fillOrderForm(orderData);
-
-    orderModal.clickPurchase();
-
-    cy.get('.sweet-alert')
-      .should('contain.text', orderData.name)
-      .and('contain.text', orderData.creditCard);
-
-    cy.get('.sa-confirm-button-container button')
-      .click();
+  cy.on('window:alert', (alertText) => {
+    expect(alertText).to.eq('Product added');
   });
+
+  cy.contains('.nav-link', 'Cart').click();
+
+  cartPage.verifyProductInCart('Sony vaio i7');
+
+  cartPage.clickPlaceOrder();
+
+  const orderData = {
+    name: faker.person.firstName(),
+    country: faker.location.country(),
+    city: faker.location.city(),
+    creditCard: faker.finance.creditCardNumber(),
+    month: '12',
+    year: '2025'
+  };
+
+  orderModal.fillOrderForm(orderData);
+
+  orderModal.clickPurchase();
+
+  cy.get('.sweet-alert')
+    .should('contain.text', orderData.name)
+    .and('contain.text', orderData.creditCard);
+
+  cy.get('.sa-confirm-button-container button')
+    .click();
 });
