@@ -1,6 +1,6 @@
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
-import HomeAndCataloguePageObject
-  from '../support/pages/homeCatalogue.pageObject';
+// eslint-disable-next-line max-len
+import HomeAndCataloguePageObject from '../support/pages/homeCatalogue.pageObject';
 import { faker } from '@faker-js/faker';
 /// <reference types='cypress' />
 
@@ -9,8 +9,8 @@ const homePage = new HomeAndCataloguePageObject();
 
 const testData = {
   email: faker.internet.email(),
-  name: faker.name.firstName(),
-  message: faker.random.words(),
+  name: faker.person.firstName(),
+  message: faker.lorem.sentence(),
   successMessage: 'Thanks for the message!!'
 };
 
@@ -26,6 +26,6 @@ describe('Contact', () => {
     contactForm.typeMessage(testData.message);
     contactForm.clickOnSendMessageBtn();
 
-    contactForm.assertAllert(testData.successMessage);
+    contactForm.assertAlert(testData.successMessage);
   });
 });
