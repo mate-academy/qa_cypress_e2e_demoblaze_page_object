@@ -31,3 +31,5 @@ App for testing: [Demoblaze](https://www.demoblaze.com/)
 1. Click on [Purchase]
    - assert entered data is shown on modal
 1. Click on [Ok]
+
+[readme file]
