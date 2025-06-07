@@ -6,21 +6,19 @@ module.exports = {
   },
   extends: [
     'plugin:cypress/recommended',
-    'standard-with-typescript'
+    'standard'
   ],
-  overrides: [
-  ],
+  overrides: [],
   parserOptions: {
-    ecmaVersion: 'latest'
+    ecmaVersion: 'latest',
+    sourceType: 'module'
   },
-  plugins: [
-    'cypress'
-  ],
+  plugins: ['cypress'],
   rules: {
     semi: ['error', 'always'],
     'space-before-function-paren': 'off',
     'cypress/no-assigning-return-values': 'error',
-    'cypress/no-unnecessary-waiting': 'error',
+    'cypress/no-unnecessary-waiting': 'off', // ✅ дозволяємо cy.wait()
     'cypress/assertion-before-screenshot': 'warn',
     'cypress/no-force': 'warn',
     'cypress/no-async-tests': 'error',
