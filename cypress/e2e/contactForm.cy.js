@@ -1,4 +1,5 @@
-import ContactFormPageObject from '../support/pages/contactForm.pageObject';
+import ContactFormPageObject
+  from '../support/pages/contactForm.pageObject';
 import HomeAndCataloguePageObject
   from '../support/pages/homeCatalogue.pageObject';
 import { faker } from '@faker-js/faker';
