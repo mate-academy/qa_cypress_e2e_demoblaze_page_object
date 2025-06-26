@@ -8,6 +8,11 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
+  clickOnButton(button) {
+    cy.contains('.btn', button)
+      .click();
+  }
+
   clickOnCategory(categoryName) {
     cy.contains('#itemc', categoryName)
       .click();
@@ -15,6 +20,11 @@ class HomeAndCataloguePageObject extends PageObject {
 
   clickOnProduct(product) {
     cy.contains('.hrefch', product)
+      .click();
+  }
+
+  clickOnBtn(button) {
+    cy.contains('.btn', button)
       .click();
   }
 }
