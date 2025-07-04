@@ -1,6 +1,4 @@
-import PageObject from '../PageObject';
-
-export default class CartPageObject extends PageObject {
+export default class CartPageObject {
   url = '/cart.html';
 
   verifyCartItem(productName) {
@@ -30,5 +28,11 @@ export default class CartPageObject extends PageObject {
 
   clickOnPurchaseButton() {
     cy.get('.btn-primary').contains('Purchase').click();
+  }
+
+  assertAlert(alertMessage) {
+    cy.on('window:alert', (alert) => {
+      expect(alert).to.eq(alertMessage);
+    });
   }
 }

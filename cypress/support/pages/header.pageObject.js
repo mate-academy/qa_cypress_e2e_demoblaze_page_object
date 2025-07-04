@@ -1,8 +1,4 @@
-import PageObject from '../PageObject';
-
-export default class HeaderPageObject extends PageObject {
-  url = '/cart.html';
-
+export default class HeaderPageObject {
   clickOnLink(linkName) {
     cy.contains('.nav-link', linkName).click();
   }

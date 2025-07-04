@@ -36,7 +36,7 @@ describe('Checkout', () => {
 
     productDetailsPage.verifyProductDetails(testData.productName);
     productDetailsPage.clickOnAddToCartButton();
-    productDetailsPage.assertAllert(testData.alertMessage);
+    productDetailsPage.assertAlert(testData.alertMessage);
 
     header.clickOnLink('Cart');
 
@@ -53,6 +53,6 @@ describe('Checkout', () => {
       testData.orderDetails.year
     );
     cart.clickOnPurchaseButton();
-    cart.assertAllert('Thank you for your purchase!');
+    cart.assertAlert('Thank you for your purchase!');
   });
 });
