@@ -4,11 +4,11 @@
 import { faker } from '@faker-js/faker';
 import CartPageObject from '../support/pages/cart.pageObject';
 import HomeAndCataloguePageObject from '../support/pages/homeCatalogue.pageObject';
-import PlaceOrderFromPajeObject from '../support/pages/placeOrderForm.pageObject';
+import PlaceOrderFromPageObject from '../support/pages/placeOrderForm.pageObject';
 
 const homePage = new HomeAndCataloguePageObject();
 const cartPage = new CartPageObject();
-const placeOrderForm = new PlaceOrderFromPajeObject();
+const placeOrderForm = new PlaceOrderFromPageObject();
 
 const productName = 'Sony vaio i7';
 

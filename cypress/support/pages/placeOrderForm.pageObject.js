@@ -1,6 +1,6 @@
 import PageObject from '../PageObject';
 
-class PlaceOrderFromPajeObject extends PageObject {
+class PlaceOrderFromPageObject extends PageObject {
   url = '/index.html';
 
   get nameField() {
@@ -80,4 +80,4 @@ class PlaceOrderFromPajeObject extends PageObject {
   }
 };
 
-export default PlaceOrderFromPajeObject;
+export default PlaceOrderFromPageObject;
