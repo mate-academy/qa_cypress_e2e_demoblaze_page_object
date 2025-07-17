@@ -1,7 +1,8 @@
 import PageObject from '../PageObject';
 
 class HomeAndCataloguePageObject extends PageObject {
-  url = '/index.html';
+  url = 'https://www.demoblaze.com/';
+  // url = '/index.html';
 
   clickOnLink(linkName) {
     cy.contains('.nav-link', linkName)
@@ -15,6 +16,11 @@ class HomeAndCataloguePageObject extends PageObject {
 
   clickOnProduct(product) {
     cy.contains('.hrefch', product)
+      .click();
+  }
+
+  clickOnBtn(btnText) {
+    cy.contains('.btn', btnText)
       .click();
   }
 }
