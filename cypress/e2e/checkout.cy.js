@@ -1,40 +1,36 @@
-/// <reference types='cypress' />
+import HomeCataloguePage from '../support/pages/homeCatalogue.pageObject';
 
-import HomeAndCataloguePageObject
-  from '../support/pages/homeCatalogue.pageObject';
-import PageObject from '../support/PageObject';
+describe('Checkout flow - Demoblaze', () => {
+  const homeCatalogue = new HomeCataloguePage();
 
-const homePage = new HomeAndCataloguePageObject();
-const page = new PageObject();
+  const product = 'Sony vaio i7';
+  const orderData = {
+    name: 'Jan Kowalski',
+    country: 'Polska',
+    city: 'Warszawa',
+    card: '1234567890123456',
+    month: '08',
+    year: '2025'
+  };
 
-describe('Demoblaze - checkout flow', () => {
-  before(() => {
-    homePage.visit();
-  });
+  it('should complete purchase using POM methods', () => {
+    homeCatalogue.visit();
 
-  it('Powinien zrealizować zamówienie przy użyciu POM', () => {
-    homePage.clickOnCategory('Laptops');
+    homeCatalogue.selectCategory('Laptops');
 
-    homePage.clickOnProduct('Sony vaio i7');
+    homeCatalogue.selectProduct(product);
 
-    cy.contains('Add to cart').click();
-    page.assertAllert('Product added.');
+    homeCatalogue.addToCart();
+    homeCatalogue.assertAlert('Product added.');
 
-    cy.contains('Cart').click();
-    cy.get('tbody tr').contains('Sony vaio i7').should('exist');
+    homeCatalogue.openCart();
+    homeCatalogue.assertItemInCart(product);
 
-    cy.contains('Place Order').click();
+    homeCatalogue.placeOrder();
+    homeCatalogue.fillOrderForm(orderData);
+    homeCatalogue.submitPurchase();
 
-    cy.get('#name').type('Jan Kowalski');
-    cy.get('#country').type('Polska');
-    cy.get('#city').type('Warszawa');
-    cy.get('#card').type('1234567890123456');
-    cy.get('#month').type('08');
-    cy.get('#year').type('2025');
-
-    cy.contains('Purchase').click();
-    cy.get('.sweet-alert').should('contain.text', 'Jan Kowalski');
-
-    cy.contains('OK').click();
+    homeCatalogue.assertConfirmationModalContains(orderData);
+    homeCatalogue.confirmModal();
   });
 });
