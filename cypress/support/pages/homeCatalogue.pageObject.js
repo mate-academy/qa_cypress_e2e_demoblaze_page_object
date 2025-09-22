@@ -1,22 +1,23 @@
 import PageObject from '../PageObject';
 
-class HomeAndCataloguePageObject extends PageObject {
-  url = '/index.html';
-
+export default class HomePage extends PageObject {
   clickOnLink(linkName) {
-    cy.contains('.nav-link', linkName)
-      .click();
+    cy.contains('.nav-link', linkName).click();
+    return this;
   }
 
   clickOnCategory(categoryName) {
-    cy.contains('#itemc', categoryName)
-      .click();
+    cy.contains('#itemc', categoryName).click();
+    return this;
   }
 
-  clickOnProduct(product) {
-    cy.contains('.hrefch', product)
-      .click();
+  clickOnProduct(productName) {
+    cy.contains('.hrefch', productName).click();
+    return this;
+  }
+
+  clickOnAddToCart() {
+    cy.contains('.btn', 'Add to cart').click();
+    return this;
   }
 }
-
-export default HomeAndCataloguePageObject;

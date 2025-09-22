@@ -1,31 +1,20 @@
-import ContactFormPageObject from '../support/pages/contactForm.pageObject';
-import HomeAndCataloguePageObject
-  from '../support/pages/homeCatalogue.pageObject';
-import { faker } from '@faker-js/faker';
-/// <reference types='cypress' />
+import ContactFormPage from '../support/pages/contactForm.pageObject';
 
-const contactForm = new ContactFormPageObject();
-const homePage = new HomeAndCataloguePageObject();
+describe('Demoblaze contact form', () => {
+  const contactFormPage = new ContactFormPage();
 
-const testData = {
-  email: faker.internet.email(),
-  name: faker.name.firstName(),
-  message: faker.random.words(),
-  successMessage: 'Thanks for the message!!'
-};
-
-describe('Contact', () => {
-  before(() => {
-    homePage.visit();
+  beforeEach(() => {
+    cy.visit('https://www.demoblaze.com');
   });
 
-  it('should provide the ability to send feedback', () => {
-    homePage.clickOnLink('Contact');
-    contactForm.typeEmail(testData.email);
-    contactForm.typeName(testData.name);
-    contactForm.typeMessage(testData.message);
-    contactForm.clickOnSendMessageBtn();
+  it('should send a message via contact form', () => {
+    contactFormPage
+      .openContactForm()
+      .fillForm('test@test.com', 'Tester', 'Hello, this is a test message!')
+      .submitForm();
 
-    contactForm.assertAllert(testData.successMessage);
+    cy.on('window:alert', (txt) => {
+      expect(txt).to.contains('Thanks for the message!!');
+    });
   });
 });
