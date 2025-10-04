@@ -6,8 +6,7 @@ class ProductPageObject extends PageObject {
   }
 
   selectProduct(productName) {
-    cy.contains('.hrefch', productName)
-      .click();
+    cy.contains('.hrefch', productName).click();
   }
 
   clickAddToCart() {

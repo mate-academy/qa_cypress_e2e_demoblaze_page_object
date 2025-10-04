@@ -8,6 +8,7 @@ class PlaceOrderModalPageObject {
   get purchaseBtn() { return cy.contains('button', 'Purchase'); }
 
   fillOrderForm({ name, country, city, creditCard, month, year }) {
+    cy.get('#orderModal').should('be.visible');
     this.nameField.type(name);
     this.countryField.type(country);
     this.cityField.type(city);
@@ -17,7 +18,7 @@ class PlaceOrderModalPageObject {
   }
 
   clickPurchase() {
-    this.purchaseBtn.click();
+    return this.purchaseBtn.click();
   }
 }
 

@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 import ContactFormPageObject from '../support/pages/contactForm.pageObject';
-import HomeAndCataloguePageObject
-  from '../support/pages/homeCatalogue.pageObject';
+import HomeAndCataloguePageObject from '../support/pages/homeCatalogue.pageObject';
 import { faker } from '@faker-js/faker';
+
 /// <reference types='cypress' />
 
 const contactForm = new ContactFormPageObject();
@@ -9,8 +10,8 @@ const homePage = new HomeAndCataloguePageObject();
 
 const testData = {
   email: faker.internet.email(),
-  name: faker.name.firstName(),
-  message: faker.random.words(),
+  name: faker.person.firstName(),
+  message: faker.lorem.words(),
   successMessage: 'Thanks for the message!!'
 };
 
@@ -26,6 +27,8 @@ describe('Contact', () => {
     contactForm.typeMessage(testData.message);
     contactForm.clickOnSendMessageBtn();
 
-    contactForm.assertAllert(testData.successMessage);
+    cy.on('window:alert', (alertText) => {
+      expect(alertText).to.eq(testData.successMessage);
+    });
   });
 });

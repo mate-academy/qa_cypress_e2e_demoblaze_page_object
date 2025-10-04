@@ -1,11 +1,8 @@
-import HomeAndCataloguePageObject
-  from '../support/pages/homeCatalogue.pageObject';
-import ProductPageObject
-  from '../support/pages/product.pageObject';
-import CartPageObject
-  from '../support/pages/cart.pageObject';
-import PlaceOrderModalPageObject
-  from '../support/pages/placeOrderModal.pageObject';
+/* eslint-disable max-len */
+import HomeAndCataloguePageObject from '../support/pages/homeCatalogue.pageObject';
+import ProductPageObject from '../support/pages/product.pageObject';
+import CartPageObject from '../support/pages/cart.pageObject';
+import PlaceOrderModalPageObject from '../support/pages/placeOrderModal.pageObject';
 import { faker } from '@faker-js/faker';
 
 /// <reference types='cypress' />
@@ -22,19 +19,17 @@ describe('Checkout Flow', () => {
 
   it('should add a laptop to cart and complete purchase', () => {
     homePage.clickOnCategory('Laptops');
-
     productPage.selectProduct('Sony vaio i7');
-
-    productPage.clickAddToCart();
 
     cy.on('window:alert', (alertText) => {
       expect(alertText).to.eq('Product added');
     });
 
+    productPage.clickAddToCart();
+
     cy.contains('.nav-link', 'Cart').click();
 
     cartPage.verifyProductInCart('Sony vaio i7');
-
     cartPage.clickPlaceOrder();
 
     const orderData = {
@@ -47,14 +42,14 @@ describe('Checkout Flow', () => {
     };
 
     orderModal.fillOrderForm(orderData);
-
     orderModal.clickPurchase();
+
+    const normalizedCard = orderData.creditCard.replace(/\D/g, '');
 
     cy.get('.sweet-alert')
       .should('contain.text', orderData.name)
-      .and('contain.text', orderData.creditCard);
+      .and('contain.text', normalizedCard);
 
-    cy.get('.sa-confirm-button-container button')
-      .click();
+    cy.get('.sa-confirm-button-container button').click();
   });
 });

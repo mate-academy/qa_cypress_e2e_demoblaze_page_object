@@ -4,17 +4,15 @@ class CartPageObject extends PageObject {
   url = '/cart.html';
 
   get cartItemNames() {
-    return cy.get('tr.success td:nth-child(2)');
+    return cy.get('#tbodyid tr td:nth-child(2)');
   }
 
   verifyProductInCart(productName) {
-    this.cartItemNames
-      .should('contain.text', productName);
+    this.cartItemNames.should('contain.text', productName);
   }
 
   clickPlaceOrder() {
-    cy.contains('button', 'Place Order')
-      .click();
+    cy.contains('button', 'Place Order').click();
   }
 }
 
