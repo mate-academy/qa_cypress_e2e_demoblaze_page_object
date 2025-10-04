@@ -1,12 +1,10 @@
-/* eslint-disable max-len */
-import ContactFormPageObject from '../support/pages/contactForm.pageObject';
-import HomeAndCataloguePageObject from '../support/pages/homeCatalogue.pageObject';
+import ContactFormPage from '../support/pages/contactForm';
+import HomePage from '../support/pages/home';
 import { faker } from '@faker-js/faker';
+/// <reference types="cypress" />
 
-/// <reference types='cypress' />
-
-const contactForm = new ContactFormPageObject();
-const homePage = new HomeAndCataloguePageObject();
+const contactForm = new ContactFormPage();
+const homePage = new HomePage();
 
 const testData = {
   email: faker.internet.email(),
@@ -22,13 +20,16 @@ describe('Contact', () => {
 
   it('should provide the ability to send feedback', () => {
     homePage.clickOnLink('Contact');
+
+    cy.get('#exampleModal')
+      .should('have.class', 'show')
+      .and('be.visible');
+
     contactForm.typeEmail(testData.email);
     contactForm.typeName(testData.name);
     contactForm.typeMessage(testData.message);
     contactForm.clickOnSendMessageBtn();
 
-    cy.on('window:alert', (alertText) => {
-      expect(alertText).to.eq(testData.successMessage);
-    });
+    contactForm.assertAlert(testData.successMessage);
   });
 });
