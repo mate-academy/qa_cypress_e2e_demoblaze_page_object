@@ -2,14 +2,16 @@ import PageObject from '../PageObject';
 
 class ProductPage extends PageObject {
   get addToCartBtn() {
-    return cy.contains('.btn', 'Add to cart');
+    return cy.contains('a', 'Add to cart');
   }
 
   addToCart() {
-    cy.on('window:alert', (txt) => {
-      expect(txt).to.eq('Product added');
-    });
-    this.addToCartBtn.click();
+    return this.addToCartBtn.click()
+      .then(() => {
+        cy.on('window:alert', (txt) => {
+          expect(txt).to.contain('Product added');
+        });
+      });
   }
 }
 

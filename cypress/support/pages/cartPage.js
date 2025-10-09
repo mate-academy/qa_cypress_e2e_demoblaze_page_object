@@ -1,24 +1,22 @@
 import PageObject from '../PageObject';
 
 class CartPage extends PageObject {
-  get cartLink() {
-    return cy.contains('#cartur', 'Cart');
-  }
-
-  get placeOrderBtn() {
-    return cy.contains('button', 'Place Order');
+  get cartTable() {
+    return cy.get('#tbodyid');
   }
 
   open() {
-    this.cartLink.click();
+    cy.get('#cartur').click();
+    cy.url().should('include', 'cart.html');
+    this.cartTable.should('be.visible');
   }
 
   assertProductPresent(productName) {
-    cy.contains('td', productName).should('exist');
+    this.cartTable.should('contain.text', productName).and('be.visible');
   }
 
   placeOrder() {
-    this.placeOrderBtn.click();
+    cy.contains('button', 'Place Order').click();
   }
 }
 
