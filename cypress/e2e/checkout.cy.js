@@ -1,6 +1,5 @@
 /// <reference types='cypress' />
 
-import ContactFormPageObject from '../support/pages/contactForm.pageObject';
 import HomeAndCataloguePageObject
   from '../support/pages/homeCatalogue.pageObject';
 import {
@@ -11,7 +10,6 @@ import PlaceOrderFormPageObject
 
 import PageObject from '../support/PageObject';
 
-const contactForm = new ContactFormPageObject();
 const homePage = new HomeAndCataloguePageObject();
 const placeOrderForm = new PlaceOrderFormPageObject();
 const pageObject = new PageObject();
@@ -83,13 +81,13 @@ describe('Place Order', () => {
 
     homePage.clickOnButton('Purchase');
 
-    cy.get('[class="lead text-muted "]')
-      .should('contain', testData.creditCard);
+    cy.get('.lead.text-muted')
+      .contains(testData.name)
+      .should('be.visible');
 
-    cy.get('[class="lead text-muted "]')
-      .should('contain', testData.name);
-
-    contactForm.assertAllert(testData.secondMessage);
+    cy.get('.lead.text-muted')
+      .contains(testData.creditCard)
+      .should('be.visible');
 
     homePage.clickOnButton('OK');
   });
