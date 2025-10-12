@@ -9,7 +9,8 @@ class HomeAndCataloguePageObject extends PageObject {
   }
 
   clickOnButton(nameButton) {
-    cy.contains('.btn', nameButton)
+    return cy.contains('.btn', nameButton)
+      .should('be.visible')
       .click();
   }
 

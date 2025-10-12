@@ -9,9 +9,12 @@ import {
 import PlaceOrderFormPageObject
   from '../support/pages/placeOrderForm.pageObject';
 
+import PageObject from '../support/PageObject';
+
 const contactForm = new ContactFormPageObject();
 const homePage = new HomeAndCataloguePageObject();
 const placeOrderForm = new PlaceOrderFormPageObject();
+const pageObject = new PageObject();
 
 const testData = {
   name: faker.person.firstName(),
@@ -19,7 +22,10 @@ const testData = {
   city: faker.location.city(),
   creditCard: Math.random().toString().slice(2, 20),
   month: faker.date.month(),
-  year: faker.number.int({ min: 1950, max: 2025 }),
+  year: faker.number.int({
+    min: 1950,
+    max: 2025
+  }),
   firstMessage: 'Product added',
   secondMessage: 'Thank you for your purchase!'
 };
@@ -29,14 +35,14 @@ describe('Place Order', () => {
     homePage.visit();
   });
 
-  it('assert entered date after placing an order', () => {
+  it('assert entered data after placing an order', () => {
     homePage.clickOnCategory('Laptops');
 
     homePage.clickOnProduct('Sony vaio i7');
 
-    homePage.clickOnButton('Add to cart');
+    pageObject.assertAllert(testData.firstMessage);
 
-    contactForm.assertAllert(testData.firstMessage);
+    homePage.clickOnButton('Add to cart');
 
     homePage.clickOnLink('Cart');
 
@@ -77,8 +83,14 @@ describe('Place Order', () => {
 
     homePage.clickOnButton('Purchase');
 
-    homePage.clickOnButton('OK');
+    cy.get('[class="lead text-muted "]')
+      .should('contain', testData.creditCard);
+
+    cy.get('[class="lead text-muted "]')
+      .should('contain', testData.name);
 
     contactForm.assertAllert(testData.secondMessage);
+
+    homePage.clickOnButton('OK');
   });
 });
