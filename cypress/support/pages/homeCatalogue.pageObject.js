@@ -8,6 +8,12 @@ class HomeAndCataloguePageObject extends PageObject {
       .click();
   }
 
+  clickOnButton(nameButton) {
+    return cy.contains('.btn', nameButton)
+      .should('be.visible')
+      .click();
+  }
+
   clickOnCategory(categoryName) {
     cy.contains('#itemc', categoryName)
       .click();
