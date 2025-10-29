@@ -4,6 +4,7 @@ const { faker } = require('@faker-js/faker');
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://www.demoblaze.com/',
+    watchForFileChanges: false,
     setupNodeEvents(on, config) {
       on('task', {
         generateUser() {
