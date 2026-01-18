@@ -8,6 +8,12 @@ class ProductDetailsPageObject extends PageObject {
   clickOnAddToCart() {
     this.addToCartBtn.click();
   }
+
+  assertAlert(alertMessage) {
+    cy.on('window:alert', (alert) => {
+      expect(alert).to.eq(alertMessage);
+    });
+  }
 }
 
 export default ProductDetailsPageObject;

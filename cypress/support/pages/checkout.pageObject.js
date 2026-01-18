@@ -74,7 +74,7 @@ class CheckoutPageObject extends PageObject {
     cy.get('.sweet-alert').within(() => {
       cy.get('.lead').invoke('text').then((text) => {
         expect(text).to.include(data.card);
-        expect(text).to.include('Name:');
+        expect(text).to.include(data.name);
       });
     });
   }

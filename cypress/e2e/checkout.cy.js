@@ -38,7 +38,7 @@ describe('Checkout', () => {
 
     // Click on [Add to cart] and assert message in the alert
     productPage.clickOnAddToCart();
-    productPage.assertAllert(testData.alertMessage);
+    productPage.assertAlert(testData.alertMessage);
 
     // Click on "Cart"
     homePage.clickOnLink('Cart');
