@@ -1,6 +1,6 @@
 import PageObject from '../PageObject';
 // eslint-disable-next-line import/no-named-default
-import { default as ArgumentError, isEveryKeyType } from '../e2e';
+import { ArgumentError, isEveryKeyType } from '../helpFunctions';
 
 class CartPagePageObject extends PageObject {
   url = '/cart.html';
