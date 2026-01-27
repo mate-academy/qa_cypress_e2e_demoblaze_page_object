@@ -4,7 +4,6 @@ import { ArgumentError, isEveryKeyType } from '../helpFunctions';
 
 class CartPagePageObject extends PageObject {
   url = '/cart.html';
-  totalCost = 0;
 
   checkProductsInfo(expectedProductArray = []) {
     switch (true) {
@@ -49,8 +48,6 @@ class CartPagePageObject extends PageObject {
             const pictureAddress = picture.children[0].src;
             const titleText = title.textContent.replace(/[\r\n]+/g, '');
             const priceText = price.textContent.replace(/[\r\n]+/g, '');
-
-            this.totalCost += Number(priceText);
 
             result.push({ pictureAddress, titleText, priceText });
           }
