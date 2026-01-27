@@ -87,7 +87,7 @@ class CartPagePageObject extends PageObject {
       .click();
   }
 
-  assertFinalMessage({ name, creditCard, total }) {
+  assertFinalMessage({ name, card, total }) {
     const argumentType = Object.prototype.toString.call(arguments[0]);
 
     if (!(argumentType === '[object Object]')) {
@@ -96,17 +96,17 @@ class CartPagePageObject extends PageObject {
 
     const doHaveAllProperties = (() => {
       const hasName = !((name ?? false) === false);
-      const hasCreditCard = !((creditCard ?? false) === false);
+      const hasCard = !((card ?? false) === false);
       const hasTotal = !((total ?? false) === false);
 
-      return !(!hasName || !hasCreditCard || !hasTotal);
+      return !(!hasName || !hasCard || !hasTotal);
     })();
     const doHaveOnlyStringProperty = isEveryKeyType('string',
       { ...arguments[0] });
 
     if (!doHaveAllProperties || Object.keys(arguments[0]).length > 3) {
       throw new ArgumentError(`Function must be invoked with object which ` +
-          `has 3 property (name, creditCard, total)`);
+          `has 3 property (name, card, total)`);
     } else if (!doHaveOnlyStringProperty) {
       throw new ArgumentError(`Function must be invoked with object which ` +
           `properties are only string`);
@@ -115,7 +115,7 @@ class CartPagePageObject extends PageObject {
     cy.get('.sweet-alert').as('purchaseEnd')
       .contains(`Amount: ${total}`);
     cy.get('@purchaseEnd')
-      .contains(`Card Number: ${creditCard}`);
+      .contains(`Card Number: ${card}`);
     cy.get('@purchaseEnd')
       .contains(`Name: ${name}`);
     cy.get('.sweet-alert button')
@@ -127,7 +127,7 @@ class CartPagePageObject extends PageObject {
     name: '',
     country: '',
     city: '',
-    creditCard: '',
+    card: '',
     month: '',
     year: ''
   }) {
@@ -143,17 +143,17 @@ class CartPagePageObject extends PageObject {
           userObj.name &&
           userObj.country &&
           userObj.city &&
-          userObj.creditCard &&
+          userObj.card &&
           userObj.month &&
           userObj.year
         )) {
           throw new Error('"userObj" must have all properties filled ' +
             // eslint-disable-next-line max-len
-            'with value (required: name, country, city, creditCard, month, year)'
+            'with value (required: name, country, city, card, month, year)'
           );
         } else if (Object.keys(userObj).length > 6) {
           throw new Error(`"userObj" cannot have additional properties` +
-            'userObj = { name, country, city, creditCard, month, year }'
+            'userObj = { name, country, city, card, month, year }'
           );
         } else if (!isEveryKeyType('string', userObj)) {
           throw new Error('All value of "userObj" must be string');
@@ -170,17 +170,11 @@ class CartPagePageObject extends PageObject {
           labelsToFill.push(key);
         }
 
-        for (const labelName of labelsToFill) {
-          const labelNameOnPage = (labelName === 'creditCard')
-            ? 'Credit card:'
-            : labelName.slice(0, 1).toUpperCase() + labelName.slice(1) + ':';
-
+        for (const inputName of labelsToFill) {
           // eslint-disable-next-line cypress/unsafe-to-chain-command
-          cy.get(form)
-            .find('label')
-            .contains(labelNameOnPage)
+          cy.get(`#${inputName}`)
             .click()
-            .type(userObj[labelName]);
+            .type(userObj[inputName]);
         }
       });
   }

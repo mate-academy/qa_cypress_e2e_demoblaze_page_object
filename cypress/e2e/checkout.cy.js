@@ -12,7 +12,7 @@ const testUser = {
   name: faker.person.firstName(),
   country: faker.location.county(),
   city: faker.location.city(),
-  creditCard: faker.finance.creditCardNumber(),
+  card: faker.finance.creditCardNumber(),
   month: `${randomNumberRange(1, 12)}`,
   year: `${randomNumberRange(1970, 2007)}`
 };
@@ -47,7 +47,7 @@ describe('Checkout', {
     cartPage.purchaseByClick();
     cartPage.assertFinalMessage({
       name: testUser.name,
-      creditCard: testUser.creditCard,
+      card: testUser.card,
       total: `790`
     });
   });
