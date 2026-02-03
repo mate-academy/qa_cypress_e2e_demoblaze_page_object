@@ -1,22 +1,17 @@
-import PageObject from '../PageObject';
-
-class HomeAndCataloguePageObject extends PageObject {
-  url = '/index.html';
-
-  clickOnLink(linkName) {
-    cy.contains('.nav-link', linkName)
-      .click();
+export default class HomeCataloguePage {
+  visit() {
+    cy.visit('https://www.demoblaze.com/');
   }
 
-  clickOnCategory(categoryName) {
-    cy.contains('#itemc', categoryName)
-      .click();
+  get laptopsCategory() {
+    return cy.contains('a', 'Laptops');
   }
 
-  clickOnProduct(product) {
-    cy.contains('.hrefch', product)
-      .click();
+  clickOnLaptopsCategory() {
+    this.laptopsCategory.click();
+  }
+
+  clickOnProduct(productName) {
+    cy.contains('a', productName).click();
   }
 }
-
-export default HomeAndCataloguePageObject;
