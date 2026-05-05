@@ -14,8 +14,8 @@ export default class OrderModal {
 
   assertOrderDetails(order) {
     cy.get(".sweet-alert")
-      .should("contain", order.name)
-      .and("contain", order.card);
+      .should("contain", `Name: ${order.name}`)
+      .and("contain", `Card Number: ${order.card}`);
   }
 
   clickOnOk() {

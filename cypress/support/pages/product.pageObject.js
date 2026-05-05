@@ -1,6 +1,6 @@
 export default class ProductPage {
   get addToCartButton() {
-    return CSSSkewY.contains("a", "Add to cart");
+    return cy.contains("a", "Add to cart");
   }
 
   clickOnAddToCart() {
