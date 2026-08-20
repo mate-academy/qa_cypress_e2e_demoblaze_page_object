@@ -4,7 +4,7 @@ const { faker } = require('@faker-js/faker');
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://www.demoblaze.com/',
-    setupNodeEvents(on, config) {
+    setupNodeEvents(on) {
       on('task', {
         generateUser() {
           const randomNumber = Math.ceil(Math.random(1000) * 1000);
